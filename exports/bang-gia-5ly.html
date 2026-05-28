@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bảng Giá Kim Cương GIA 5 LY — CHJ Diamond</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 14mm 12mm;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 9.5pt;
+      color: #1a1a2e;
+      background: #fff;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 2.5px solid #c9a96e;
+      margin-bottom: 10px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-diamond {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 50%, #c9a96e 100%);
+      clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
+    }
+    .brand-name { line-height: 1.15; }
+    .brand-name h1 { font-size: 15pt; font-weight: 800; letter-spacing: 1.5px; color: #1a1a2e; }
+    .brand-name span { font-size: 7.5pt; color: #c9a96e; letter-spacing: 2px; text-transform: uppercase; }
+    .header-right { text-align: right; font-size: 7.5pt; color: #666; line-height: 1.6; }
+    .header-right strong { color: #c9a96e; font-size: 9pt; }
+
+    /* ── TITLE BLOCK ─────────────────────────────── */
+    .title-block {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .title-block h2 {
+      font-size: 14pt;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .title-block p {
+      font-size: 8pt;
+      color: #777;
+      letter-spacing: 0.3px;
+    }
+    .title-block p strong { color: #c9a96e; }
+
+    /* ── LEGEND ──────────────────────────────────── */
+    .legend {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 600;
+      border: 1px solid;
+      flex: 1;
+      min-width: 0;
+    }
+    .tier-a-item { background: #fffbf0; border-color: #c9a96e; color: #7d5a0a; }
+    .tier-b-item { background: #f0f7ff; border-color: #4a90d9; color: #1a4f8a; }
+    .tier-c-item { background: #f0fdf5; border-color: #27ae60; color: #0d6b34; }
+    .tier-d-item { background: #fdf5ff; border-color: #9b59b6; color: #5a1d7a; }
+
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-a { background: #c9a96e; }
+    .dot-b { background: #4a90d9; }
+    .dot-c { background: #27ae60; }
+    .dot-d { background: #9b59b6; }
+
+    /* ── SECTION ─────────────────────────────────── */
+    .section { margin-bottom: 12px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: 5px 5px 0 0;
+      border-left: 4px solid;
+    }
+    .section-header h3 {
+      font-size: 9.5pt;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+    .section-header .tier-badge {
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 10px;
+      margin-left: auto;
+    }
+    .section-header .range {
+      font-size: 8pt;
+      font-weight: 500;
+      margin-left: auto;
+    }
+
+    /* Tier colors */
+    .tier-a .section-header { background: #fff8e7; border-color: #c9a96e; color: #7d5a0a; }
+    .tier-a .section-header .tier-badge { background: #c9a96e; color: #fff; }
+    .tier-b .section-header { background: #e8f4fd; border-color: #4a90d9; color: #1a4f8a; }
+    .tier-b .section-header .tier-badge { background: #4a90d9; color: #fff; }
+    .tier-c .section-header { background: #e8f8f0; border-color: #27ae60; color: #0d6b34; }
+    .tier-c .section-header .tier-badge { background: #27ae60; color: #fff; }
+    .tier-d .section-header { background: #f5eafb; border-color: #9b59b6; color: #5a1d7a; }
+    .tier-d .section-header .tier-badge { background: #9b59b6; color: #fff; }
+
+    /* ── TABLE ───────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    thead th {
+      padding: 4px 6px;
+      font-weight: 700;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      border-bottom: 1.5px solid;
+      text-align: center;
+    }
+    tbody td {
+      padding: 3.5px 6px;
+      border-bottom: 1px solid;
+      text-align: center;
+      vertical-align: middle;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    .col-stt { width: 5%; font-weight: 600; }
+    .col-ct  { width: 10%; font-weight: 700; }
+    .col-sz  { width: 16%; font-size: 7.5pt; color: #555; }
+    .col-cl  { width: 9%;  font-weight: 700; }
+    .col-pu  { width: 10%; }
+    .col-fl  { width: 12%; }
+    .col-price { width: 20%; font-weight: 800; font-size: 9pt; }
+    .col-note { width: 18%; font-size: 7pt; color: #666; text-align: left; padding-left: 8px; }
+
+    .price-vnd { color: #c0392b; }
+
+    /* Tier-specific table colors */
+    .tier-a thead th { background: #fff3d0; border-color: #c9a96e; color: #7d5a0a; }
+    .tier-a tbody td { border-color: #f5e6b8; }
+    .tier-a tbody tr:hover td, .tier-a tbody tr:nth-child(even) td { background: #fffbf0; }
+
+    .tier-b thead th { background: #d6eaf8; border-color: #4a90d9; color: #1a4f8a; }
+    .tier-b tbody td { border-color: #d0e9f7; }
+    .tier-b tbody tr:nth-child(even) td { background: #f0f7ff; }
+
+    .tier-c thead th { background: #d5f5e3; border-color: #27ae60; color: #0d6b34; }
+    .tier-c tbody td { border-color: #c8f0d8; }
+    .tier-c tbody tr:nth-child(even) td { background: #f0fdf5; }
+
+    .tier-d thead th { background: #e8d5f5; border-color: #9b59b6; color: #5a1d7a; }
+    .tier-d tbody td { border-color: #e0d0ef; }
+    .tier-d tbody tr:nth-child(even) td { background: #fdf5ff; }
+
+    /* Highlight special rows */
+    .highlight-best { font-weight: 800; }
+
+    /* Badge chips */
+    .fl-none  { background: #27ae60; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 6.5pt; font-weight: 700; }
+    .fl-faint { background: #f39c12; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 6.5pt; font-weight: 700; }
+    .fl-medium { background: #e67e22; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 6.5pt; font-weight: 700; }
+    .fl-strong { background: #9b59b6; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 6.5pt; font-weight: 700; }
+
+    .clarity-if   { color: #c0392b; font-weight: 900; }
+    .clarity-vvs1 { color: #27ae60; font-weight: 700; }
+    .clarity-vvs2 { color: #2980b9; font-weight: 700; }
+    .clarity-vs1  { color: #7f8c8d; }
+
+    /* ── PAGE BREAK ──────────────────────────────── */
+    .page-break { page-break-before: always; }
+
+    /* ── NOTE BLOCK ──────────────────────────────── */
+    .note-block {
+      margin-top: 10px;
+      padding: 6px 10px;
+      background: #f9f9f9;
+      border-left: 3px solid #c9a96e;
+      border-radius: 0 4px 4px 0;
+      font-size: 7.5pt;
+      color: #555;
+      line-height: 1.6;
+    }
+    .note-block strong { color: #c9a96e; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .footer {
+      margin-top: 12px;
+      padding-top: 6px;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7pt;
+      color: #999;
+    }
+
+    /* Print tweaks */
+    @media print {
+      .page-break { page-break-before: always; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!--         HEADER                                   -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="header">
+  <div class="brand">
+    <div class="brand-diamond"></div>
+    <div class="brand-name">
+      <h1>CHJ DIAMOND</h1>
+      <span>Nhẫn Kim Cương Cao Cấp</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <strong>BẢNG GIÁ CHÍNH THỨC</strong><br>
+    Cập nhật: 02/05/2026<br>
+    Giá đã bao gồm chứng nhận GIA<br>
+    Liên hệ tư vấn: Huế Lê
+  </div>
+</div>
+
+<!-- TITLE -->
+<div class="title-block">
+  <h2>💎 BẢNG GIÁ KIM CƯƠNG GIA — SIZE 5 LY</h2>
+  <p>Tất cả Round · <strong>Triple Excellent (EX/EX/EX)</strong> · Chứng nhận GIA · Kích thước 5.00–5.09 mm · Trọng lượng 0.44–0.51 carat</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item tier-a-item">
+    <div class="legend-dot dot-a"></div>
+    <div>
+      <div style="font-size:8pt;font-weight:800">💛 DÒNG CAO CẤP</div>
+      <div style="font-size:6.5pt;font-weight:400">Màu D · Không huỳnh quang</div>
+    </div>
+  </div>
+  <div class="legend-item tier-b-item">
+    <div class="legend-dot dot-b"></div>
+    <div>
+      <div style="font-size:8pt;font-weight:800">🔷 DÒNG RẤT TRẮNG</div>
+      <div style="font-size:6.5pt;font-weight:400">Màu E–F · Huỳnh quang nhẹ</div>
+    </div>
+  </div>
+  <div class="legend-item tier-c-item">
+    <div class="legend-dot dot-c"></div>
+    <div>
+      <div style="font-size:8pt;font-weight:800">🟢 DÒNG PHỔ THÔNG</div>
+      <div style="font-size:6.5pt;font-weight:400">Màu G–H · Huỳnh quang nhẹ</div>
+    </div>
+  </div>
+  <div class="legend-item tier-d-item">
+    <div class="legend-dot dot-d"></div>
+    <div>
+      <div style="font-size:8pt;font-weight:800">💜 DÒNG TIẾT KIỆM</div>
+      <div style="font-size:6.5pt;font-weight:400">Màu H–I · Huỳnh quang mạnh</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!--  TIER A — D COLOR, NO FLUORESCENCE              -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="section tier-a">
+  <div class="section-header">
+    <h3>💛 DÒNG CAO CẤP — MÀU D · KHÔNG HUỲNH QUANG</h3>
+    <span class="tier-badge">CAO CẤP NHẤT</span>
+    <span class="range" style="margin-left:8px;font-size:7.5pt;color:#7d5a0a">22,854,000 – 30,300,000 đ</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-stt">STT</th>
+        <th class="col-ct">Carat</th>
+        <th class="col-sz">Kích thước (mm)</th>
+        <th class="col-cl">Màu</th>
+        <th class="col-pu">Độ sạch</th>
+        <th class="col-fl">Huỳnh quang</th>
+        <th class="col-price">Giá bán</th>
+        <th class="col-note">Ghi chú</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-stt">1</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.04–5.06 × 3.03</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">22.854.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">2</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.01–5.04 × 3.05</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">23.700.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">3</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.00–5.04 × 3.13</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">25.246.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">4</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.01–5.04 × 3.16</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">25.246.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">5</td>
+        <td class="col-ct">0.45</td>
+        <td class="col-sz">5.01–5.03 × 2.98</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">25.475.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">6</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.01–5.04 × 3.09</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">25.558.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">7</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.00–5.04 × 3.14</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">25.971.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">8</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.02–5.05 × 3.16</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">26.798.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">9</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.02–5.04 × 3.01</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">27.230.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">10</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.04–5.07 × 3.04</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">27.270.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">11</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.05–5.07 × 3.08</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">27.344.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">12</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.01–5.04 × 3.07</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">27.601.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">13</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.01–5.03 × 3.08</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">27.977.000 đ</td>
+        <td class="col-note" style="color:#27ae60;font-size:7pt">Độ sạch cao hơn</td>
+      </tr>
+      <tr>
+        <td class="col-stt">14</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.02–5.05 × 3.04</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">28.668.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">15</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.03–5.06 × 3.14</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">29.006.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">16</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.04–5.07 × 3.11</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">29.006.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">17</td>
+        <td class="col-ct highlight-best">0.50</td>
+        <td class="col-sz">5.03–5.07 × 3.16</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd" style="font-weight:900">29.657.000 đ</td>
+        <td class="col-note" style="color:#c9a96e;font-size:7pt">Nửa carat ⭐</td>
+      </tr>
+      <tr>
+        <td class="col-stt">18</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.01–5.03 × 3.13</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">29.729.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">19</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.02–5.06 × 3.09</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">29.729.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr style="background:#fff3cc">
+        <td class="col-stt">20</td>
+        <td class="col-ct highlight-best">0.51</td>
+        <td class="col-sz">5.06–5.09 × 3.20</td>
+        <td class="col-cl" style="color:#c9a96e;font-weight:900">D</td>
+        <td class="col-pu"><span class="clarity-vs1">VS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd" style="font-weight:900;color:#c9a96e">30.300.000 đ</td>
+        <td class="col-note" style="color:#c9a96e;font-weight:700;font-size:7pt">Lớn nhất dòng 👑</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!--  TIER B — E-F COLOR, FAINT/NONE FL              -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="section tier-b">
+  <div class="section-header">
+    <h3>🔷 DÒNG RẤT TRẮNG — MÀU E–F · HUỲNH QUANG NHẸ</h3>
+    <span class="tier-badge">CAO CẤP</span>
+    <span class="range" style="margin-left:8px;font-size:7.5pt;color:#1a4f8a">21,085,000 – 24,434,000 đ</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-stt">STT</th>
+        <th class="col-ct">Carat</th>
+        <th class="col-sz">Kích thước (mm)</th>
+        <th class="col-cl">Màu</th>
+        <th class="col-pu">Độ sạch</th>
+        <th class="col-fl">Huỳnh quang</th>
+        <th class="col-price">Giá bán</th>
+        <th class="col-note">Ghi chú</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-stt">1</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.01–5.05 × 3.11</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">21.085.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">2</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.00–5.04 × 3.11</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">21.639.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">3</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.01–5.03 × 3.09</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">21.799.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">4</td>
+        <td class="col-ct">0.44</td>
+        <td class="col-sz">5.01–5.02 × 2.95</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">22.188.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">5</td>
+        <td class="col-ct">0.43</td>
+        <td class="col-sz">5.01–5.05 × 2.92</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">22.222.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">6</td>
+        <td class="col-ct">0.44</td>
+        <td class="col-sz">5.02–5.06 × 2.93</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">22.532.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">7</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.03–5.05 × 3.01</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">22.548.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">8</td>
+        <td class="col-ct">0.44</td>
+        <td class="col-sz">5.02–5.04 × 2.96</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">22.670.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">9</td>
+        <td class="col-ct">0.45</td>
+        <td class="col-sz">5.04–5.08 × 2.95</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">23.256.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">10</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.03–5.07 × 3.04</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-if">IF</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">23.486.000 đ</td>
+        <td class="col-note" style="color:#c0392b;font-size:7pt">Loupe Clean ✨</td>
+      </tr>
+      <tr>
+        <td class="col-stt">11</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.07–5.09 × 3.03</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-if">IF</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">23.658.000 đ</td>
+        <td class="col-note" style="color:#c0392b;font-size:7pt">Loupe Clean ✨</td>
+      </tr>
+      <tr>
+        <td class="col-stt">12</td>
+        <td class="col-ct">0.44</td>
+        <td class="col-sz">5.02–5.04 × 2.93</td>
+        <td class="col-cl" style="color:#1a4f8a;font-weight:800">E</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">23.989.000 đ</td>
+        <td class="col-note" style="color:#1a4f8a;font-size:7pt">Màu E hiếm</td>
+      </tr>
+      <tr>
+        <td class="col-stt">13</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.07–5.09 × 3.01</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">24.179.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">14</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.04–5.06 × 2.97</td>
+        <td class="col-cl" style="color:#4a90d9;font-weight:800">F</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">24.241.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">15</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.04–5.08 × 3.11</td>
+        <td class="col-cl" style="color:#1a4f8a;font-weight:800">E</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">24.434.000 đ</td>
+        <td class="col-note" style="color:#1a4f8a;font-size:7pt">Màu E hiếm</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- PAGE BREAK -->
+<div class="page-break"></div>
+
+<!-- REPEAT HEADER ON PAGE 2 -->
+<div class="header" style="margin-top:0">
+  <div class="brand">
+    <div class="brand-diamond"></div>
+    <div class="brand-name">
+      <h1>CHJ DIAMOND</h1>
+      <span>Nhẫn Kim Cương Cao Cấp</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <strong>BẢNG GIÁ — SIZE 5 LY (trang 2/2)</strong><br>
+    Cập nhật: 02/05/2026
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!--  TIER C — G-H COLOR, FAINT/NONE FL              -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="section tier-c" style="margin-top:8px">
+  <div class="section-header">
+    <h3>🟢 DÒNG PHỔ THÔNG — MÀU G–H · VVS1 · HUỲNH QUANG NHẸ</h3>
+    <span class="tier-badge">PHỔ THÔNG</span>
+    <span class="range" style="margin-left:8px;font-size:7.5pt;color:#0d6b34">16,914,000 – 20,842,000 đ</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-stt">STT</th>
+        <th class="col-ct">Carat</th>
+        <th class="col-sz">Kích thước (mm)</th>
+        <th class="col-cl">Màu</th>
+        <th class="col-pu">Độ sạch</th>
+        <th class="col-fl">Huỳnh quang</th>
+        <th class="col-price">Giá bán</th>
+        <th class="col-note">Ghi chú</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-stt">1</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.02–5.04 × 3.01</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">16.914.000 đ</td>
+        <td class="col-note" style="color:#27ae60;font-size:7pt">Giá tốt nhất nhóm ⭐</td>
+      </tr>
+      <tr>
+        <td class="col-stt">2</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.02–5.03 × 3.07</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">17.076.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">3</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.03–5.04 × 3.02</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">17.145.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">4</td>
+        <td class="col-ct">0.45</td>
+        <td class="col-sz">5.03–5.05 × 2.96</td>
+        <td class="col-cl" style="color:#1a7a40;font-weight:800">G</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">17.759.000 đ</td>
+        <td class="col-note" style="font-size:7pt;color:#1a7a40">Màu G sáng hơn H</td>
+      </tr>
+      <tr>
+        <td class="col-stt">5</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.04–5.07 × 3.03</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">18.784.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">6</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.01–5.05 × 3.05</td>
+        <td class="col-cl" style="color:#1a7a40;font-weight:800">G</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">19.177.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">7</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.02–5.06 × 3.16</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">19.215.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">8</td>
+        <td class="col-ct">0.44</td>
+        <td class="col-sz">5.03–5.04 × 2.91</td>
+        <td class="col-cl" style="color:#1a7a40;font-weight:800">G</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">19.411.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">9</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.04–5.06 × 3.05</td>
+        <td class="col-cl" style="color:#1a7a40;font-weight:800">G</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">19.741.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">10</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.01–5.03 × 3.11</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">19.875.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">11</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.05–5.08 × 3.10</td>
+        <td class="col-cl" style="color:#1a7a40;font-weight:800">G</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">19.994.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">12</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.04–5.06 × 3.07</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">20.236.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">13</td>
+        <td class="col-ct">0.46</td>
+        <td class="col-sz">5.01–5.03 × 2.98</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">20.747.000 đ</td>
+        <td class="col-note" style="font-size:7pt;color:#27ae60">Không FL, H trắng</td>
+      </tr>
+      <tr>
+        <td class="col-stt">14</td>
+        <td class="col-ct highlight-best">0.50</td>
+        <td class="col-sz">5.04–5.08 × 3.18</td>
+        <td class="col-cl" style="color:#27ae60;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">20.842.000 đ</td>
+        <td class="col-note" style="color:#27ae60;font-size:7pt">Nửa carat ⭐</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!--  TIER D — H-I COLOR, STRONG/MEDIUM FL           -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+<div class="section tier-d">
+  <div class="section-header">
+    <h3>💜 DÒNG TIẾT KIỆM — MÀU H–I · HUỲNH QUANG MẠNH/VỪA</h3>
+    <span class="tier-badge">TIẾT KIỆM</span>
+    <span class="range" style="margin-left:8px;font-size:7.5pt;color:#5a1d7a">14,672,000 – 17,786,000 đ</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-stt">STT</th>
+        <th class="col-ct">Carat</th>
+        <th class="col-sz">Kích thước (mm)</th>
+        <th class="col-cl">Màu</th>
+        <th class="col-pu">Độ sạch</th>
+        <th class="col-fl">Huỳnh quang</th>
+        <th class="col-price">Giá bán</th>
+        <th class="col-note">Ghi chú</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-stt">1</td>
+        <td class="col-ct">0.44</td>
+        <td class="col-sz">5.00–5.02 × 2.95</td>
+        <td class="col-cl" style="color:#9b59b6;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-none">None</span></td>
+        <td class="col-price price-vnd">14.730.000 đ</td>
+        <td class="col-note" style="color:#27ae60;font-size:7pt">Không FL ✅</td>
+      </tr>
+      <tr>
+        <td class="col-stt">2</td>
+        <td class="col-ct">0.49</td>
+        <td class="col-sz">5.03–5.07 × 3.08</td>
+        <td class="col-cl" style="color:#7f8c8d;font-weight:800">I</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-strong">Strong</span></td>
+        <td class="col-price price-vnd">14.672.000 đ</td>
+        <td class="col-note" style="color:#c0392b;font-size:7pt">Rẻ nhất nhóm</td>
+      </tr>
+      <tr>
+        <td class="col-stt">3</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.05–5.07 × 2.98</td>
+        <td class="col-cl" style="color:#7f8c8d;font-weight:800">I</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-faint">Faint</span></td>
+        <td class="col-price price-vnd">14.993.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">4</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.06–5.07 × 3.00</td>
+        <td class="col-cl" style="color:#7f8c8d;font-weight:800">I</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-medium">Medium</span></td>
+        <td class="col-price price-vnd">14.822.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">5</td>
+        <td class="col-ct">0.48</td>
+        <td class="col-sz">5.06–5.09 × 3.03</td>
+        <td class="col-cl" style="color:#7f8c8d;font-weight:800">I</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-medium">Medium</span></td>
+        <td class="col-price price-vnd">15.081.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">6</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.01–5.04 × 3.04</td>
+        <td class="col-cl" style="color:#9b59b6;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-strong">Strong</span></td>
+        <td class="col-price price-vnd">15.336.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr>
+        <td class="col-stt">7</td>
+        <td class="col-ct">0.50</td>
+        <td class="col-sz">5.04–5.08 × 3.17</td>
+        <td class="col-cl" style="color:#7f8c8d;font-weight:800">I</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-strong">Strong</span></td>
+        <td class="col-price price-vnd">15.739.000 đ</td>
+        <td class="col-note" style="color:#9b59b6;font-size:7pt">Nửa carat 0.50</td>
+      </tr>
+      <tr>
+        <td class="col-stt">8</td>
+        <td class="col-ct">0.47</td>
+        <td class="col-sz">5.04–5.08 × 3.02</td>
+        <td class="col-cl" style="color:#9b59b6;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs1">VVS1</span></td>
+        <td class="col-fl"><span class="fl-medium">Medium</span></td>
+        <td class="col-price price-vnd">16.925.000 đ</td>
+        <td class="col-note"></td>
+      </tr>
+      <tr style="background:#f5eafb">
+        <td class="col-stt">9</td>
+        <td class="col-ct highlight-best">0.50</td>
+        <td class="col-sz">5.06–5.09 × 3.12</td>
+        <td class="col-cl" style="color:#9b59b6;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-strong">Strong</span></td>
+        <td class="col-price price-vnd" style="font-weight:900">17.786.000 đ</td>
+        <td class="col-note" style="color:#9b59b6;font-size:7pt">Nửa carat H ⭐</td>
+      </tr>
+      <tr style="background:#f5eafb">
+        <td class="col-stt">10</td>
+        <td class="col-ct highlight-best">0.50</td>
+        <td class="col-sz">5.04–5.08 × 3.17</td>
+        <td class="col-cl" style="color:#9b59b6;font-weight:800">H</td>
+        <td class="col-pu"><span class="clarity-vvs2">VVS2</span></td>
+        <td class="col-fl"><span class="fl-strong">Strong</span></td>
+        <td class="col-price price-vnd" style="font-weight:900">17.786.000 đ</td>
+        <td class="col-note" style="color:#9b59b6;font-size:7pt">Nửa carat H ⭐</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ── NOTE BLOCK ──────────────────────────────────── -->
+<div class="note-block">
+  <strong>📌 Ghi chú quan trọng:</strong>
+  &nbsp;·&nbsp; Tất cả kim cương đều <strong>Round · Triple Excellent (EX/EX/EX)</strong> · Chứng nhận <strong>GIA</strong>
+  &nbsp;·&nbsp; <span class="fl-none" style="font-size:7pt">None</span> = Không huỳnh quang — kim sáng nhất
+  &nbsp;·&nbsp; <span class="fl-faint" style="font-size:7pt">Faint</span> = Huỳnh quang nhẹ — mắt thường không nhận ra
+  &nbsp;·&nbsp; <span class="fl-strong" style="font-size:7pt">Strong</span> = Huỳnh quang mạnh — có thể hơi đục dưới nắng trực tiếp
+  &nbsp;·&nbsp; Giá chưa bao gồm vỏ nhẫn
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<div class="footer">
+  <div>© 2026 CHJ Diamond · Huế Lê · Tư vấn chuyên sâu, không áp lực</div>
+  <div>Giá có thể thay đổi theo thị trường · Vui lòng xác nhận khi đặt hàng</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+{
+  "_comment": "Template sales page CHJ — mỗi session = 1 section trên trang",
+  "_usage": "powershell -ExecutionPolicy Bypass -File build-pke.ps1 -InputFile template.json",
+
+  "title": "Tên Trang Bán Hàng",
+  "description": "Mô tả ngắn cho SEO (để trống nếu không cần)",
+  "fb_pixel": "",
+  "tiktok_pixel": "",
+
+  "sessions": [
+
+    {
+      "name": "Session 1 — Hero Banner",
+      "bg": "rgba(250, 239, 210, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "TIÊU ĐỀ CHÍNH — GÂY CHÚ Ý NGAY",
+          "tag": "h1",
+          "bold": true,
+          "color": "rgba(232, 59, 48, 1)",
+          "align": "center",
+          "fontSize": 22
+        },
+        {
+          "type": "text",
+          "text": "Dòng phụ giải thích nhanh giá trị sản phẩm — 1–2 câu ngắn gọn.",
+          "tag": "p",
+          "color": "rgba(60, 60, 60, 1)",
+          "align": "center",
+          "fontSize": 15
+        },
+        {
+          "type": "image",
+          "src": "https://example.com/anh-san-pham.jpg",
+          "height": 300
+        },
+        {
+          "type": "button",
+          "text": "XEM NGAY",
+          "bg": "rgba(201, 31, 23, 1)",
+          "color": "rgba(255, 255, 255, 1)",
+          "radius": "100px",
+          "fontSize": 18
+        }
+      ]
+    },
+
+    {
+      "name": "Session 2 — Giá & Ưu đãi",
+      "bg": "rgba(255, 255, 255, 1)",
+      "elements": [
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "🔥 GIÁ ƯU ĐÃI HÔM NAY",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(232, 59, 48, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "~~13.999.000đ~~ → Chỉ còn 9.966.000đ",
+          "tag": "h3",
+          "bold": true,
+          "color": "rgba(20, 100, 200, 1)",
+          "align": "center",
+          "fontSize": 20
+        },
+        {
+          "type": "text",
+          "text": "Flash sale — chỉ áp dụng cho 99 khách đầu tiên hôm nay!",
+          "tag": "p",
+          "color": "rgba(150, 60, 60, 1)",
+          "align": "center",
+          "fontSize": 13
+        },
+        {
+          "type": "divider"
+        }
+      ]
+    },
+
+    {
+      "name": "Session 3 — Mô tả sản phẩm",
+      "bg": "rgba(248, 248, 248, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Tại sao chọn sản phẩm này?",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(30, 30, 30, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "✅ Lợi ích 1 — mô tả ngắn gọn",
+          "tag": "p",
+          "color": "rgba(40, 40, 40, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "✅ Lợi ích 2 — mô tả ngắn gọn",
+          "tag": "p",
+          "color": "rgba(40, 40, 40, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "✅ Lợi ích 3 — mô tả ngắn gọn",
+          "tag": "p",
+          "color": "rgba(40, 40, 40, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "image",
+          "src": "https://example.com/anh-mo-ta.jpg",
+          "height": 250
+        }
+      ]
+    },
+
+    {
+      "name": "Session 4 — Social Proof",
+      "bg": "rgba(255, 255, 255, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Khách hàng nói gì về chúng tôi?",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(30, 30, 30, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "⭐⭐⭐⭐⭐ Nguyễn Thị A: \"Sản phẩm rất tốt, giao hàng nhanh, đóng gói đẹp. Sẽ mua lại!\"",
+          "tag": "p",
+          "color": "rgba(60, 60, 60, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "⭐⭐⭐⭐⭐ Trần Văn B: \"Chất lượng vượt mong đợi, tư vấn nhiệt tình. Highly recommend!\"",
+          "tag": "p",
+          "color": "rgba(60, 60, 60, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "⭐⭐⭐⭐⭐ Lê Thị C: \"Đúng như mô tả, bạn trai thích lắm, cảm ơn CHJ rất nhiều!\"",
+          "tag": "p",
+          "color": "rgba(60, 60, 60, 1)",
+          "align": "left",
+          "fontSize": 14
+        }
+      ]
+    },
+
+    {
+      "name": "Session 5 — Form Đặt hàng",
+      "bg": "rgba(30, 30, 80, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "ĐẶT HÀNG NGAY — GIAO TOÀN QUỐC",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(255, 255, 255, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "Điền thông tin — chúng tôi sẽ liên hệ xác nhận đơn trong 15 phút",
+          "tag": "p",
+          "color": "rgba(200, 200, 200, 1)",
+          "align": "center",
+          "fontSize": 13
+        },
+        {
+          "type": "form",
+          "submit": "ĐẶT HÀNG NGAY",
+          "fb_event": "AddToCart",
+          "fb_value": "10000",
+          "fields": [
+            { "field": "full_name",    "placeholder": "Họ và tên" },
+            { "field": "phone_number", "placeholder": "Số điện thoại" },
+            { "field": "address",      "placeholder": "Địa chỉ nhận hàng" },
+            { "field": "email",        "placeholder": "Email (để nhận xác nhận đơn)" }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "🔒 Thông tin của bạn được bảo mật tuyệt đối",
+          "tag": "p",
+          "color": "rgba(180, 180, 180, 1)",
+          "align": "center",
+          "fontSize": 12
+        }
+      ]
+    },
+
+    {
+      "name": "Session 6 — Footer",
+      "bg": "rgba(20, 20, 20, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "CHJ Diamond",
+          "tag": "h3",
+          "bold": true,
+          "color": "rgba(220, 190, 100, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "📞 0868.785.394",
+          "tag": "p",
+          "color": "rgba(200, 200, 200, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "📧 chunghieudiamond@gmail.com",
+          "tag": "p",
+          "color": "rgba(200, 200, 200, 1)",
+          "align": "center",
+          "fontSize": 13
+        },
+        {
+          "type": "text",
+          "text": "📍 KĐT Paml Manor, LK25/05, Phường Việt Trì, Tỉnh Phú Thọ",
+          "tag": "p",
+          "color": "rgba(160, 160, 160, 1)",
+          "align": "center",
+          "fontSize": 12
+        }
+      ]
+    }
+
+  ]
+}

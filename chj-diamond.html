@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CHJ DIAMOND – Nhẫn Kim Cương Halo Thiên Nhiên</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8CC7A;
+    --gold-dark: #9B7B2E;
+    --black: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --dark: #2A2A2A;
+    --mid: #555;
+    --light: #F8F5F0;
+    --white: #FFFFFF;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ===== SPARKLE ANIMATION ===== */
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(201,168,76,0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes countUp { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes progress { from { width: 0%; } to { width: var(--target); } }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    45% { opacity: 1; }
+    50% { opacity: 0.7; }
+    55% { opacity: 1; }
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background: var(--gold-dark);
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  /* ===== HEADER / NAV ===== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px;
+    height: 64px;
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+  .header-badges { display: flex; gap: 8px; align-items: center; }
+  .badge-gia {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 10px;
+    padding: 3px 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 40%),
+                var(--black);
+  }
+  .sparkles-container { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .sparkle {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: var(--gold-light);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: sparkle var(--dur, 3s) var(--delay, 0s) infinite;
+  }
+  .hot-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg, #B91C1C, #DC2626);
+    color: white; font-size: 11px; font-weight: 700;
+    padding: 5px 14px; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 20px;
+    position: relative; z-index: 1;
+    animation: flicker 3s ease-in-out infinite;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 7vw, 64px);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.15;
+    position: relative; z-index: 1;
+    margin-bottom: 12px;
+  }
+  .hero-title .gold-text {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: clamp(14px, 2.5vw, 17px);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    position: relative; z-index: 1;
+    font-style: italic;
+    font-family: var(--serif);
+  }
+
+  /* ===== RING GALLERY ===== */
+  .ring-gallery {
+    display: flex; gap: 16px; justify-content: center; align-items: flex-end;
+    margin-bottom: 48px;
+    position: relative; z-index: 1;
+  }
+  .ring-card {
+    background: linear-gradient(145deg, #1C1C1C, #111);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .ring-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .ring-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .ring-card:hover::before { opacity: 1; }
+  .ring-card.active {
+    border-color: var(--gold);
+    box-shadow: 0 0 24px rgba(201,168,76,0.2);
+    transform: translateY(-8px) scale(1.02);
+  }
+  .ring-card.main { padding: 20px; }
+  .ring-img-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* CSS Diamond Ring Art */
+  .diamond-ring-art {
+    position: relative;
+    width: 180px; height: 180px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ring-card:not(.main) .diamond-ring-art { width: 130px; height: 130px; }
+
+  .ring-band {
+    position: absolute;
+    width: 70%; height: 8px;
+    background: linear-gradient(180deg, #E8E8E8 0%, #B0B0B0 40%, #D8D8D8 60%, #C0C0C0 100%);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    top: 58%;
+  }
+  .ring-setting {
+    position: absolute;
+    top: 30%; left: 50%; transform: translateX(-50%);
+    width: 48%; padding-bottom: 48%;
+  }
+  /* Center diamond */
+  .center-diamond {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 38%; padding-bottom: 38%;
+    background: radial-gradient(circle at 35% 35%, #FFFFFF, #E0F0FF 30%, #A8C8E8 60%, #6A9EC0 100%);
+    clip-path: polygon(50% 0%, 85% 30%, 100% 60%, 85% 100%, 50% 85%, 15% 100%, 0% 60%, 15% 30%);
+    box-shadow: 0 0 20px rgba(200,230,255,0.6), 0 0 40px rgba(150,200,255,0.3);
+    animation: float 3s ease-in-out infinite;
+    z-index: 3;
+  }
+  .center-diamond::after {
+    content: '';
+    position: absolute;
+    top: 15%; left: 15%;
+    width: 30%; height: 30%;
+    background: rgba(255,255,255,0.8);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  /* Halo diamonds */
+  .halo-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 68%; padding-bottom: 68%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  .halo-stone {
+    position: absolute;
+    width: 14px; height: 14px;
+    background: radial-gradient(circle at 35% 35%, #FFFFFF, #D8ECFF 50%, #8BBAD0 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(200,230,255,0.8);
+  }
+  /* Ring base/prongs */
+  .prong { position: absolute; background: linear-gradient(180deg, #DEDEDE, #A8A8A8); border-radius: 2px; }
+
+  /* Viewer image (for showing actual photos) */
+  .ring-photo {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  .gallery-label {
+    position: absolute;
+    bottom: 8px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+
+  /* ===== VIEWERS LIVE ===== */
+  .viewers-bar {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 8px 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    position: relative; z-index: 1;
+    margin-bottom: 24px;
+  }
+  .viewers-dot { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; animation: pulse-gold 2s infinite; }
+  .viewers-count { color: var(--gold); font-weight: 700; }
+
+  /* ===== COUNTDOWN ===== */
+  .countdown-section {
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.03));
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 24px;
+    text-align: center;
+    margin: 0 0 0;
+    position: relative; z-index: 1;
+    width: 100%; max-width: 500px;
+  }
+  .countdown-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+  .countdown-timer { display: flex; gap: 16px; justify-content: center; align-items: center; }
+  .time-block { text-align: center; }
+  .time-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    min-width: 56px;
+  }
+  .time-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+  .time-sep { font-size: 28px; color: var(--gold); opacity: 0.5; align-self: flex-start; margin-top: 4px; }
+
+  /* ===== SECTION STYLES ===== */
+  section { padding: 80px 24px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    color: rgba(255,255,255,0.5);
+    max-width: 540px;
+    margin-bottom: 48px;
+    font-style: italic;
+    font-family: var(--serif);
+  }
+  .divider {
+    width: 48px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px 0 32px;
+  }
+
+  /* ===== PRODUCT SECTION ===== */
+  .product-section { background: var(--charcoal); }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .product-image-main {
+    position: relative;
+    background: linear-gradient(145deg, #161616, #0D0D0D);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 48px;
+    text-align: center;
+  }
+  .product-image-main::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Large ring CSS art */
+  .ring-large { width: 240px; height: 240px; margin: 0 auto; position: relative; }
+  .ring-large .center-diamond { width: 35%; padding-bottom: 35%; }
+  .ring-large .halo-stone { width: 18px; height: 18px; }
+
+  .cert-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 12px;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Specs */
+  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 28px 0; }
+  .spec-item {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .spec-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.06); padding-right: 20px; }
+  .spec-item:nth-child(even) { padding-left: 20px; }
+  .spec-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+  .spec-value { font-family: var(--serif); font-size: 15px; color: var(--white); }
+
+  /* ===== PRICING ===== */
+  .price-block { background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.2); padding: 24px; margin: 28px 0; }
+  .price-original { font-size: 16px; color: rgba(255,255,255,0.35); text-decoration: line-through; margin-bottom: 4px; }
+  .price-current {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+  .price-save {
+    display: inline-block;
+    background: linear-gradient(135deg, #B91C1C, #DC2626);
+    color: white; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; letter-spacing: 1px; text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .price-installment { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 10px; }
+
+  /* ===== SCARCITY ===== */
+  .scarcity-box { margin: 20px 0; }
+  .scarcity-text { font-size: 13px; color: #EF4444; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .progress-bar-wrap { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+    border-radius: 3px;
+    --target: 78%;
+    width: 0%;
+    transition: width 1.5s ease;
+  }
+  .progress-label { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+
+  /* ===== TRUST BADGES ===== */
+  .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+  @media (max-width: 600px) { .trust-row { grid-template-columns: repeat(2, 1fr); } }
+  .trust-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 14px 10px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .trust-item:hover { border-color: rgba(201,168,76,0.3); }
+  .trust-icon { font-size: 22px; margin-bottom: 6px; }
+  .trust-text { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+  /* ===== CTA BUTTON ===== */
+  .btn-primary {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    background-size: 200% auto;
+    color: var(--black);
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 18px 32px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    animation: pulse-gold 2s infinite;
+    text-align: center;
+  }
+  .btn-primary:hover {
+    background-position: right center;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(201,168,76,0.3);
+  }
+  .btn-secondary {
+    display: block; width: 100%;
+    background: transparent;
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border: 1px solid rgba(201,168,76,0.4);
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .btn-secondary:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+
+  /* ===== SOCIAL PROOF ===== */
+  .social-section { background: var(--black); }
+  .sold-banner {
+    display: flex; align-items: center; gap: 16px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02));
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 20px 28px;
+    margin-bottom: 48px;
+  }
+  .sold-num {
+    font-family: var(--serif);
+    font-size: 48px; font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .sold-label { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .sold-label strong { color: white; display: block; font-size: 17px; margin-bottom: 2px; }
+
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; } }
+  .review-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 24px;
+    transition: border-color 0.3s;
+  }
+  .review-card:hover { border-color: rgba(201,168,76,0.25); }
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+  .review-text { font-family: var(--serif); font-style: italic; font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 16px; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 700; font-size: 15px; color: var(--black);
+  }
+  .reviewer-name { font-weight: 600; font-size: 13px; }
+  .reviewer-date { font-size: 11px; color: rgba(255,255,255,0.35); }
+  .review-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold); font-size: 10px; padding: 2px 8px;
+    letter-spacing: 1px; text-transform: uppercase; margin-top: 8px;
+  }
+
+  /* ===== ORDER FORM ===== */
+  .order-section { background: var(--charcoal); }
+  .order-form-wrap {
+    max-width: 640px; margin: 0 auto;
+    background: rgba(201,168,76,0.02);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 48px;
+  }
+  @media (max-width: 600px) { .order-form-wrap { padding: 28px 20px; } }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  input, select, textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 12px 14px;
+    font-family: var(--sans);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+  select { cursor: pointer; }
+  select option { background: #1A1A1A; }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.04);
+  }
+  input.error, select.error { border-color: #EF4444; }
+  .error-msg { font-size: 11px; color: #EF4444; display: none; }
+  .error-msg.show { display: block; }
+  .form-note { font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; margin-top: 16px; }
+  .submit-info { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px; }
+
+  /* Form success */
+  .form-success {
+    display: none; text-align: center; padding: 40px 20px;
+  }
+  .form-success.show { display: block; animation: fadeInUp 0.5s ease; }
+  .success-icon { font-size: 56px; margin-bottom: 16px; }
+  .success-title { font-family: var(--serif); font-size: 28px; color: var(--gold); margin-bottom: 12px; }
+  .success-text { color: rgba(255,255,255,0.6); }
+
+  /* ===== FAQ ===== */
+  .faq-section { background: var(--black); }
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .faq-question {
+    width: 100%; background: none; border: none; color: white;
+    font-family: var(--serif); font-size: 17px;
+    padding: 22px 0; text-align: left;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; transition: color 0.3s;
+  }
+  .faq-question:hover { color: var(--gold); }
+  .faq-question.open { color: var(--gold); }
+  .faq-icon { font-size: 20px; color: var(--gold); transition: transform 0.3s; flex-shrink: 0; }
+  .faq-question.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8;
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 0;
+  }
+  .faq-answer.open { max-height: 300px; padding: 0 0 20px; }
+
+  /* ===== FLOATING CTA ===== */
+  .float-cta {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(10,10,10,0.97);
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    z-index: 200;
+    backdrop-filter: blur(12px);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  .float-cta.visible { transform: translateY(0); }
+  .float-price {
+    font-family: var(--serif);
+    font-size: 22px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+  .float-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+  .float-btn {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    color: var(--black);
+    border: none;
+    padding: 13px 28px;
+    font-family: var(--serif);
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .float-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 48px 24px 80px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: var(--serif); font-size: 28px; font-weight: 700;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    margin-bottom: 20px;
+  }
+  .footer-tagline {
+    font-family: var(--serif); font-style: italic;
+    color: rgba(255,255,255,0.3); font-size: 14px; margin-bottom: 24px;
+  }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+  .footer-links a { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.15); letter-spacing: 1px; }
+
+  /* ===== FADE IN ===== */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== GUARANTEE BANNER ===== */
+  .guarantee-bar {
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 20px 24px;
+    display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;
+  }
+  .guarantee-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.5); }
+  .guarantee-item strong { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">✦ Miễn phí vận chuyển toàn quốc — Đặt hàng trong <span id="topbar-countdown">04:59:23</span> để nhận ngay hôm nay ✦</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">CHJ DIAMOND</div>
+  <div class="header-badges">
+    <div class="badge-gia">GIA Certified</div>
+    <div class="badge-gia">Vàng 18K</div>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" style="padding-bottom:0;">
+  <div class="hero-bg"></div>
+
+  <!-- Sparkles -->
+  <div class="sparkles-container" id="sparkles"></div>
+
+  <div class="hot-badge">🔥 HOT DEAL — Giới hạn hôm nay</div>
+
+  <h1 class="hero-title">
+    Nhẫn Kim Cương<br/>
+    <span class="gold-text">Halo Thiên Nhiên</span>
+  </h1>
+  <p class="hero-sub">Tình yêu vĩnh cửu — được khắc trong từng facet của kim cương tự nhiên</p>
+
+  <!-- Live viewers -->
+  <div class="viewers-bar">
+    <div class="viewers-dot"></div>
+    <span><span class="viewers-count" id="viewers-num">47</span> người đang xem sản phẩm này</span>
+  </div>
+
+  <!-- Ring Gallery -->
+  <div class="ring-gallery">
+    <!-- Card 1 – side view -->
+    <div class="ring-card" onclick="setActive(this)">
+      <div class="ring-img-wrap">
+        <div class="diamond-ring-art" id="art1">
+          <!-- Side view art -->
+          <div style="position:relative;width:100%;height:100%;">
+            <div class="ring-band" style="transform:rotate(25deg);top:52%;left:10%;width:80%;"></div>
+            <div style="position:absolute;top:18%;left:50%;transform:translateX(-50%);">
+              <div style="width:60px;height:60px;position:relative;">
+                <div class="center-diamond" style="width:45%;padding-bottom:45%;top:45%;left:45%;transform:translate(-50%,-50%);"></div>
+                <div class="halo-ring">
+                  <div class="halo-stone" style="top:-7px;left:50%;transform:translateX(-50%);"></div>
+                  <div class="halo-stone" style="bottom:-7px;left:50%;transform:translateX(-50%);"></div>
+                  <div class="halo-stone" style="top:50%;right:-7px;transform:translateY(-50%);"></div>
+                  <div class="halo-stone" style="top:50%;left:-7px;transform:translateY(-50%);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-label">Mặt bên</div>
+    </div>
+
+    <!-- Card 2 – MAIN (top view) -->
+    <div class="ring-card main active" onclick="setActive(this)">
+      <div class="ring-img-wrap">
+        <div class="diamond-ring-art" id="artMain">
+          <div class="ring-band"></div>
+          <div class="halo-ring">
+            <!-- 8 halo stones positioned in circle -->
+            <div class="halo-stone" style="top:-8px;left:50%;transform:translateX(-50%);"></div>
+            <div class="halo-stone" style="bottom:-8px;left:50%;transform:translateX(-50%);"></div>
+            <div class="halo-stone" style="top:50%;right:-8px;transform:translateY(-50%);"></div>
+            <div class="halo-stone" style="top:50%;left:-8px;transform:translateY(-50%);"></div>
+            <div class="halo-stone" style="top:8%;left:8%;"></div>
+            <div class="halo-stone" style="top:8%;right:8%;"></div>
+            <div class="halo-stone" style="bottom:8%;left:8%;"></div>
+            <div class="halo-stone" style="bottom:8%;right:8%;"></div>
+          </div>
+          <div class="center-diamond"></div>
+        </div>
+      </div>
+      <div class="gallery-label">Mặt trước ✦</div>
+    </div>
+
+    <!-- Card 3 – angled view -->
+    <div class="ring-card" onclick="setActive(this)">
+      <div class="ring-img-wrap">
+        <div class="diamond-ring-art" id="art3">
+          <div style="position:relative;width:100%;height:100%;">
+            <div class="ring-band" style="transform:rotate(-20deg);top:54%;"></div>
+            <div style="position:absolute;top:15%;left:50%;transform:translateX(-50%);">
+              <div style="width:65px;height:65px;position:relative;">
+                <div class="halo-ring">
+                  <div class="halo-stone" style="top:-7px;left:50%;transform:translateX(-50%);"></div>
+                  <div class="halo-stone" style="bottom:-7px;left:50%;transform:translateX(-50%);"></div>
+                  <div class="halo-stone" style="top:50%;right:-7px;transform:translateY(-50%);"></div>
+                  <div class="halo-stone" style="top:50%;left:-7px;transform:translateY(-50%);"></div>
+                  <div class="halo-stone" style="top:8%;right:8%;"></div>
+                  <div class="halo-stone" style="bottom:8%;right:8%;"></div>
+                </div>
+                <div class="center-diamond" style="width:40%;padding-bottom:40%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-label">Góc nghiêng</div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-section">
+    <div class="countdown-label">⏳ Ưu đãi đặc biệt kết thúc sau</div>
+    <div class="countdown-timer">
+      <div class="time-block">
+        <span class="time-num" id="cd-hours">23</span>
+        <div class="time-label">Giờ</div>
+      </div>
+      <div class="time-sep">:</div>
+      <div class="time-block">
+        <span class="time-num" id="cd-mins">59</span>
+        <div class="time-label">Phút</div>
+      </div>
+      <div class="time-sep">:</div>
+      <div class="time-block">
+        <span class="time-num" id="cd-secs">47</span>
+        <div class="time-label">Giây</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE BAR -->
+<div class="guarantee-bar">
+  <div class="guarantee-item">🚚 <span><strong>Miễn phí</strong> vận chuyển</span></div>
+  <div class="guarantee-item">✦ <span>Chứng nhận <strong>GIA</strong></span></div>
+  <div class="guarantee-item">🔄 <span>Đổi trả <strong>30 ngày</strong></span></div>
+  <div class="guarantee-item">🛡 <span>Bảo hành <strong>Trọn đời</strong></span></div>
+</div>
+
+<!-- PRODUCT DETAIL SECTION -->
+<section class="product-section">
+  <div class="section-inner">
+    <div class="product-grid">
+
+      <!-- Image side -->
+      <div class="fade-in">
+        <div class="product-image-main">
+          <div class="cert-badge">GIA Certified</div>
+          <!-- Large ring art -->
+          <div class="ring-large" style="margin:0 auto;">
+            <div class="ring-band" style="height:10px;border-radius:5px;"></div>
+            <div class="halo-ring" style="width:64%;padding-bottom:64%;">
+              <div class="halo-stone" style="top:-10px;left:50%;transform:translateX(-50%);width:20px;height:20px;"></div>
+              <div class="halo-stone" style="bottom:-10px;left:50%;transform:translateX(-50%);width:20px;height:20px;"></div>
+              <div class="halo-stone" style="top:50%;right:-10px;transform:translateY(-50%);width:20px;height:20px;"></div>
+              <div class="halo-stone" style="top:50%;left:-10px;transform:translateY(-50%);width:20px;height:20px;"></div>
+              <div class="halo-stone" style="top:8%;left:8%;width:18px;height:18px;"></div>
+              <div class="halo-stone" style="top:8%;right:8%;width:18px;height:18px;"></div>
+              <div class="halo-stone" style="bottom:8%;left:8%;width:18px;height:18px;"></div>
+              <div class="halo-stone" style="bottom:8%;right:8%;width:18px;height:18px;"></div>
+            </div>
+            <div class="center-diamond" style="width:34%;padding-bottom:34%;box-shadow:0 0 40px rgba(200,230,255,0.8),0 0 80px rgba(150,200,255,0.4);"></div>
+          </div>
+          <div style="margin-top:24px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);text-align:center;">
+            ✦ &nbsp; Kim cương tự nhiên được chứng nhận &nbsp; ✦
+          </div>
+        </div>
+      </div>
+
+      <!-- Info side -->
+      <div class="fade-in">
+        <div class="section-tag">Sản phẩm nổi bật</div>
+        <h2 class="section-title">Nhẫn Kim Cương<br/>Halo Thiên Nhiên</h2>
+        <div class="divider"></div>
+        <p style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.8;margin-bottom:24px;">
+          Mỗi viên kim cương là tác phẩm của thiên nhiên trải qua hàng triệu năm. Thiết kế halo với vòng kim cương nhỏ bao quanh tâm tạo hiệu ứng rực rỡ gấp bội — biểu tượng hoàn hảo cho tình yêu vĩnh cửu.
+        </p>
+
+        <!-- Specs -->
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Kim cương tâm</div>
+            <div class="spec-value">0.3 Carat</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Màu sắc</div>
+            <div class="spec-value">D – E</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Độ tinh khiết</div>
+            <div class="spec-value">VS1</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Giác cắt</div>
+            <div class="spec-value">Excellent</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Chất liệu</div>
+            <div class="spec-value">Vàng trắng 18K</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Thiết kế</div>
+            <div class="spec-value">Halo Flower</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Kim cương phụ</div>
+            <div class="spec-value">8 viên halo</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Chứng nhận</div>
+            <div class="spec-value">GIA International</div>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="price-block">
+          <div class="price-original">25.000.000 ₫</div>
+          <div class="price-current">18.900.000 ₫</div>
+          <div class="price-save">Tiết kiệm 24% — Hôm nay</div>
+          <div class="price-installment">Hoặc trả góp <strong style="color:var(--gold)">0%</strong> lãi suất — từ 1.575.000 ₫/tháng (12 tháng)</div>
+        </div>
+
+        <!-- Scarcity -->
+        <div class="scarcity-box">
+          <div class="scarcity-text">
+            <span>⚠</span> Chỉ còn <span id="stock-num" style="color:#EF4444;font-weight:800;">7</span> sản phẩm trong kho
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-label">
+            <span>78% đã bán</span>
+            <span>Cập nhật vừa xong</span>
+          </div>
+        </div>
+
+        <!-- Trust -->
+        <div class="trust-row">
+          <div class="trust-item">
+            <div class="trust-icon">🛡</div>
+            <div class="trust-text">Bảo hành<br/>Trọn đời</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🔄</div>
+            <div class="trust-text">Đổi trả<br/>30 ngày</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🚚</div>
+            <div class="trust-text">Ship miễn phí<br/>Toàn quốc</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📜</div>
+            <div class="trust-text">GIA<br/>Certified</div>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <button class="btn-primary" onclick="scrollToOrder()">
+          💎 &nbsp; Đặt Hàng Ngay
+        </button>
+        <button class="btn-secondary" onclick="scrollToOrder()">
+          📞 &nbsp; Tư vấn miễn phí
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF SECTION -->
+<section class="social-section">
+  <div class="section-inner">
+    <div class="sold-banner fade-in">
+      <div class="sold-num">500+</div>
+      <div>
+        <div class="sold-label"><strong>Khách hàng hài lòng</strong> trong năm qua</div>
+        <div class="sold-label">⭐⭐⭐⭐⭐ Đánh giá trung bình 4.9/5</div>
+      </div>
+    </div>
+
+    <div class="section-tag">Đánh giá thực</div>
+    <h2 class="section-title">Khách hàng nói gì về chúng tôi?</h2>
+    <div class="divider"></div>
+
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Chiếc nhẫn đẹp hơn tôi tưởng tượng rất nhiều. Kim cương tỏa sáng lấp lánh dưới mọi ánh sáng. Bạn gái tôi khóc khi tôi cầu hôn, và nói đây là điều tuyệt vời nhất trong cuộc đời cô ấy."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">T</div>
+          <div>
+            <div class="reviewer-name">Trọng Nghĩa</div>
+            <div class="reviewer-date">Đà Nẵng · 2 tuần trước</div>
+          </div>
+        </div>
+        <span class="review-tag">Đã mua xác nhận</span>
+      </div>
+
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Dịch vụ tư vấn rất tận tình, nhân viên giúp tôi chọn size nhẫn phù hợp. Nhẫn đến tay trong hộp sang trọng, đóng gói kỹ lưỡng. Sẽ giới thiệu cho bạn bè!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">L</div>
+          <div>
+            <div class="reviewer-name">Lan Anh</div>
+            <div class="reviewer-date">Hà Nội · 1 tháng trước</div>
+          </div>
+        </div>
+        <span class="review-tag">Đã mua xác nhận</span>
+      </div>
+
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"CHJ Diamond có giấy chứng nhận GIA đầy đủ, tôi rất yên tâm về chất lượng. Halo kim cương tạo hiệu ứng cực kỳ lộng lẫy — nhìn to hơn rất nhiều so với kích thước thực."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">M</div>
+          <div>
+            <div class="reviewer-name">Minh Quân</div>
+            <div class="reviewer-date">TP. Hồ Chí Minh · 3 tuần trước</div>
+          </div>
+        </div>
+        <span class="review-tag">Đã mua xác nhận</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM SECTION -->
+<section class="order-section" id="order-form">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-tag">Đặt hàng ngay</div>
+      <h2 class="section-title">Hoàn Tất Đơn Hàng</h2>
+      <div class="divider" style="margin:16px auto 0;"></div>
+      <p style="color:rgba(255,255,255,0.4);margin-top:12px;font-style:italic;font-family:var(--serif);">
+        Điền thông tin bên dưới — chúng tôi sẽ liên hệ xác nhận trong vòng 15 phút
+      </p>
+    </div>
+
+    <div class="order-form-wrap fade-in">
+      <!-- Form -->
+      <div id="order-form-inner">
+        <div style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.15);padding:16px 20px;margin-bottom:28px;display:flex;align-items:center;gap:12px;">
+          <span style="font-size:22px;">💎</span>
+          <div>
+            <div style="font-family:var(--serif);font-size:15px;">Nhẫn Kim Cương Halo Thiên Nhiên · Vàng trắng 18K</div>
+            <div style="color:var(--gold);font-weight:700;font-size:17px;margin-top:2px;">18.900.000 ₫</div>
+          </div>
+        </div>
+
+        <form id="mainForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="f-name">Họ và tên *</label>
+              <input type="text" id="f-name" placeholder="Nguyễn Văn A" />
+              <div class="error-msg" id="e-name">Vui lòng nhập họ tên</div>
+            </div>
+            <div class="form-group">
+              <label for="f-phone">Số điện thoại *</label>
+              <input type="tel" id="f-phone" placeholder="0901 234 567" />
+              <div class="error-msg" id="e-phone">Số điện thoại không hợp lệ</div>
+            </div>
+            <div class="form-group full">
+              <label for="f-address">Địa chỉ giao hàng *</label>
+              <input type="text" id="f-address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" />
+              <div class="error-msg" id="e-address">Vui lòng nhập địa chỉ</div>
+            </div>
+            <div class="form-group">
+              <label for="f-size">Size nhẫn</label>
+              <select id="f-size">
+                <option value="">-- Chọn size --</option>
+                <option>Size 5 (15.7mm)</option>
+                <option>Size 6 (16.5mm)</option>
+                <option>Size 7 (17.3mm)</option>
+                <option>Size 8 (18.2mm)</option>
+                <option>Size 9 (19.0mm)</option>
+                <option>Size 10 (19.8mm)</option>
+                <option>Tư vấn thêm</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-qty">Số lượng</label>
+              <select id="f-qty">
+                <option>1 chiếc</option>
+                <option>2 chiếc (Bộ đôi)</option>
+                <option>3 chiếc trở lên</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="f-note">Ghi chú thêm</label>
+              <input type="text" id="f-note" placeholder="VD: giao buổi sáng, đóng gói quà tặng, khắc chữ..." />
+            </div>
+          </div>
+
+          <div style="margin-top:8px;margin-bottom:20px;">
+            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:12px;color:rgba(255,255,255,0.5);text-transform:none;letter-spacing:0;">
+              <input type="checkbox" id="f-agree" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;background:transparent;border:1px solid rgba(255,255,255,0.2);appearance:auto;" checked />
+              Tôi đồng ý nhận thông báo về tình trạng đơn hàng qua tin nhắn/email
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary" style="font-size:18px;padding:20px;">
+            💎 &nbsp; XÁC NHẬN ĐẶT HÀNG
+          </button>
+        </form>
+
+        <div class="form-note">🔒 Thông tin của bạn được mã hoá và bảo mật tuyệt đối</div>
+        <div class="submit-info">
+          <span>📦 Giao hàng 2–3 ngày</span>
+          <span>·</span>
+          <span>💳 COD hoặc chuyển khoản</span>
+          <span>·</span>
+          <span>🎁 Hộp quà sang trọng</span>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div class="form-success" id="form-success">
+        <div class="success-icon">💍</div>
+        <div class="success-title">Đặt hàng thành công!</div>
+        <p class="success-text">
+          Cảm ơn bạn đã tin tưởng CHJ Diamond.<br/>
+          Nhân viên sẽ gọi xác nhận trong <strong style="color:var(--gold)">15 phút</strong> tới.<br/><br/>
+          Mã đơn hàng của bạn: <strong style="color:var(--gold);font-family:var(--serif);font-size:20px;">#CHJ-<span id="order-id"></span></strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <div class="section-inner">
+    <div class="section-tag">Câu hỏi thường gặp</div>
+    <h2 class="section-title">Giải đáp thắc mắc</h2>
+    <div class="divider"></div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Kim cương của CHJ Diamond có thật không, và được chứng nhận như thế nào?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          100% kim cương thiên nhiên, không phải lab-grown hay đá nhân tạo. Mỗi viên kim cương đều có giấy chứng nhận từ GIA (Gemological Institute of America) — tổ chức thẩm định kim cương uy tín nhất thế giới. Giấy chứng nhận đi kèm sản phẩm, bao gồm đầy đủ thông số 4C: Carat, Color, Clarity, Cut.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Tôi không biết size nhẫn của người thân, phải làm sao?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Bạn có thể chọn "Tư vấn thêm" trong mục size nhẫn — nhân viên sẽ hướng dẫn cách đo size tại nhà hoặc bạn có thể mang nhẫn cũ đến cửa hàng để đo miễn phí. Ngoài ra, chúng tôi hỗ trợ điều chỉnh size miễn phí trong vòng 30 ngày sau khi nhận hàng.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Chính sách bảo hành và đổi trả như thế nào?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          CHJ Diamond bảo hành trọn đời cho phần vàng (cấu trúc nhẫn) và 2 năm cho kim cương halo phụ. Đổi trả trong 30 ngày nếu sản phẩm không đúng mô tả hoặc bạn không hài lòng — không cần lý do. Phí vận chuyển đổi trả do CHJ Diamond chịu.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Thời gian giao hàng bao lâu và có ship toàn quốc không?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Giao hàng toàn quốc trong 2–3 ngày làm việc. Nội thành Hà Nội và TP. HCM có thể giao trong ngày nếu đặt trước 12 giờ trưa. Toàn bộ đơn hàng được đóng gói trong hộp bảo vệ đặc biệt, có bảo hiểm vận chuyển và có thể theo dõi đơn hàng theo thời gian thực.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Có thể thanh toán bằng hình thức nào?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Chúng tôi chấp nhận: (1) COD — thanh toán tiền mặt khi nhận hàng; (2) Chuyển khoản ngân hàng; (3) Trả góp 0% lãi suất qua thẻ tín dụng Visa/Mastercard (6, 12, 24 tháng); (4) Ví điện tử MoMo, ZaloPay, VNPay. Tất cả giao dịch online đều được mã hóa SSL.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Nhẫn có thể khắc chữ không? Chi phí thêm không?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Có, CHJ Diamond cung cấp dịch vụ khắc chữ bên trong thân nhẫn hoàn toàn miễn phí (tối đa 20 ký tự). Bạn có thể ghi tên, ngày kỷ niệm, hoặc lời nhắn yêu thương. Vui lòng ghi rõ nội dung cần khắc trong phần ghi chú khi đặt hàng.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CHJ DIAMOND</div>
+  <div class="footer-tagline">Tình yêu vĩnh cửu — được khắc trong từng facet</div>
+  <div class="footer-links">
+    <a href="#">Về chúng tôi</a>
+    <a href="#">Chính sách bảo hành</a>
+    <a href="#">Chính sách đổi trả</a>
+    <a href="#">Hướng dẫn chọn size</a>
+    <a href="#">Liên hệ</a>
+  </div>
+  <div class="footer-copy">© 2024 CHJ Diamond. Kim cương thiên nhiên được chứng nhận GIA · Vàng 18K chính hãng</div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="float-cta" id="floatCta">
+  <div>
+    <div class="float-label">Nhẫn Kim Cương Halo</div>
+    <div class="float-price">18.900.000 ₫</div>
+  </div>
+  <button class="float-btn" onclick="scrollToOrder()">💎 Đặt hàng ngay</button>
+</div>
+
+<script>
+// ===== SPARKLES =====
+(function() {
+  const container = document.getElementById('sparkles');
+  for (let i = 0; i < 20; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --dur:${2+Math.random()*4}s;
+      --delay:${Math.random()*5}s;
+      width:${4+Math.random()*8}px;
+      height:${4+Math.random()*8}px;
+      opacity:0;
+    `;
+    container.appendChild(s);
+  }
+})();
+
+// ===== COUNTDOWN TIMER =====
+(function() {
+  let total = 23 * 3600 + 59 * 60 + 47;
+  const h = document.getElementById('cd-hours');
+  const m = document.getElementById('cd-mins');
+  const s = document.getElementById('cd-secs');
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+  function tick() {
+    if (total <= 0) { total = 24 * 3600; }
+    h.textContent = pad(Math.floor(total / 3600));
+    m.textContent = pad(Math.floor((total % 3600) / 60));
+    s.textContent = pad(total % 60);
+    total--;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ===== TOPBAR COUNTDOWN =====
+(function() {
+  let t = 4 * 3600 + 59 * 60 + 23;
+  const el = document.getElementById('topbar-countdown');
+  function pad(n) { return String(n).padStart(2,'0'); }
+  setInterval(function() {
+    if (t <= 0) t = 5 * 3600;
+    el.textContent = pad(Math.floor(t/3600))+':'+pad(Math.floor((t%3600)/60))+':'+pad(t%60);
+    t--;
+  }, 1000);
+})();
+
+// ===== LIVE VIEWERS =====
+(function() {
+  const el = document.getElementById('viewers-num');
+  let count = 47;
+  setInterval(function() {
+    const delta = Math.random() < 0.5 ? 1 : -1;
+    count = Math.max(32, Math.min(85, count + delta));
+    el.textContent = count;
+  }, 4000);
+})();
+
+// ===== STOCK RANDOMIZE =====
+(function() {
+  const el = document.getElementById('stock-num');
+  let n = 7;
+  setInterval(function() {
+    if (Math.random() < 0.15 && n > 3) n--;
+    el.textContent = n;
+  }, 12000);
+})();
+
+// ===== PROGRESS BAR ANIMATE =====
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('progress-fill').style.width = '78%';
+  }, 500);
+});
+
+// ===== GALLERY ACTIVE =====
+function setActive(card) {
+  document.querySelectorAll('.ring-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+}
+
+// ===== FAQ TOGGLE =====
+function toggleFAQ(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+// ===== SCROLL TO ORDER =====
+function scrollToOrder() {
+  document.getElementById('order-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ===== FORM VALIDATION =====
+document.getElementById('mainForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+
+  const name = document.getElementById('f-name');
+  const phone = document.getElementById('f-phone');
+  const address = document.getElementById('f-address');
+
+  // Reset
+  [name, phone, address].forEach(f => {
+    f.classList.remove('error');
+  });
+  ['e-name','e-phone','e-address'].forEach(id => {
+    document.getElementById(id).classList.remove('show');
+  });
+
+  if (!name.value.trim() || name.value.trim().length < 2) {
+    name.classList.add('error');
+    document.getElementById('e-name').classList.add('show');
+    valid = false;
+  }
+
+  const phoneVal = phone.value.replace(/\s/g,'');
+  if (!phoneVal.match(/^(0|\+84)[0-9]{8,10}$/)) {
+    phone.classList.add('error');
+    document.getElementById('e-phone').classList.add('show');
+    valid = false;
+  }
+
+  if (!address.value.trim() || address.value.trim().length < 5) {
+    address.classList.add('error');
+    document.getElementById('e-address').classList.add('show');
+    valid = false;
+  }
+
+  if (valid) {
+    const orderId = Math.floor(10000 + Math.random() * 90000);
+    document.getElementById('order-id').textContent = orderId;
+    document.getElementById('order-form-inner').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+    window.scrollTo({ top: document.getElementById('order-form').offsetTop - 80, behavior: 'smooth' });
+  }
+});
+
+// ===== FLOATING CTA =====
+(function() {
+  const cta = document.getElementById('floatCta');
+  const heroBottom = window.innerHeight;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > heroBottom * 0.5) {
+      cta.classList.add('visible');
+    } else {
+      cta.classList.remove('visible');
+    }
+  });
+})();
+
+// ===== FADE IN OBSERVER =====
+(function() {
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>

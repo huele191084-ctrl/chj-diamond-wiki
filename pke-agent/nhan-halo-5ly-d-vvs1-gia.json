@@ -1,0 +1,553 @@
+{
+  "_comment": "Sales page WarriorPlus — Nhan Halo 5ly D/VVS1/GIA — CHJ Diamond",
+  "title": "Nhẫn Kim Cương Halo 5LY — D/VVS1/GIA — CHJ Diamond",
+  "description": "Nhẫn cầu hôn kim cương thiên nhiên Halo viên chủ 5ly, chất lượng D/VVS1/GIA — bảo hành trọn đời",
+  "fb_pixel": "",
+  "tiktok_pixel": "",
+
+  "sessions": [
+
+    {
+      "name": "Session 1 — Hero",
+      "bg": "rgba(20, 18, 30, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Co Ay Xung Dang Duoc Nho Mai — Khong Chi Mot Khoanh Khac",
+          "tag": "h1",
+          "bold": true,
+          "color": "rgba(212, 175, 55, 1)",
+          "align": "center",
+          "fontSize": 22
+        },
+        {
+          "type": "text",
+          "text": "Nhan Kim Cuong Halo thien nhien · Vien chu 5LY · Chat luong D/VVS1 · Chung nhan GIA · Triple Excellent",
+          "tag": "p",
+          "color": "rgba(200, 190, 170, 1)",
+          "align": "center",
+          "fontSize": 14
+        },
+        {
+          "type": "image",
+          "src": "IMG:nhan-studio.jpg",
+          "height": 340
+        },
+        {
+          "type": "text",
+          "text": "~~35.900.000d~~ Chi con 29.900.000d",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(255, 220, 50, 1)",
+          "align": "center",
+          "fontSize": 22
+        },
+        {
+          "type": "text",
+          "text": "Uu dai dac biet — con 12 chiec ton kho thang nay",
+          "tag": "p",
+          "color": "rgba(255, 120, 120, 1)",
+          "align": "center",
+          "fontSize": 13
+        },
+        {
+          "type": "button",
+          "text": "DAT HANG NGAY — GUI THONG TIN",
+          "bg": "rgba(212, 175, 55, 1)",
+          "color": "rgba(20, 18, 30, 1)",
+          "radius": "100px",
+          "fontSize": 17
+        }
+      ]
+    },
+
+    {
+      "name": "Session 2 — Problem Agitation",
+      "bg": "rgba(245, 240, 230, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Ban Dang Lo Dieu Nay Phai Khong?",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(40, 30, 20, 1)",
+          "align": "center",
+          "fontSize": 20
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "Chon nhan sai gu — co ay se khong muon deo",
+          "tag": "p",
+          "bold": true,
+          "color": "rgba(180, 60, 60, 1)",
+          "align": "left",
+          "fontSize": 16
+        },
+        {
+          "type": "text",
+          "text": "Ban khong biet co ay thich kieu gi. Chon xong roi tang — co ay khen mieng nhung it deo. Cam giac do... khong ai muon co.",
+          "tag": "p",
+          "color": "rgba(80, 70, 60, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "Mua phai nhan dat hon thi truong — bi ho ma khong biet",
+          "tag": "p",
+          "bold": true,
+          "color": "rgba(180, 60, 60, 1)",
+          "align": "left",
+          "fontSize": 16
+        },
+        {
+          "type": "text",
+          "text": "Khong co gia tham chieu, khong biet kim cuong D khac H nhu the nao. Nguoi ban noi gi tin nay. Ve sau biet bi ho — muon roi.",
+          "tag": "p",
+          "color": "rgba(80, 70, 60, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "Nhan ngoai doi khong dep nhu anh — tang xong hoi han",
+          "tag": "p",
+          "bold": true,
+          "color": "rgba(180, 60, 60, 1)",
+          "align": "left",
+          "fontSize": 16
+        },
+        {
+          "type": "text",
+          "text": "Shop nao cung dang anh studio lung linh. Thuc te nhan den tay: nho hon, toi hon, khong sang nhu trong anh. Da tang roi — khong doi duoc.",
+          "tag": "p",
+          "color": "rgba(80, 70, 60, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "Nhung noi lo nay — CHJ giai quyet tung cai mot.",
+          "tag": "h3",
+          "bold": true,
+          "color": "rgba(100, 60, 20, 1)",
+          "align": "center",
+          "fontSize": 17
+        }
+      ]
+    },
+
+    {
+      "name": "Session 3 — Giai phap + San pham",
+      "bg": "rgba(255, 255, 255, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Nhan Halo 5LY — Kim Cuong Thien Nhien Chuan Quoc Te",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(30, 25, 50, 1)",
+          "align": "center",
+          "fontSize": 20
+        },
+        {
+          "type": "text",
+          "text": "Vien chu: 5.0 LY (0.50 carat) | Mau: D — trang tuyet doi | Do sach: VVS1 — gan nhu hoan hao",
+          "tag": "p",
+          "color": "rgba(40, 40, 80, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Giac cat: Triple Excellent (EX/EX/EX) — lua sang toi da",
+          "tag": "p",
+          "color": "rgba(40, 40, 80, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Chung nhan GIA — vien ngoc hoc quoc te uy tin nhat the gioi",
+          "tag": "p",
+          "color": "rgba(40, 40, 80, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "O nhan: Halo 2 lop | Chat lieu: Vang trang 14K | Size: Tuy chinh theo ngon tay",
+          "tag": "p",
+          "color": "rgba(40, 40, 80, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "image",
+          "src": "IMG:nhan-hop-chj.jpg",
+          "height": 280
+        },
+        {
+          "type": "image",
+          "src": "IMG:chung-chi-gia.jpg",
+          "height": 300
+        },
+        {
+          "type": "text",
+          "text": "Moi vien deu co ma GIA rieng — ban co the tra cuu online bat cu luc nao de xac nhan that/gia.",
+          "tag": "p",
+          "color": "rgba(100, 100, 120, 1)",
+          "align": "center",
+          "fontSize": 13
+        }
+      ]
+    },
+
+    {
+      "name": "Session 4 — Loi ich & USP",
+      "bg": "rgba(248, 245, 255, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Tai Sao Hang Nghin Cap Doi Chon CHJ?",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(50, 30, 90, 1)",
+          "align": "center",
+          "fontSize": 20
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "Tu van chon gu mien phi — co ay se thich, khong phai chi khen",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Gia minh bach — ban biet chinh xac ban dang tra cho gi",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Anh that 100% — nhan ngoai doi dep hon anh, khong phai nguoc lai",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Thu doi vien kim cuong toi 93% gia tri — tai san, khong phai chi phi",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Bao hanh nhan tron doi — hong o, roi vien ho tro toan bo",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Ho tro kim tam mien phi 6 thang dau neu tay co ay thay doi size",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Giao toan quoc — dong goi hop qua cao cap, khong lo gia",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Khong ap luc — ban quyet dinh, khong ai goi lien tuc",
+          "tag": "p",
+          "color": "rgba(40, 40, 60, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "divider"
+        }
+      ]
+    },
+
+    {
+      "name": "Session 5 — Social Proof",
+      "bg": "rgba(255, 255, 255, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Ho Da Tung Nhu Ban — Va Day La Ket Qua",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(30, 30, 50, 1)",
+          "align": "center",
+          "fontSize": 19
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "5 sao - Anh Minh Tuan (Ha Noi): Ban dau toi khong biet chon gi. Nhan tin cho CHJ, duoc tu van dung gu cua ban gai. Tang xong co ay khoc — dung kieu khoc vi qua vui. 10/10 khong hoi han.",
+          "tag": "p",
+          "color": "rgba(60, 60, 80, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "5 sao - Anh Thanh Hung (TP.HCM): Lo nhat la mua online khong dep nhu anh. CHJ gui video quay thuc te truoc khi toi dat. Nhan den tay con dep hon trong video. Cuc ky uy tin.",
+          "tag": "p",
+          "color": "rgba(60, 60, 80, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "5 sao - Anh Hoang Long (Da Nang): Xem GIA online de xac nhan that — dung nhu so tren chung chi. Mua kim cuong lan dau ma khong lo lang gi ca. Se gioi thieu ban be.",
+          "tag": "p",
+          "color": "rgba(60, 60, 80, 1)",
+          "align": "left",
+          "fontSize": 14
+        },
+        {
+          "type": "image",
+          "src": "IMG:khach-deo-nhan.jpg",
+          "height": 320
+        },
+        {
+          "type": "image",
+          "src": "IMG:chat-khach-hang.jpg",
+          "height": 320
+        }
+      ]
+    },
+
+    {
+      "name": "Session 6 — Gia + Bao dam",
+      "bg": "rgba(20, 18, 30, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Uu Dai Dac Biet — Hom Nay",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(212, 175, 55, 1)",
+          "align": "center",
+          "fontSize": 22
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "~~Gia thi truong: 35.900.000d~~",
+          "tag": "p",
+          "color": "rgba(180, 170, 150, 1)",
+          "align": "center",
+          "fontSize": 16
+        },
+        {
+          "type": "text",
+          "text": "Gia CHJ thang nay: 29.900.000d",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(255, 220, 50, 1)",
+          "align": "center",
+          "fontSize": 26
+        },
+        {
+          "type": "text",
+          "text": "Tiet kiem: 6.000.000d — tang them hop qua cao cap + thiep",
+          "tag": "p",
+          "color": "rgba(100, 220, 130, 1)",
+          "align": "center",
+          "fontSize": 15
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "CAM KET 3 LOP BAO VE BAN:",
+          "tag": "h3",
+          "bold": true,
+          "color": "rgba(212, 175, 55, 1)",
+          "align": "center",
+          "fontSize": 17
+        },
+        {
+          "type": "text",
+          "text": "Thu doi vien kim cuong toi 93% gia mua — bat ky luc nao",
+          "tag": "p",
+          "color": "rgba(200, 190, 170, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Bao hanh nhan tron doi — o hong, vien long deu duoc xu ly",
+          "tag": "p",
+          "color": "rgba(200, 190, 170, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "text",
+          "text": "Ho tro kim tam 6 thang dau — sai size cung khong lo",
+          "tag": "p",
+          "color": "rgba(200, 190, 170, 1)",
+          "align": "left",
+          "fontSize": 15
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "Chi con 12 chiec trong kho thang 5 — uu dai ket thuc khi het hang",
+          "tag": "p",
+          "color": "rgba(255, 100, 100, 1)",
+          "align": "center",
+          "fontSize": 14
+        }
+      ]
+    },
+
+    {
+      "name": "Session 7 — Form Dat hang",
+      "bg": "rgba(30, 25, 50, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "DAT HANG — NHAN TU VAN MIEN PHI",
+          "tag": "h2",
+          "bold": true,
+          "color": "rgba(255, 255, 255, 1)",
+          "align": "center",
+          "fontSize": 20
+        },
+        {
+          "type": "text",
+          "text": "Dien thong tin — chuyen vien CHJ lien he trong vong 15 phut. Khong ap luc. Chi tu van khi ban can.",
+          "tag": "p",
+          "color": "rgba(200, 190, 210, 1)",
+          "align": "center",
+          "fontSize": 13
+        },
+        {
+          "type": "form",
+          "submit": "GUI THONG TIN — TU VAN MIEN PHI",
+          "fb_event": "Lead",
+          "fb_value": "10000",
+          "fields": [
+            { "field": "full_name",    "placeholder": "Ho va ten cua ban" },
+            { "field": "phone_number", "placeholder": "So dien thoai (de tu van)" },
+            { "field": "address",      "placeholder": "Thanh pho / Tinh cua ban" },
+            { "field": "email",        "placeholder": "Email (nhan catalog + bang gia)" }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Thong tin cua ban duoc bao mat — khong chia se cho ben thu 3",
+          "tag": "p",
+          "color": "rgba(160, 150, 170, 1)",
+          "align": "center",
+          "fontSize": 12
+        }
+      ]
+    },
+
+    {
+      "name": "Session 8 — PS + Footer",
+      "bg": "rgba(15, 12, 25, 1)",
+      "elements": [
+        {
+          "type": "text",
+          "text": "P.S. — Doc Truoc Khi Bo Qua",
+          "tag": "h3",
+          "bold": true,
+          "color": "rgba(212, 175, 55, 1)",
+          "align": "center",
+          "fontSize": 17
+        },
+        {
+          "type": "text",
+          "text": "Khoanh khac cau hon chi xay ra mot lan. Chiec nhan ban tang se theo co ay ca doi — khong phai vai nam, ca doi. Mot chiec nhan sai co the lam nhat di khoanh khac do mai mai. Mot chiec nhan dung — se duoc ke lai cho con, cho chau.",
+          "tag": "p",
+          "color": "rgba(180, 170, 190, 1)",
+          "align": "center",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "text": "Ban khong can quyet dinh ngay. Chi can de lai thong tin — chung toi se tu van mien phi, khong ap luc.",
+          "tag": "p",
+          "color": "rgba(212, 175, 55, 1)",
+          "align": "center",
+          "fontSize": 15
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "text",
+          "text": "CHJ Diamond",
+          "tag": "h3",
+          "bold": true,
+          "color": "rgba(212, 175, 55, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "0868.785.394",
+          "tag": "p",
+          "color": "rgba(200, 200, 200, 1)",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "text": "chunghieudiamond@gmail.com",
+          "tag": "p",
+          "color": "rgba(200, 200, 200, 1)",
+          "align": "center",
+          "fontSize": 13
+        },
+        {
+          "type": "text",
+          "text": "KDT Paml Manor, LK25/05, Phuong Viet Tri, Tinh Phu Tho",
+          "tag": "p",
+          "color": "rgba(140, 130, 150, 1)",
+          "align": "center",
+          "fontSize": 12
+        }
+      ]
+    }
+
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {"id":"n01","type":"file","file":"wiki/chj-diamond.md","x":-150,"y":-70,"width":300,"height":130,"color":"2"},
+    {"id":"n02","type":"file","file":"wiki/tong-quan-he-thong-chj.md","x":-150,"y":-270,"width":300,"height":130},
+
+    {"id":"g01","type":"group","x":-1260,"y":-355,"width":760,"height":570,"color":"6","label":"👥 Khách Hàng"},
+    {"id":"n03","type":"file","file":"wiki/ho-so-khach-hang-nam-cau-hon.md","x":-1220,"y":-315,"width":300,"height":130},
+    {"id":"n04","type":"file","file":"wiki/ho-so-khach-hang-phu-nu-doanh-nhan.md","x":-840,"y":-315,"width":300,"height":130},
+    {"id":"n05","type":"file","file":"wiki/vpc-chj-nam-cau-hon.md","x":-1220,"y":-135,"width":300,"height":130},
+    {"id":"n06","type":"file","file":"wiki/vpc-chj-phu-nu-doanh-nhan.md","x":-840,"y":-135,"width":300,"height":130},
+    {"id":"n07","type":"file","file":"wiki/so-sanh-phan-khuc-khach-hang.md","x":-1220,"y":45,"width":300,"height":130},
+    {"id":"n08","type":"file","file":"wiki/bang-chuyen-doi-ban-hang.md","x":-840,"y":45,"width":300,"height":130},
+
+    {"id":"g02","type":"group","x":500,"y":-355,"width":760,"height":570,"color":"4","label":"💎 Sản Phẩm & Giá"},
+    {"id":"n11","type":"file","file":"wiki/nhan-kim-cuong-cao-cap-chj.md","x":540,"y":-315,"width":300,"height":130},
+    {"id":"n12","type":"file","file":"wiki/san-pham-queen-halo-royal.md","x":920,"y":-315,"width":300,"height":130},
+    {"id":"n13","type":"file","file":"wiki/chinh-sach-chj.md","x":540,"y":-135,"width":300,"height":130},
+    {"id":"n14","type":"file","file":"wiki/bang-gia-kim-cuong-gia.md","x":920,"y":-135,"width":300,"height":130},
+    {"id":"n15","type":"file","file":"wiki/landing-pages-chj.md","x":540,"y":45,"width":300,"height":130},
+    {"id":"n16","type":"file","file":"wiki/danh-muc-san-pham-nhan-cau-hon.md","x":920,"y":45,"width":300,"height":130},
+
+    {"id":"g03","type":"group","x":-380,"y":-1070,"width":760,"height":570,"color":"2","label":"🎯 Bán Hàng & Hệ Thống PTL"},
+    {"id":"n17","type":"file","file":"wiki/pham-thanh-long.md","x":-340,"y":-1030,"width":300,"height":130},
+    {"id":"n18","type":"file","file":"wiki/he-thong-ips.md","x":40,"y":-1030,"width":300,"height":130},
+    {"id":"n19","type":"file","file":"wiki/16-buoc-ban-hang.md","x":-340,"y":-850,"width":300,"height":130},
+    {"id":"n20","type":"file","file":"wiki/quy-trinh-ban-hang-8-2.md","x":40,"y":-850,"width":300,"height":130},
+    {"id":"n21","type":"file","file":"wiki/mo-hinh-canvas-lvc.md","x":-340,"y":-670,"width":300,"height":130},
+    {"id":"n22","type":"file","file":"wiki/chj-ap-dung-ptl-system.md","x":40,"y":-670,"width":300,"height":130},
+
+    {"id":"g04","type":"group","x":-1260,"y":400,"width":760,"height":570,"color":"1","label":"📚 Kiến Thức Kim Cương"},
+    {"id":"n25","type":"file","file":"wiki/kien-thuc-4cs-kim-cuong.md","x":-1220,"y":440,"width":300,"height":130},
+    {"id":"n26","type":"file","file":"wiki/giac-cat-kim-cuong.md","x":-840,"y":440,"width":300,"height":130},
+    {"id":"n27","type":"file","file":"wiki/mau-kim-cuong.md","x":-1220,"y":620,"width":300,"height":130},
+    {"id":"n28","type":"file","file":"wiki/do-sach-clarity-kim-cuong.md","x":-840,"y":620,"width":300,"height":130},
+    {"id":"n29","type":"file","file":"wiki/carat-trong-luong-kim-cuong.md","x":-1220,"y":800,"width":300,"height":130},
+    {"id":"n30","type":"file","file":"wiki/hinh-dang-kim-cuong.md","x":-840,"y":800,"width":300,"height":130},
+
+    {"id":"g05","type":"group","x":-380,"y":400,"width":760,"height":570,"color":"3","label":"📱 Content & Video"},
+    {"id":"n31","type":"file","file":"wiki/chien-luoc-thuong-hieu-chj.md","x":-340,"y":440,"width":300,"height":130},
+    {"id":"n32","type":"file","file":"wiki/quy-trinh-san-xuat-content.md","x":40,"y":440,"width":300,"height":130},
+    {"id":"n33","type":"file","file":"wiki/gio-vang-dang-bai-chj.md","x":-340,"y":620,"width":300,"height":130},
+    {"id":"n34","type":"file","file":"wiki/video-marketing-28-ngay-chj.md","x":40,"y":620,"width":300,"height":130},
+    {"id":"n35","type":"file","file":"wiki/series-noi-dung-giao-duc-ban-hang.md","x":-340,"y":800,"width":300,"height":130},
+    {"id":"n36","type":"file","file":"wiki/lich-dang-bai-tu-dong.md","x":40,"y":800,"width":300,"height":130},
+
+    {"id":"g06","type":"group","x":500,"y":400,"width":760,"height":570,"color":"5","label":"⚙️ Tự Động Hóa"},
+    {"id":"n37","type":"file","file":"wiki/lead-magnet-content-kim-cuong.md","x":540,"y":440,"width":300,"height":130},
+    {"id":"n38","type":"file","file":"wiki/email-sequence-lead-magnet.md","x":920,"y":440,"width":300,"height":130},
+    {"id":"n39","type":"file","file":"wiki/chatbot-kich-ban-facebook-zalo.md","x":540,"y":620,"width":300,"height":130},
+    {"id":"n40","type":"file","file":"wiki/ke-hoach-noi-dung-2-ty.md","x":920,"y":620,"width":300,"height":130},
+    {"id":"n41","type":"file","file":"wiki/tu-dong-hoa-12-tang-chj.md","x":540,"y":800,"width":300,"height":130},
+    {"id":"n42","type":"file","file":"wiki/chien-luoc-noi-dung-3-giai-doan.md","x":920,"y":800,"width":300,"height":130}
+  ],
+  "edges": [
+    {"id":"e07","fromNode":"n02","fromSide":"bottom","toNode":"n01","toSide":"top"},
+
+    {"id":"e01","fromNode":"n01","fromSide":"left","toNode":"n07","toSide":"right","label":"Phân khúc"},
+    {"id":"e02","fromNode":"n01","fromSide":"right","toNode":"n11","toSide":"left","label":"Sản phẩm"},
+    {"id":"e03","fromNode":"n01","fromSide":"top","toNode":"n22","toSide":"bottom","label":"Hệ thống"},
+    {"id":"e04","fromNode":"n01","fromSide":"bottom","toNode":"n25","toSide":"top","label":"Kiến thức"},
+    {"id":"e05","fromNode":"n01","fromSide":"bottom","toNode":"n31","toSide":"top","label":"Content"},
+    {"id":"e06","fromNode":"n01","fromSide":"bottom","toNode":"n37","toSide":"top","label":"Automation"},
+
+    {"id":"e08","fromNode":"n03","fromSide":"bottom","toNode":"n05","toSide":"top"},
+    {"id":"e09","fromNode":"n04","fromSide":"bottom","toNode":"n06","toSide":"top"},
+
+    {"id":"e10","fromNode":"n17","fromSide":"right","toNode":"n18","toSide":"left"},
+    {"id":"e11","fromNode":"n17","fromSide":"bottom","toNode":"n19","toSide":"top"},
+
+    {"id":"e12","fromNode":"n37","fromSide":"right","toNode":"n38","toSide":"left"},
+    {"id":"e13","fromNode":"n38","fromSide":"bottom","toNode":"n39","toSide":"top"},
+
+    {"id":"e14","fromNode":"n15","fromSide":"bottom","toNode":"n37","toSide":"top","label":"Funnel"},
+    {"id":"e15","fromNode":"n14","fromSide":"bottom","toNode":"n38","toSide":"top","label":"Lead data"}
+  ]
+}

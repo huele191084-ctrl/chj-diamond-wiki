@@ -1,0 +1,1548 @@
+﻿{
+    "source":  {
+                   "settings":  {
+                                    "width_section":  {
+                                                          "mobile":  420,
+                                                          "desktop":  960
+                                                      },
+                                    "title":  "BẢNG GIÁ KIM CƯƠNG GIA MỚI NHẤT 2026",
+                                    "tiktok_script":  "",
+                                    "thumbnail":  "https://content.pancake.vn/1//eb/18/72/55/46ecb3bfcf8a4d2d767ab625c6ce49e8bc209bf83ee9401865375d19-w:1024-h:1024-l:267424-t:image/jpeg.jpg",
+                                    "send_info_to_thank_page":  true,
+                                    "keywords":  "",
+                                    "global_track_ids":  [
+
+                                                         ],
+                                    "fontGeneral":  "",
+                                    "fb_tracking_code":  "",
+                                    "favicon":  "",
+                                    "extra_script":  "",
+                                    "extra_css":  "",
+                                    "description":  "",
+                                    "country":  "84",
+                                    "bhet":  "",
+                                    "bbet":  "",
+                                    "auto_save_info_user":  false,
+                                    "auto_save_draft":  true,
+                                    "auto_complete_form_in_popup":  false,
+                                    "analytic_heatmap":  false
+                                },
+                   "popup":  [
+                                 {
+                                     "type":  "popup",
+                                     "specials":  {
+
+                                                  },
+                                     "runtime":  {
+
+                                                 },
+                                     "responsive":  {
+                                                        "mobile":  {
+                                                                       "styles":  {
+                                                                                      "width":  400,
+                                                                                      "height":  250,
+                                                                                      "color":  "rgba(69,64,64,1.000)",
+                                                                                      "boxShadow":  "4px 4px 9px 0px rgba(139,195,74,0.200)",
+                                                                                      "borderWidth":  0,
+                                                                                      "borderStyle":  "solid",
+                                                                                      "borderRadius":  "13px",
+                                                                                      "borderColor":  "rgba(76, 175, 80, 0.8)",
+                                                                                      "background":  "rgba(255, 255, 255, 1)"
+                                                                                  },
+                                                                       "config":  {
+                                                                                      "notloaded":  false,
+                                                                                      "hiddenEffect":  {
+
+                                                                                                       },
+                                                                                      "borderColorHidden":  {
+
+                                                                                                            }
+                                                                                  }
+                                                                   },
+                                                        "desktop":  {
+                                                                        "styles":  {
+                                                                                       "width":  477,
+                                                                                       "height":  238,
+                                                                                       "color":  "rgba(69,64,64,1.000)",
+                                                                                       "boxShadow":  "4px 4px 9px 0px rgba(139,195,74,0.200)",
+                                                                                       "borderWidth":  0,
+                                                                                       "borderStyle":  "solid",
+                                                                                       "borderRadius":  "13px",
+                                                                                       "borderColor":  "rgba(76, 175, 80, 0.8)",
+                                                                                       "background":  "rgba(255, 255, 255, 1)"
+                                                                                   },
+                                                                        "config":  {
+                                                                                       "hiddenEffect":  {
+
+                                                                                                        },
+                                                                                       "borderColorHidden":  {
+
+                                                                                                             }
+                                                                                   }
+                                                                    }
+                                                    },
+                                     "properties":  {
+                                                        "thumbnail":  "https://content.pancake.vn/dev_page-assets/b4837994-97a1-4bfe-901b-4fcbb4224df1/popup/fj14wh0s.png?ts=1602148390123",
+                                                        "sync":  true,
+                                                        "name":  "Default_Popup",
+                                                        "movable":  false
+                                                    },
+                                     "id":  "__popup_default__",
+                                     "events":  [
+
+                                                ],
+                                     "children":  [
+                                                      {
+                                                          "type":  "text-block",
+                                                          "specials":  {
+                                                                           "text":  "CHÚC MỪNG BẠN ĐÃ ĐĂNG KÍ THÀNH CÔNG\u0026nbsp;"
+                                                                       },
+                                                          "runtime":  {
+
+                                                                      },
+                                                          "responsive":  {
+                                                                             "mobile":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  358,
+                                                                                                           "top":  14.5,
+                                                                                                           "textAlign":  "start",
+                                                                                                           "left":  36,
+                                                                                                           "fontWeight":  "bold",
+                                                                                                           "fontSize":  "26",
+                                                                                                           "fontFamily":  "\u0027Roboto\u0027, sans-serif",
+                                                                                                           "color":  "rgba(69, 64, 64, 1)",
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  78,
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        },
+                                                                             "desktop":  {
+                                                                                             "styles":  {
+                                                                                                            "width":  350,
+                                                                                                            "top":  14.5,
+                                                                                                            "textAlign":  "start",
+                                                                                                            "left":  44.5,
+                                                                                                            "fontWeight":  "bold",
+                                                                                                            "fontSize":  28,
+                                                                                                            "color":  "rgba(69, 64, 64, 1)",
+                                                                                                            "borderWidth":  0,
+                                                                                                            "borderStyle":  "solid",
+                                                                                                            "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                        },
+                                                                                             "config":  {
+                                                                                                            "virtualHeight":  84
+                                                                                                        }
+                                                                                         }
+                                                                         },
+                                                          "properties":  {
+                                                                             "sync":  true,
+                                                                             "name":  "text",
+                                                                             "movable":  true
+                                                                         },
+                                                          "id":  "oc2dcqis",
+                                                          "events":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "type":  "text-block",
+                                                          "specials":  {
+                                                                           "text":  "Kiểm tra Email và tải về Bảng giá kim cương mới nhất để trở thành người mua kim cương thông thái !"
+                                                                       },
+                                                          "runtime":  {
+
+                                                                      },
+                                                          "responsive":  {
+                                                                             "mobile":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  328,
+                                                                                                           "top":  98,
+                                                                                                           "textAlign":  "start",
+                                                                                                           "left":  36,
+                                                                                                           "fontSize":  16,
+                                                                                                           "fontFamily":  "\u0027Roboto\u0027, sans-serif",
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  72,
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        },
+                                                                             "desktop":  {
+                                                                                             "styles":  {
+                                                                                                            "width":  388,
+                                                                                                            "top":  108,
+                                                                                                            "textTransform":  "normal",
+                                                                                                            "textAlign":  "start",
+                                                                                                            "left":  31.5,
+                                                                                                            "fontWeight":  400,
+                                                                                                            "fontSize":  16,
+                                                                                                            "fontFamily":  "\u0027Roboto\u0027, sans-serif",
+                                                                                                            "borderWidth":  0,
+                                                                                                            "borderStyle":  "solid",
+                                                                                                            "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                        },
+                                                                                             "config":  {
+                                                                                                            "virtualHeight":  48
+                                                                                                        }
+                                                                                         }
+                                                                         },
+                                                          "properties":  {
+                                                                             "sync":  true,
+                                                                             "name":  "text",
+                                                                             "movable":  true
+                                                                         },
+                                                          "id":  "pn1igdhr",
+                                                          "events":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "type":  "button",
+                                                          "specials":  {
+                                                                           "text":  "Close"
+                                                                       },
+                                                          "runtime":  {
+
+                                                                      },
+                                                          "responsive":  {
+                                                                             "mobile":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  130,
+                                                                                                           "top":  184,
+                                                                                                           "left":  241.5,
+                                                                                                           "height":  40,
+                                                                                                           "fontWeight":  "bold",
+                                                                                                           "fontSize":  14,
+                                                                                                           "color":  "rgba(255, 255, 255, 1)",
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderRadius":  "6px",
+                                                                                                           "background":  "rgba(76, 175, 80, 0.8)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "notloaded":  false,
+                                                                                                           "bgHidden":  {
+
+                                                                                                                        }
+                                                                                                       }
+                                                                                        },
+                                                                             "desktop":  {
+                                                                                             "styles":  {
+                                                                                                            "width":  130,
+                                                                                                            "top":  172,
+                                                                                                            "left":  302.5,
+                                                                                                            "height":  40,
+                                                                                                            "fontWeight":  "bold",
+                                                                                                            "fontSize":  14,
+                                                                                                            "color":  "rgba(255, 255, 255, 1)",
+                                                                                                            "borderWidth":  0,
+                                                                                                            "borderStyle":  "solid",
+                                                                                                            "borderRadius":  "6px",
+                                                                                                            "background":  "rgba(76, 175, 80, 0.8)"
+                                                                                                        },
+                                                                                             "config":  {
+                                                                                                            "bgHidden":  {
+
+                                                                                                                         }
+                                                                                                        }
+                                                                                         }
+                                                                         },
+                                                          "properties":  {
+                                                                             "sync":  true,
+                                                                             "name":  "Button",
+                                                                             "movable":  true
+                                                                         },
+                                                          "id":  "au0o7yag",
+                                                          "events":  [
+                                                                         {
+                                                                             "type":  "click",
+                                                                             "target":  "__popup_default__",
+                                                                             "id":  "ixxh483t",
+                                                                             "action":  "close_popup"
+                                                                         }
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "type":  "rectangle",
+                                                          "specials":  {
+
+                                                                       },
+                                                          "runtime":  {
+                                                                          "firstInit":  "desktop"
+                                                                      },
+                                                          "responsive":  {
+                                                                             "mobile":  {
+                                                                                            "styles":  {
+                                                                                                           "zIndex":  1,
+                                                                                                           "width":  29,
+                                                                                                           "top":  0,
+                                                                                                           "left":  370,
+                                                                                                           "height":  29,
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "#E5E7EB",
+                                                                                                           "background":  "rgb(212, 212, 212)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "svgMask":  "\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 width=\u0027100%\u0027 height=\u0027100%\u0027 viewBox=\u00270 0 24 24\u0027\u003e \u003cpath d=\u0027M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z\u0027\u003e\u003c/path\u003e \u003c/svg\u003e",
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        },
+                                                                             "desktop":  {
+                                                                                             "styles":  {
+                                                                                                            "zIndex":  1,
+                                                                                                            "width":  29,
+                                                                                                            "top":  0,
+                                                                                                            "left":  448,
+                                                                                                            "height":  29,
+                                                                                                            "borderWidth":  0,
+                                                                                                            "borderStyle":  "solid",
+                                                                                                            "borderColor":  "#E5E7EB",
+                                                                                                            "background":  "rgb(212, 212, 212)"
+                                                                                                        },
+                                                                                             "config":  {
+                                                                                                            "svgMask":  "\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 width=\u0027100%\u0027 height=\u0027100%\u0027 viewBox=\u00270 0 24 24\u0027\u003e \u003cpath d=\u0027M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z\u0027\u003e\u003c/path\u003e \u003c/svg\u003e"
+                                                                                                        }
+                                                                                         }
+                                                                         },
+                                                          "properties":  {
+                                                                             "sync":  true,
+                                                                             "name":  "rectangle_1",
+                                                                             "movable":  true
+                                                                         },
+                                                          "id":  "au0o7yap",
+                                                          "events":  [
+                                                                         {
+                                                                             "type":  "click",
+                                                                             "target":  "__popup_default__",
+                                                                             "id":  "t3jgjr2t",
+                                                                             "action":  "close_popup"
+                                                                         }
+                                                                     ]
+                                                      }
+                                                  ]
+                                 }
+                             ],
+                   "page":  [
+                                {
+                                    "type":  "section",
+                                    "specials":  {
+                                                     "imageCompression":  true
+                                                 },
+                                    "runtime":  {
+
+                                                },
+                                    "responsive":  {
+                                                       "mobile":  {
+                                                                      "styles":  {
+                                                                                     "position":  "relative",
+                                                                                     "height":  916,
+                                                                                     "background":  "rgba(74,75,77,1.000)"
+                                                                                 },
+                                                                      "config":  {
+                                                                                     "notloaded":  false,
+                                                                                     "bgHidden":  {
+
+                                                                                                  }
+                                                                                 }
+                                                                  },
+                                                       "desktop":  {
+                                                                       "styles":  {
+                                                                                      "position":  "relative",
+                                                                                      "height":  913,
+                                                                                      "background":  "rgba(74,75,77,1.000)"
+                                                                                  },
+                                                                       "config":  {
+                                                                                      "notloaded":  false,
+                                                                                      "bgHidden":  {
+
+                                                                                                   }
+                                                                                  }
+                                                                   }
+                                                   },
+                                    "properties":  {
+                                                       "thumbnail":  "https://statics.pancake.vn/page-assets/db480083-91eb-4588-88ec-857b98b74f45/section/3fun35kz.png?ts=1771950117189",
+                                                       "sync":  true,
+                                                       "name":  "Section 2",
+                                                       "movable":  false
+                                                   },
+                                    "id":  "3fun35kz",
+                                    "events":  [
+
+                                               ],
+                                    "children":  [
+                                                     {
+                                                         "type":  "rectangle",
+                                                         "specials":  {
+
+                                                                      },
+                                                         "runtime":  {
+
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "width":  400,
+                                                                                                          "top":  13,
+                                                                                                          "left":  10,
+                                                                                                          "height":  152,
+                                                                                                          "borderWidth":  0,
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                          "background":  "rgba(0, 0, 0, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "notloaded":  false,
+                                                                                                          "bgHidden":  {
+
+                                                                                                                       }
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  738,
+                                                                                                           "top":  36.5,
+                                                                                                           "left":  106.5,
+                                                                                                           "height":  131,
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                           "background":  "rgba(0, 0, 0, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "notloaded":  false,
+                                                                                                           "bgHidden":  {
+
+                                                                                                                        }
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "rectangle_556",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "ckle9it6",
+                                                         "events":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "type":  "text-block",
+                                                         "specials":  {
+                                                                          "text":  "Nhận Ngay BẢNG GIÁ KIM CƯƠNG \"GIA\"\u003cbr\u003e3,6 LY - 7,2 ly mới nhất\u003cbr\u003e\u003cbr\u003e",
+                                                                          "tag":  "h1"
+                                                                      },
+                                                         "runtime":  {
+                                                                         "changeSection":  false
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "zIndex":  "",
+                                                                                                          "width":  400,
+                                                                                                          "top":  26,
+                                                                                                          "textTransform":  "uppercase",
+                                                                                                          "textDecoration":  "",
+                                                                                                          "textAlign":  "center",
+                                                                                                          "left":  10,
+                                                                                                          "height":  0,
+                                                                                                          "fontWeight":  "bold",
+                                                                                                          "fontStyle":  "",
+                                                                                                          "fontSize":  "28",
+                                                                                                          "fontFamily":  "\u0027Arial\u0027, sans-serif",
+                                                                                                          "color":  "rgba(255, 235, 59, 0.95)",
+                                                                                                          "borderWidth":  0,
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                          "-webkit-text-stroke":  "0px rgba(12, 13, 13, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "virtualHeight":  168,
+                                                                                                          "strokeColor":  "rgba(12, 13, 13, 1)",
+                                                                                                          "notloaded":  false,
+                                                                                                          "animation":  {
+                                                                                                                            "repeat":  "infinite",
+                                                                                                                            "name":  "bounce",
+                                                                                                                            "duration":  1,
+                                                                                                                            "delay":  0
+                                                                                                                        }
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "zIndex":  "",
+                                                                                                           "width":  717,
+                                                                                                           "top":  54,
+                                                                                                           "textTransform":  "uppercase",
+                                                                                                           "textDecoration":  "",
+                                                                                                           "textAlign":  "center",
+                                                                                                           "left":  116.5,
+                                                                                                           "fontWeight":  "bold",
+                                                                                                           "fontStyle":  "",
+                                                                                                           "fontSize":  "32",
+                                                                                                           "fontFamily":  "\u0027Arial\u0027, sans-serif",
+                                                                                                           "color":  "rgba(255, 235, 59, 0.95)",
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                           "-webkit-text-stroke":  "0px rgba(12, 13, 13, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  144,
+                                                                                                           "strokeColor":  "rgba(12, 13, 13, 1)",
+                                                                                                           "notloaded":  false,
+                                                                                                           "animation":  {
+                                                                                                                             "repeat":  "infinite",
+                                                                                                                             "name":  "bounce",
+                                                                                                                             "duration":  1,
+                                                                                                                             "delay":  0
+                                                                                                                         }
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "text-block_6",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "i8y70s57",
+                                                         "events":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "type":  "form",
+                                                         "specials":  {
+                                                                          "tiktok_tracking_currency":  "VND",
+                                                                          "tiktok_conversion_value":  "10000",
+                                                                          "multiFormParent":  "",
+                                                                          "fb_tracking_currency":  "VND",
+                                                                          "fb_event_type":  "CompleteRegistration",
+                                                                          "fb_conversion_value":  "10000"
+                                                                      },
+                                                         "runtime":  {
+                                                                         "changeSection":  false
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "zIndex":  "",
+                                                                                                          "width":  408,
+                                                                                                          "top":  457,
+                                                                                                          "left":  0,
+                                                                                                          "height":  437,
+                                                                                                          "fontSize":  13,
+                                                                                                          "borderWidth":  "1px",
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderRadius":  "6px",
+                                                                                                          "borderColor":  "rgba(217, 217, 217, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "notloaded":  false
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "zIndex":  "",
+                                                                                                           "width":  444,
+                                                                                                           "top":  379,
+                                                                                                           "left":  245,
+                                                                                                           "height":  488,
+                                                                                                           "fontSize":  13,
+                                                                                                           "borderWidth":  "1px",
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderRadius":  "6px",
+                                                                                                           "borderColor":  "rgba(217, 217, 217, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "section_3",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "mof9qxf6",
+                                                         "children":  [
+                                                                          {
+                                                                              "type":  "checkbox-group",
+                                                                              "specials":  {
+                                                                                               "parentCarousel":  "mof9qxf6",
+                                                                                               "options":  [
+                                                                                                               {
+                                                                                                                   "name":  "3.6 LY",
+                                                                                                                   "id":  "w4eqh24s"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "4.0 LY",
+                                                                                                                   "id":  "feffih92"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "4.5 LY",
+                                                                                                                   "id":  "g9bxreo7"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "5.0 LY",
+                                                                                                                   "id":  "1rzsb1od"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "5.4 LY",
+                                                                                                                   "id":  "ollv6tfk"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "6.0 LY",
+                                                                                                                   "id":  "v5j2ejhq"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "6.3 LY",
+                                                                                                                   "id":  "3j34ggzm"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "7.0 LY",
+                                                                                                                   "id":  "nrwymgdp"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "name":  "7.2 LY",
+                                                                                                                   "id":  "yogn4pq2"
+                                                                                                               }
+                                                                                                           ],
+                                                                                               "field_placeholder":  "Checkbox Group 3",
+                                                                                               "field_name":  "checkbox_group_3",
+                                                                                               "default_values":  [
+
+                                                                                                                  ]
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  408,
+                                                                                                                               "top":  135,
+                                                                                                                               "left":  0,
+                                                                                                                               "height":  250,
+                                                                                                                               "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                               "borderWidth":  1,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderRadius":  "6px",
+                                                                                                                               "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                               "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "notloaded":  false,
+                                                                                                                               "distance":  4
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  444,
+                                                                                                                                "top":  168.5,
+                                                                                                                                "left":  0,
+                                                                                                                                "height":  250,
+                                                                                                                                "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                                "borderWidth":  1,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderRadius":  "6px",
+                                                                                                                                "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                                "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "notloaded":  false,
+                                                                                                                                "distance":  4
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "checkbox-group_3",
+                                                                                                 "movable":  true
+                                                                                             },
+                                                                              "id":  "s7snbaqg",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          },
+                                                                          {
+                                                                              "type":  "button",
+                                                                              "specials":  {
+                                                                                               "text":  "GỬI CHO TÔI NGAY",
+                                                                                               "parentCarousel":  "mof9qxf6"
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  265,
+                                                                                                                               "top":  402,
+                                                                                                                               "left":  66,
+                                                                                                                               "height":  35,
+                                                                                                                               "fontWeight":  "bold",
+                                                                                                                               "fontSize":  18,
+                                                                                                                               "color":  "rgba(255, 255, 255, 1)",
+                                                                                                                               "borderWidth":  0,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderRadius":  "6px",
+                                                                                                                               "borderColor":  "#E5E7EB",
+                                                                                                                               "background":  "rgba(199, 23, 12, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "notloaded":  false,
+                                                                                                                               "bgHidden":  {
+
+                                                                                                                                            },
+                                                                                                                               "animation":  {
+                                                                                                                                                 "repeat":  "infinite",
+                                                                                                                                                 "name":  "headShake",
+                                                                                                                                                 "duration":  1,
+                                                                                                                                                 "delay":  0
+                                                                                                                                             }
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  363,
+                                                                                                                                "top":  436.5,
+                                                                                                                                "left":  24.5,
+                                                                                                                                "height":  51,
+                                                                                                                                "fontWeight":  "bold",
+                                                                                                                                "fontSize":  18,
+                                                                                                                                "color":  "rgba(255, 255, 255, 1)",
+                                                                                                                                "borderWidth":  0,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderRadius":  "6px",
+                                                                                                                                "borderColor":  "#E5E7EB",
+                                                                                                                                "background":  "rgba(199, 23, 12, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "notloaded":  false,
+                                                                                                                                "bgHidden":  {
+
+                                                                                                                                             },
+                                                                                                                                "animation":  {
+                                                                                                                                                  "repeat":  "infinite",
+                                                                                                                                                  "name":  "headShake",
+                                                                                                                                                  "duration":  1,
+                                                                                                                                                  "delay":  0
+                                                                                                                                              }
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "Button",
+                                                                                                 "movable":  true
+                                                                                             },
+                                                                              "id":  "oriqqsnq"
+                                                                          },
+                                                                          {
+                                                                              "type":  "input",
+                                                                              "specials":  {
+                                                                                               "field_placeholder":  "Họ và tên",
+                                                                                               "field_name":  "full_name"
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  407,
+                                                                                                                               "top":  0,
+                                                                                                                               "left":  0,
+                                                                                                                               "height":  32,
+                                                                                                                               "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                               "borderWidth":  1,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderRadius":  "6px",
+                                                                                                                               "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                               "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "notloaded":  false
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  444,
+                                                                                                                                "top":  0,
+                                                                                                                                "left":  0,
+                                                                                                                                "height":  37,
+                                                                                                                                "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                                "borderWidth":  1,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderRadius":  "6px",
+                                                                                                                                "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                                "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "notloaded":  false
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "input_1",
+                                                                                                 "movable":  true,
+                                                                                                 "field_default":  true
+                                                                                             },
+                                                                              "id":  "4acybrmw",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          },
+                                                                          {
+                                                                              "type":  "input",
+                                                                              "specials":  {
+                                                                                               "inputPattern":  "[^@\\s]+@[^@\\s]+\\.[^@\\s]+",
+                                                                                               "field_placeholder":  "Email",
+                                                                                               "field_name":  "email"
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  407,
+                                                                                                                               "top":  88,
+                                                                                                                               "left":  0,
+                                                                                                                               "height":  33,
+                                                                                                                               "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                               "borderWidth":  1,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderRadius":  "6px",
+                                                                                                                               "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                               "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "notloaded":  false
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  444,
+                                                                                                                                "top":  102,
+                                                                                                                                "left":  0,
+                                                                                                                                "height":  43,
+                                                                                                                                "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                                "borderWidth":  1,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderRadius":  "6px",
+                                                                                                                                "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                                "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "notloaded":  false
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "input_2",
+                                                                                                 "movable":  true,
+                                                                                                 "field_default":  true
+                                                                                             },
+                                                                              "id":  "ifssxgcx",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          },
+                                                                          {
+                                                                              "type":  "input",
+                                                                              "specials":  {
+                                                                                               "field_placeholder":  "Số điện thoại",
+                                                                                               "field_name":  "phone_number"
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  406,
+                                                                                                                               "top":  46,
+                                                                                                                               "left":  0,
+                                                                                                                               "height":  32,
+                                                                                                                               "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                               "borderWidth":  1,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderRadius":  "6px",
+                                                                                                                               "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                               "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "notloaded":  false
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  444,
+                                                                                                                                "top":  47,
+                                                                                                                                "left":  0,
+                                                                                                                                "height":  45,
+                                                                                                                                "color":  "rgba(0, 0, 0, 1)",
+                                                                                                                                "borderWidth":  1,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderRadius":  "6px",
+                                                                                                                                "borderColor":  "rgba(217, 217, 217, 1)",
+                                                                                                                                "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "notloaded":  false
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "input_3",
+                                                                                                 "movable":  true,
+                                                                                                 "field_default":  true
+                                                                                             },
+                                                                              "id":  "heaa1uhe",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          }
+                                                                      ]
+                                                     },
+                                                     {
+                                                         "type":  "text-block",
+                                                         "specials":  {
+                                                                          "text":  "NẮM ĐƯỢC BẢNG GIÁ BẠN SẼ TRÁNH MUA PHẢI GIÁ QUÁ CAO SO VỚI GIÁ THỊ TRƯỜNG\u0026nbsp;",
+                                                                          "tag":  "h2"
+                                                                      },
+                                                         "runtime":  {
+
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "width":  400,
+                                                                                                          "top":  178.5,
+                                                                                                          "textDecoration":  "underline",
+                                                                                                          "textAlign":  "center",
+                                                                                                          "left":  10,
+                                                                                                          "height":  0,
+                                                                                                          "fontWeight":  "bold",
+                                                                                                          "fontSize":  30,
+                                                                                                          "color":  "rgba(201, 201, 201, 1)",
+                                                                                                          "borderWidth":  0,
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "virtualHeight":  180,
+                                                                                                          "notloaded":  false
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  506,
+                                                                                                           "top":  189.25,
+                                                                                                           "textDecoration":  "underline",
+                                                                                                           "textAlign":  "center",
+                                                                                                           "left":  206.5,
+                                                                                                           "fontWeight":  "bold",
+                                                                                                           "fontSize":  30,
+                                                                                                           "color":  "rgba(201, 201, 201, 1)",
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  135,
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "text-block_734",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "k0365ybh",
+                                                         "events":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "type":  "text-block",
+                                                         "specials":  {
+                                                                          "text":  "💎 BẠN ĐANG QUAN TÂM ĐẾN SIZE KIM CƯƠNG NÀO ?\u0026nbsp;",
+                                                                          "tag":  "p"
+                                                                      },
+                                                         "runtime":  {
+
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "width":  400,
+                                                                                                          "top":  369,
+                                                                                                          "textTransform":  "",
+                                                                                                          "left":  10,
+                                                                                                          "height":  0,
+                                                                                                          "fontWeight":  "bold",
+                                                                                                          "fontStyle":  "italic",
+                                                                                                          "fontSize":  "24",
+                                                                                                          "fontFamily":  "\u0027Arial\u0027, sans-serif",
+                                                                                                          "color":  "rgba(230, 126, 34, 1)",
+                                                                                                          "borderWidth":  0,
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "virtualHeight":  72,
+                                                                                                          "notloaded":  false
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  876,
+                                                                                                           "top":  324.25,
+                                                                                                           "textTransform":  "",
+                                                                                                           "left":  124.5,
+                                                                                                           "fontWeight":  "bold",
+                                                                                                           "fontStyle":  "italic",
+                                                                                                           "fontSize":  "24",
+                                                                                                           "fontFamily":  "\u0027Arial\u0027, sans-serif",
+                                                                                                           "color":  "rgba(230, 126, 34, 1)",
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  36,
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "text-block_735",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "l6jsixge",
+                                                         "events":  [
+
+                                                                    ]
+                                                     }
+                                                 ]
+                                },
+                                {
+                                    "type":  "section",
+                                    "specials":  {
+                                                     "imageCompression":  true
+                                                 },
+                                    "runtime":  {
+
+                                                },
+                                    "responsive":  {
+                                                       "mobile":  {
+                                                                      "styles":  {
+                                                                                     "position":  "relative",
+                                                                                     "height":  194,
+                                                                                     "background":  "rgba(14, 73, 117, 1)"
+                                                                                 },
+                                                                      "config":  {
+                                                                                     "notloaded":  false,
+                                                                                     "bgHidden":  {
+
+                                                                                                  }
+                                                                                 }
+                                                                  },
+                                                       "desktop":  {
+                                                                       "styles":  {
+                                                                                      "position":  "relative",
+                                                                                      "height":  196,
+                                                                                      "background":  "rgba(14, 73, 117, 1)"
+                                                                                  },
+                                                                       "config":  {
+                                                                                      "notloaded":  false,
+                                                                                      "bgHidden":  {
+
+                                                                                                   }
+                                                                                  }
+                                                                   }
+                                                   },
+                                    "properties":  {
+                                                       "sync":  true,
+                                                       "name":  "section_31",
+                                                       "movable":  false
+                                                   },
+                                    "id":  "zbkw9rsw",
+                                    "events":  [
+
+                                               ],
+                                    "children":  [
+                                                     {
+                                                         "type":  "group",
+                                                         "specials":  {
+
+                                                                      },
+                                                         "runtime":  {
+
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "width":  372,
+                                                                                                          "top":  84,
+                                                                                                          "position":  "absolute",
+                                                                                                          "left":  10,
+                                                                                                          "height":  42
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "notloaded":  false
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  707,
+                                                                                                           "top":  93,
+                                                                                                           "position":  "absolute",
+                                                                                                           "left":  126.5,
+                                                                                                           "height":  24
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "group_669",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "gyq3oym3",
+                                                         "events":  [
+
+                                                                    ],
+                                                         "children":  [
+                                                                          {
+                                                                              "type":  "rectangle",
+                                                                              "specials":  {
+
+                                                                                           },
+                                                                              "runtime":  {
+                                                                                              "changeSection":  false
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "zIndex":  "",
+                                                                                                                               "width":  21,
+                                                                                                                               "top":  1.5,
+                                                                                                                               "left":  0,
+                                                                                                                               "height":  21,
+                                                                                                                               "borderWidth":  0,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                                               "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "svgMask":  "\u003csvg preserveAspectRatio=\u0027none\u0027 width=\u002720\u0027 height=\u002719\u0027 viewBox=\u00270 0 20 19\u0027 fill=\u0027none\u0027 xmlns=\u0027http://www.w3.org/2000/svg\u0027\u003e\u003cpath d=\u0027M0 10L9.293 0.70697C9.6835 0.31659 10.3165 0.31659 10.707 0.70697L20 10H18V18C18 18.5523 17.5523 19 17 19H12V12H8V19H3C2.44772 19 2 18.5523 2 18V10H0Z\u0027 fill=\u0027#2E3A59\u0027/\u003e\u003c/svg\u003e",
+                                                                                                                               "notloaded":  false,
+                                                                                                                               "bgHidden":  {
+
+                                                                                                                                            }
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "zIndex":  "",
+                                                                                                                                "width":  21,
+                                                                                                                                "top":  1.5,
+                                                                                                                                "left":  0,
+                                                                                                                                "height":  21,
+                                                                                                                                "borderWidth":  0,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                                                "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "svgMask":  "\u003csvg preserveAspectRatio=\u0027none\u0027 width=\u002720\u0027 height=\u002719\u0027 viewBox=\u00270 0 20 19\u0027 fill=\u0027none\u0027 xmlns=\u0027http://www.w3.org/2000/svg\u0027\u003e\u003cpath d=\u0027M0 10L9.293 0.70697C9.6835 0.31659 10.3165 0.31659 10.707 0.70697L20 10H18V18C18 18.5523 17.5523 19 17 19H12V12H8V19H3C2.44772 19 2 18.5523 2 18V10H0Z\u0027 fill=\u0027#2E3A59\u0027/\u003e\u003c/svg\u003e",
+                                                                                                                                "notloaded":  false,
+                                                                                                                                "bgHidden":  {
+
+                                                                                                                                             }
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "rectangle_554",
+                                                                                                 "movable":  true
+                                                                                             },
+                                                                              "id":  "k2omxpop",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          },
+                                                                          {
+                                                                              "type":  "text-block",
+                                                                              "specials":  {
+                                                                                               "text":  "Địa chỉ: KĐT Paml Manor, LK25/05 Khu Thuận Quý, Phường Việt Trì,\u0026nbsp; Tỉnh Phú Thọ.",
+                                                                                               "tag":  "p"
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  339,
+                                                                                                                               "top":  0,
+                                                                                                                               "textAlign":  "start",
+                                                                                                                               "left":  33,
+                                                                                                                               "height":  1,
+                                                                                                                               "fontSize":  14,
+                                                                                                                               "color":  "rgba(255, 255, 255, 1)",
+                                                                                                                               "borderWidth":  0,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "virtualHeight":  42,
+                                                                                                                               "notloaded":  false
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  677,
+                                                                                                                                "top":  0,
+                                                                                                                                "left":  30,
+                                                                                                                                "height":  null,
+                                                                                                                                "fontSize":  16,
+                                                                                                                                "color":  "rgba(255, 255, 255, 1)",
+                                                                                                                                "borderWidth":  0,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "virtualHeight":  24,
+                                                                                                                                "notloaded":  false
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "text-block_730",
+                                                                                                 "movable":  true
+                                                                                             },
+                                                                              "id":  "w3wp506c",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          }
+                                                                      ]
+                                                     },
+                                                     {
+                                                         "type":  "group",
+                                                         "specials":  {
+
+                                                                      },
+                                                         "runtime":  {
+
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "width":  222,
+                                                                                                          "top":  146.5,
+                                                                                                          "position":  "absolute",
+                                                                                                          "left":  10,
+                                                                                                          "height":  23
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "notloaded":  false
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  244,
+                                                                                                           "top":  128,
+                                                                                                           "position":  "absolute",
+                                                                                                           "left":  358,
+                                                                                                           "height":  24
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "group_670",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "c77x61ez",
+                                                         "events":  [
+
+                                                                    ],
+                                                         "children":  [
+                                                                          {
+                                                                              "type":  "text-block",
+                                                                              "specials":  {
+                                                                                               "text":  "Số điện thoại: 0868.785.394",
+                                                                                               "tag":  "p"
+                                                                                           },
+                                                                              "runtime":  {
+
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "width":  204,
+                                                                                                                               "top":  0,
+                                                                                                                               "textAlign":  "center",
+                                                                                                                               "left":  18,
+                                                                                                                               "height":  1,
+                                                                                                                               "fontSize":  14,
+                                                                                                                               "color":  "rgba(255, 255, 255, 1)",
+                                                                                                                               "borderWidth":  0,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "virtualHeight":  21,
+                                                                                                                               "notloaded":  false
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "width":  214,
+                                                                                                                                "top":  0,
+                                                                                                                                "textAlign":  "center",
+                                                                                                                                "left":  30,
+                                                                                                                                "fontSize":  16,
+                                                                                                                                "color":  "rgba(255, 255, 255, 1)",
+                                                                                                                                "borderWidth":  0,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "virtualHeight":  24,
+                                                                                                                                "notloaded":  false
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "text-block_731",
+                                                                                                 "movable":  true
+                                                                                             },
+                                                                              "id":  "yl6ncvhu",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          },
+                                                                          {
+                                                                              "type":  "rectangle",
+                                                                              "specials":  {
+                                                                                               "src":  ""
+                                                                                           },
+                                                                              "runtime":  {
+                                                                                              "changeSection":  false
+                                                                                          },
+                                                                              "responsive":  {
+                                                                                                 "mobile":  {
+                                                                                                                "styles":  {
+                                                                                                                               "zIndex":  "",
+                                                                                                                               "width":  23,
+                                                                                                                               "top":  0,
+                                                                                                                               "left":  0,
+                                                                                                                               "height":  23,
+                                                                                                                               "borderWidth":  0,
+                                                                                                                               "borderStyle":  "solid",
+                                                                                                                               "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                                               "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                           },
+                                                                                                                "config":  {
+                                                                                                                               "svgMask":  "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 1408 1896.0833\" class=\"phone\"\u003e\u003cpath d=\"M1408 1240q0 27-10 70.5t-21 68.5q-21 50-122 106-94 51-186 51-27 0-52.5-3.5T959 1520t-47.5-14.5T856 1485t-49-18q-98-35-175-83-128-79-264.5-215.5T152 904q-48-77-83-175-3-9-18-49t-20.5-55.5T16 577 3.5 519.5 0 467q0-92 51-186 56-101 106-122 25-11 68.5-21t70.5-10q14 0 21 3 18 6 53 76 11 19 30 54t35 63.5 31 53.5q3 4 17.5 25t21.5 35.5 7 28.5q0 20-28.5 50t-62 55-62 53-28.5 46q0 9 5 22.5t8.5 20.5 14 24 11.5 19q76 137 174 235t235 174q2 1 19 11.5t24 14 20.5 8.5 22.5 5q18 0 46-28.5t53-62 55-62 50-28.5q14 0 28.5 7t35.5 21.5 25 17.5q25 15 53.5 31t63.5 35 54 30q70 35 76 53 3 7 3 21z\"\u003e\u003c/path\u003e\u003c/svg\u003e",
+                                                                                                                               "notloaded":  false,
+                                                                                                                               "bgHidden":  {
+
+                                                                                                                                            }
+                                                                                                                           }
+                                                                                                            },
+                                                                                                 "desktop":  {
+                                                                                                                 "styles":  {
+                                                                                                                                "zIndex":  "",
+                                                                                                                                "width":  23,
+                                                                                                                                "top":  0,
+                                                                                                                                "left":  0,
+                                                                                                                                "height":  23,
+                                                                                                                                "borderWidth":  0,
+                                                                                                                                "borderStyle":  "solid",
+                                                                                                                                "borderColor":  "rgba(229, 231, 235, 1)",
+                                                                                                                                "background":  "rgba(255, 255, 255, 1)"
+                                                                                                                            },
+                                                                                                                 "config":  {
+                                                                                                                                "svgMask":  "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 1408 1896.0833\" class=\"phone\"\u003e\u003cpath d=\"M1408 1240q0 27-10 70.5t-21 68.5q-21 50-122 106-94 51-186 51-27 0-52.5-3.5T959 1520t-47.5-14.5T856 1485t-49-18q-98-35-175-83-128-79-264.5-215.5T152 904q-48-77-83-175-3-9-18-49t-20.5-55.5T16 577 3.5 519.5 0 467q0-92 51-186 56-101 106-122 25-11 68.5-21t70.5-10q14 0 21 3 18 6 53 76 11 19 30 54t35 63.5 31 53.5q3 4 17.5 25t21.5 35.5 7 28.5q0 20-28.5 50t-62 55-62 53-28.5 46q0 9 5 22.5t8.5 20.5 14 24 11.5 19q76 137 174 235t235 174q2 1 19 11.5t24 14 20.5 8.5 22.5 5q18 0 46-28.5t53-62 55-62 50-28.5q14 0 28.5 7t35.5 21.5 25 17.5q25 15 53.5 31t63.5 35 54 30q70 35 76 53 3 7 3 21z\"\u003e\u003c/path\u003e\u003c/svg\u003e",
+                                                                                                                                "notloaded":  false,
+                                                                                                                                "bgHidden":  {
+
+                                                                                                                                             }
+                                                                                                                            }
+                                                                                                             }
+                                                                                             },
+                                                                              "properties":  {
+                                                                                                 "sync":  true,
+                                                                                                 "name":  "rectangle_555",
+                                                                                                 "movable":  true
+                                                                                             },
+                                                                              "id":  "70s0fgek",
+                                                                              "events":  [
+
+                                                                                         ]
+                                                                          }
+                                                                      ]
+                                                     },
+                                                     {
+                                                         "type":  "line",
+                                                         "specials":  {
+
+                                                                      },
+                                                         "runtime":  {
+                                                                         "changeSection":  false
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "zIndex":  "",
+                                                                                                          "width":  400,
+                                                                                                          "top":  176.6,
+                                                                                                          "left":  10,
+                                                                                                          "height":  0,
+                                                                                                          "borderWidth":  1,
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderColor":  "rgba(129, 128, 128, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "virtualHeight":  17,
+                                                                                                          "notloaded":  false,
+                                                                                                          "borderColorHidden":  {
+
+                                                                                                                                }
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "zIndex":  "",
+                                                                                                           "width":  450,
+                                                                                                           "top":  161,
+                                                                                                           "left":  255,
+                                                                                                           "borderWidth":  1,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(129, 128, 128, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  17,
+                                                                                                           "notloaded":  false,
+                                                                                                           "borderColorHidden":  {
+
+                                                                                                                                 }
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "line_24",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "zwuxqphm",
+                                                         "events":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "type":  "text-block",
+                                                         "specials":  {
+                                                                          "text":  "\u003cspan style=\"color: rgb(247, 247, 247);\"\u003eCÔNG TY TNHH CHUNG HIẾU JEWELRY\u003c/span\u003e",
+                                                                          "tag":  "h4"
+                                                                      },
+                                                         "runtime":  {
+
+                                                                     },
+                                                         "responsive":  {
+                                                                            "mobile":  {
+                                                                                           "styles":  {
+                                                                                                          "width":  398,
+                                                                                                          "top":  24.5,
+                                                                                                          "textAlign":  "left",
+                                                                                                          "left":  36.3125,
+                                                                                                          "fontWeight":  600,
+                                                                                                          "fontSize":  19,
+                                                                                                          "borderWidth":  0,
+                                                                                                          "borderStyle":  "solid",
+                                                                                                          "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                      },
+                                                                                           "config":  {
+                                                                                                          "virtualHeight":  28.5,
+                                                                                                          "notloaded":  false
+                                                                                                      }
+                                                                                       },
+                                                                            "desktop":  {
+                                                                                            "styles":  {
+                                                                                                           "width":  398,
+                                                                                                           "top":  17,
+                                                                                                           "textAlign":  "left",
+                                                                                                           "left":  6,
+                                                                                                           "fontWeight":  600,
+                                                                                                           "fontSize":  19,
+                                                                                                           "borderWidth":  0,
+                                                                                                           "borderStyle":  "solid",
+                                                                                                           "borderColor":  "rgba(229, 231, 235, 1)"
+                                                                                                       },
+                                                                                            "config":  {
+                                                                                                           "virtualHeight":  28.5,
+                                                                                                           "notloaded":  false
+                                                                                                       }
+                                                                                        }
+                                                                        },
+                                                         "properties":  {
+                                                                            "sync":  true,
+                                                                            "name":  "text-block_732",
+                                                                            "movable":  true
+                                                                        },
+                                                         "id":  "lkthvm0f",
+                                                         "events":  [
+
+                                                                    ]
+                                                     }
+                                                 ]
+                                }
+                            ],
+                   "options":  {
+                                   "versionID":  "d58e5114-53b8-4597-b403-b37318a342e8",
+                                   "mobileOnly":  false,
+                                   "currency":  "VND"
+                               },
+                   "cartConfigs":  {
+
+                                   }
+               },
+    "owner_id":  "8e30f4dd-5c6a-4071-86e0-2e3fc72095a4",
+    "name":  "BẢNG GIÁ KIM CƯƠNG GIA 3,6 - 7,2 LY ",
+    "engine":  2,
+    "email":  {
+
+              },
+    "data_set_id":  [
+
+                    ]
+}

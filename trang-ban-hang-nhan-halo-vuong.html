@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nhẫn Kim Cương Thiên Nhiên Halo Vuông – CHJ Diamond</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8D5A3;
+      --gold-dark: #A07830;
+      --white: #FDFCF9;
+      --dark: #1A1410;
+      --gray: #6B6560;
+      --bg-cream: #FAF8F4;
+      --accent: #8B1A1A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* ─── HEADER ─── */
+    .top-bar {
+      background: var(--dark);
+      color: var(--gold-light);
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .top-bar span { color: var(--gold); font-weight: 600; }
+
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid #E8E0D0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 20px;
+      gap: 12px;
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 3px;
+    }
+
+    nav .logo span { color: var(--gold); }
+
+    nav .logo-sub {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gray);
+      text-transform: uppercase;
+      display: block;
+      text-align: center;
+      margin-top: -4px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, #1A1410 0%, #2D2318 50%, #1A1410 100%);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 70%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 58px);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: #C4B8A4;
+      font-size: 16px;
+      margin-bottom: 40px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark));
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      padding: 16px 44px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      box-shadow: 0 4px 24px rgba(201,168,76,0.4);
+    }
+
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.5); }
+
+    /* ─── GALLERY ─── */
+    .gallery-section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-section .section-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .gallery-section h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 38px);
+      color: var(--dark);
+      margin-bottom: 50px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-grid .main-img {
+      grid-column: span 2;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .gallery-grid .main-img img { height: 460px; }
+
+    .gallery-grid img:hover { transform: scale(1.02); }
+
+    .img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ─── HOOK PAIN ─── */
+    .pain-section {
+      background: var(--bg-cream);
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .pain-section .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .pain-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 34px);
+      color: var(--dark);
+      max-width: 780px;
+      margin: 0 auto 30px;
+      line-height: 1.4;
+    }
+
+    .pain-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pain-card {
+      background: white;
+      padding: 32px 24px;
+      border-top: 3px solid var(--gold);
+      text-align: left;
+    }
+
+    .pain-card .icon { font-size: 30px; margin-bottom: 14px; }
+
+    .pain-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .pain-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+    /* ─── SOLUTION ─── */
+    .solution-section {
+      padding: 70px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .solution-section .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .solution-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 40px);
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .solution-section .lead {
+      font-size: 16px;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto 50px;
+      line-height: 1.8;
+    }
+
+    /* ─── 4C SPECS ─── */
+    .specs-section {
+      background: var(--dark);
+      padding: 70px 20px;
+    }
+
+    .specs-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .specs-inner .section-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .specs-inner h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--white);
+      margin-bottom: 50px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      background: rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    .spec-item {
+      background: #1F1A14;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .spec-item .label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .spec-item .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .spec-item .note {
+      font-size: 12px;
+      color: #8A8178;
+      margin-top: 6px;
+    }
+
+    .specs-detail {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .specs-detail-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .specs-detail-item .d-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(201,168,76,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .specs-detail-item .d-text .d-name {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .specs-detail-item .d-text .d-val {
+      font-size: 15px;
+      color: var(--white);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* ─── CERTIFICATE ─── */
+    .cert-section {
+      background: var(--bg-cream);
+      padding: 70px 20px;
+    }
+
+    .cert-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) { .cert-inner { grid-template-columns: 1fr; } }
+
+    .cert-content .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .cert-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .cert-content p {
+      color: var(--gray);
+      font-size: 15px;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+
+    .cert-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cert-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--dark);
+    }
+
+    .cert-items li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 12px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .cert-visual {
+      background: var(--dark);
+      padding: 36px 28px;
+      border: 1px solid rgba(201,168,76,0.3);
+      position: relative;
+    }
+
+    .cert-visual::before {
+      content: 'GGJ';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      padding: 0 16px;
+      letter-spacing: 4px;
+    }
+
+    .cert-visual .cert-title {
+      text-align: center;
+      color: #C4B8A4;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .cert-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 10px 0;
+      font-size: 14px;
+    }
+
+    .cert-row:last-child { border-bottom: none; }
+
+    .cert-row .cr-key { color: #7A7268; }
+
+    .cert-row .cr-val {
+      color: var(--gold-light);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    /* ─── SOCIAL PROOF ─── */
+    .proof-section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .proof-section .section-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .proof-section h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--dark);
+      margin-bottom: 50px;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .proof-card {
+      border: 1px solid #E8E0D0;
+      padding: 28px;
+      position: relative;
+    }
+
+    .proof-card .stars { color: var(--gold); font-size: 16px; margin-bottom: 14px; }
+
+    .proof-card .review-text {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+
+    .proof-card .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .proof-card .avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .proof-card .reviewer-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+    }
+
+    .proof-card .reviewer-date {
+      font-size: 12px;
+      color: #9A9590;
+    }
+
+    .proof-card .verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #3B7A57;
+      background: #EAF7EF;
+      padding: 3px 10px;
+      margin-top: 10px;
+    }
+
+    /* ─── VALUE SECTION ─── */
+    .value-section {
+      background: linear-gradient(135deg, #1A1410 0%, #2D2318 100%);
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .value-section .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .value-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--white);
+      margin-bottom: 50px;
+    }
+
+    .value-boxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .value-box {
+      padding: 32px 20px;
+      border: 1px solid rgba(201,168,76,0.25);
+      text-align: center;
+    }
+
+    .value-box .v-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .value-box .v-label {
+      font-size: 13px;
+      color: #C4B8A4;
+      line-height: 1.5;
+    }
+
+    /* ─── GUARANTEE ─── */
+    .guarantee-section {
+      background: var(--bg-cream);
+      padding: 70px 20px;
+    }
+
+    .guarantee-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .guarantee-inner .section-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .guarantee-inner h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--dark);
+      margin-bottom: 50px;
+    }
+
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .guarantee-item {
+      background: white;
+      padding: 32px 24px;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .guarantee-item .g-icon { font-size: 36px; margin-bottom: 16px; }
+
+    .guarantee-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .guarantee-item p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+    /* ─── PRICE / CTA ─── */
+    .price-section {
+      padding: 70px 20px;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .price-section .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .price-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--dark);
+      margin-bottom: 30px;
+    }
+
+    .price-box {
+      display: inline-block;
+      background: var(--dark);
+      padding: 50px 60px;
+      margin-bottom: 36px;
+      position: relative;
+      min-width: 340px;
+    }
+
+    .price-box .old-price {
+      color: #7A7268;
+      font-size: 18px;
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+
+    .price-box .current-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .price-box .price-note {
+      font-size: 13px;
+      color: #8A8178;
+    }
+
+    .price-box .discount-tag {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      letter-spacing: 1px;
+    }
+
+    .cta-main {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark));
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      padding: 20px 60px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      box-shadow: 0 6px 30px rgba(201,168,76,0.4);
+      display: block;
+      max-width: 400px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-main:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(201,168,76,0.5); }
+
+    .cta-secondary {
+      display: block;
+      max-width: 400px;
+      margin: 0 auto;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 14px;
+      text-decoration: none;
+      padding: 14px 40px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .cta-secondary:hover { background: rgba(201,168,76,0.1); }
+
+    /* ─── URGENCY ─── */
+    .urgency-bar {
+      background: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .urgency-bar strong { font-weight: 700; }
+
+    .urgency-bar .countdown {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 14px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin: 0 8px;
+      font-family: monospace;
+      font-size: 17px;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      background: var(--bg-cream);
+      padding: 70px 20px;
+    }
+
+    .faq-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-inner .section-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .faq-inner h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--dark);
+      margin-bottom: 50px;
+    }
+
+    .faq-item {
+      background: white;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 20px 24px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 3px solid var(--gold);
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-size: 22px;
+      color: var(--gold);
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    footer .footer-logo span { color: var(--gold); }
+
+    footer p {
+      color: #6B6560;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+      color: #8A8178;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover { color: var(--gold); }
+
+    footer .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 30px 0 20px;
+    }
+
+    /* ─── FLOATING CONTACT ─── */
+    .float-contact {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 22px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transition: transform 0.2s;
+    }
+
+    .float-btn:hover { transform: scale(1.1); }
+
+    .float-btn.zalo { background: #0068ff; }
+    .float-btn.fb { background: #1877F2; }
+    .float-btn.phone { background: var(--gold); }
+
+    /* ─── UTILS ─── */
+    .text-gold { color: var(--gold); }
+    .divider-gold {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto;
+    }
+
+    @media (max-width: 600px) {
+      .price-box { min-width: unset; padding: 36px 28px; }
+      .gallery-grid .main-img { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  🚚 Miễn phí vận chuyển toàn quốc &nbsp;|&nbsp; <span>📜 Chứng nhận GGJ chính hãng</span> &nbsp;|&nbsp; ✨ Kim cương thiên nhiên 100%
+</div>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="logo">CHJ <span>Diamond</span></div>
+    <div class="logo-sub">Chung Hiếu Jewelry</div>
+  </div>
+</nav>
+
+<!-- STEP 1: HOOK – THU HÚT SỰ CHÚ Ý -->
+<section class="hero">
+  <div class="hero-badge">Kim Cương Thiên Nhiên · GGJ Certified</div>
+  <h1>Chiếc Nhẫn Khiến Người Yêu<br/><em>Không Thể Nói Không</em></h1>
+  <p class="hero-sub">Nhẫn Halo Vuông · Kim Cương Thiên Nhiên D-E-F · VVS-VS-SI · Vàng Trắng 14K</p>
+  <a href="#dat-hang" class="hero-cta">✦ Xem Chi Tiết Sản Phẩm ✦</a>
+</section>
+
+<!-- STEP 2: VẤN ĐỀ – PAIN POINT -->
+<section class="pain-section">
+  <div class="section-label">Bạn đang lo lắng điều này?</div>
+  <h2>Mua nhẫn kim cương — sợ nhất là mua phải hàng kém chất lượng, không rõ nguồn gốc...</h2>
+  <div class="pain-cards">
+    <div class="pain-card">
+      <div class="icon">😰</div>
+      <h3>Sợ mua nhẫn không đúng chất lượng</h3>
+      <p>Không biết kim cương có thật không, cấp độ màu sắc và độ tinh khiết có đúng như quảng cáo không. Tiền mua đắt mà lại không an tâm.</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">📄</div>
+      <h3>Không có giấy tờ chứng minh</h3>
+      <p>Nhiều nơi bán không có chứng nhận từ tổ chức độc lập uy tín. Mua xong về nhà không biết tặng người thân có tin tưởng không.</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">💔</div>
+      <h3>Món quà không đủ ý nghĩa</h3>
+      <p>Muốn tặng thứ gì đó thật đặc biệt, xứng đáng với tình cảm. Nhưng vẫn chưa tìm được chiếc nhẫn vừa đẹp vừa có giá trị lâu dài.</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">🔍</div>
+      <h3>Khó phân biệt nhẫn tốt — xấu</h3>
+      <p>Chưa hiểu về 4C (Cut, Color, Clarity, Carat), không biết nhẫn này có thực sự xứng với mức giá bỏ ra hay không.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3: GIẢI PHÁP – SOLUTION -->
+<section class="solution-section">
+  <div class="section-label">Giải pháp của bạn</div>
+  <h2>Giới thiệu: Nhẫn Kim Cương Thiên Nhiên<br/><span class="text-gold">Halo Vuông – CHJ Diamond</span></h2>
+  <div class="divider-gold"></div>
+  <p class="lead">
+    Chiếc nhẫn được thiết kế tinh tế theo phong cách <strong>Halo Vuông</strong> sang trọng — viên kim cương tâm hình Round được bao quanh bởi vầng hào quang đá nhỏ lấp lánh.
+    Toàn bộ kim cương đều là <strong>thiên nhiên 100%</strong>, có chứng nhận từ <strong>GGJ — tổ chức giám định kim cương hàng đầu Việt Nam</strong>.
+    Không cần lo lắng về chất lượng — mọi thông số đều được kiểm định độc lập, minh bạch.
+  </p>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="section-label">Hình ảnh thực tế</div>
+  <h2>Vẻ Đẹp Không Cần Bộ Lọc</h2>
+
+  <div class="gallery-grid">
+    <!-- Hiển thị ảnh mô phỏng khi không có ảnh thực -->
+    <div class="img-wrap main-img" style="background: linear-gradient(135deg,#1a1410,#3d3020); display:flex; align-items:center; justify-content:center; height:460px; position:relative; overflow:hidden;">
+      <div style="text-align:center; color:var(--gold-light);">
+        <div style="font-size:70px; margin-bottom:20px;">💍</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; letter-spacing:3px;">Nhẫn Halo Vuông</div>
+        <div style="font-size:13px; color:#8A8178; margin-top:8px; letter-spacing:2px;">KIM CƯƠNG THIÊN NHIÊN</div>
+      </div>
+    </div>
+    <div class="img-wrap" style="background: linear-gradient(135deg,#2d2318,#1a1410); display:flex; align-items:center; justify-content:center; height:320px;">
+      <div style="text-align:center; color:var(--gold-light);">
+        <div style="font-size:50px;">✨</div>
+        <div style="font-size:14px; color:#8A8178; margin-top:8px; letter-spacing:2px;">VỀ TAY</div>
+        <div style="font-size:14px; color:var(--gold-light);">Model trình diễn</div>
+      </div>
+    </div>
+    <div class="img-wrap" style="background: linear-gradient(135deg,#1a1410,#2d2318); display:flex; align-items:center; justify-content:center; height:320px;">
+      <div style="text-align:center; color:var(--gold-light);">
+        <div style="font-size:50px;">📜</div>
+        <div style="font-size:14px; color:#8A8178; margin-top:8px; letter-spacing:2px;">CHỨNG NHẬN</div>
+        <div style="font-size:14px; color:var(--gold-light);">GGJ – Chính hãng</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center; color:var(--gray); font-size:13px; margin-top:16px; font-style:italic;">
+    * Hình ảnh sản phẩm thực tế — không qua chỉnh sửa màu sắc hay hiệu ứng
+  </p>
+</section>
+
+<!-- STEP 4: TÍNH NĂNG – 4C SPECS -->
+<section class="specs-section">
+  <div class="specs-inner">
+    <div class="section-label">Tiêu chuẩn 4C đạt chứng nhận GGJ</div>
+    <h2>Thông Số Kim Cương Thiên Nhiên</h2>
+
+    <div class="specs-grid">
+      <div class="spec-item">
+        <span class="label">Màu sắc / Color</span>
+        <div class="value">D–E–F</div>
+        <div class="note">Nhóm màu cao nhất — Colorless</div>
+      </div>
+      <div class="spec-item">
+        <span class="label">Độ tinh khiết / Clarity</span>
+        <div class="value">VVS–VS–SI</div>
+        <div class="note">Gần như hoàn hảo dưới kính lúp</div>
+      </div>
+      <div class="spec-item">
+        <span class="label">Kiểu cắt / Shape</span>
+        <div class="value">Round + Baguette</div>
+        <div class="note">Kết hợp tâm tròn & đá baguette bên</div>
+      </div>
+      <div class="spec-item">
+        <span class="label">Tổng trọng lượng</span>
+        <div class="value">5.24 gr</div>
+        <div class="note">Nhẫn vàng trắng 14K</div>
+      </div>
+    </div>
+
+    <div class="specs-detail">
+      <div class="specs-detail-item">
+        <div class="d-icon">✂️</div>
+        <div class="d-text">
+          <div class="d-name">Cắt mài / Cut</div>
+          <div class="d-val">Very Good</div>
+        </div>
+      </div>
+      <div class="specs-detail-item">
+        <div class="d-icon">🔆</div>
+        <div class="d-text">
+          <div class="d-name">Độ bóng / Polish</div>
+          <div class="d-val">Very Good</div>
+        </div>
+      </div>
+      <div class="specs-detail-item">
+        <div class="d-icon">⚖️</div>
+        <div class="d-text">
+          <div class="d-name">Độ cân đối / Symmetry</div>
+          <div class="d-val">Very Good</div>
+        </div>
+      </div>
+      <div class="specs-detail-item">
+        <div class="d-icon">🔬</div>
+        <div class="d-text">
+          <div class="d-name">Phát quang / Fluorescence</div>
+          <div class="d-val">None – Medium Blue</div>
+        </div>
+      </div>
+      <div class="specs-detail-item">
+        <div class="d-icon">💎</div>
+        <div class="d-text">
+          <div class="d-name">Số lượng đá</div>
+          <div class="d-val">100 viên kim cương</div>
+        </div>
+      </div>
+      <div class="specs-detail-item">
+        <div class="d-icon">🏅</div>
+        <div class="d-text">
+          <div class="d-name">Chất liệu nhẫn</div>
+          <div class="d-val">Vàng trắng 14K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 5: CHỨNG NHẬN – AUTHORITY -->
+<section class="cert-section">
+  <div class="cert-inner">
+    <div class="cert-content">
+      <div class="section-label">Minh bạch · Uy tín · Chính hãng</div>
+      <h2>Chứng Nhận GGJ —<br/>Bảo Đảm Của Bên Thứ Ba Độc Lập</h2>
+      <p>
+        Mỗi chiếc nhẫn đều đi kèm <strong>Giấy Chứng Nhận GGJ</strong> do Thạc sĩ Nguyễn Thị Thủy Hà ký xác nhận.
+        GGJ là tổ chức giám định kim cương thiên nhiên uy tín tại Việt Nam, áp dụng tiêu chuẩn quốc tế —
+        đảm bảo mọi thông số đều chính xác, minh bạch 100%.
+      </p>
+      <ul class="cert-items">
+        <li>Giám định độc lập — không phụ thuộc người bán</li>
+        <li>Áp dụng Tiêu chuẩn 4C quốc tế (ISO)</li>
+        <li>Có mã QR tra cứu trực tiếp tại GGJ.vn</li>
+        <li>Ngày cấp: 23 tháng 5 năm 2026</li>
+        <li>Giám định viên: ThS. Nguyễn Thị Thủy Hà</li>
+      </ul>
+    </div>
+    <div class="cert-visual">
+      <div class="cert-title">Giấy Chứng Nhận Kim Cương</div>
+      <div class="cert-row"><span class="cr-key">Tổ chức giám định</span><span class="cr-val">GGJ</span></div>
+      <div class="cert-row"><span class="cr-key">Loại</span><span class="cr-val">Kim Cương Thiên Nhiên</span></div>
+      <div class="cert-row"><span class="cr-key">Màu sắc</span><span class="cr-val">D–E–F</span></div>
+      <div class="cert-row"><span class="cr-key">Độ tinh khiết</span><span class="cr-val">VVS–VS–SI</span></div>
+      <div class="cert-row"><span class="cr-key">Cắt mài</span><span class="cr-val">Very Good</span></div>
+      <div class="cert-row"><span class="cr-key">Polish / Symmetry</span><span class="cr-val">Very Good / Very Good</span></div>
+      <div class="cert-row"><span class="cr-key">Phát quang</span><span class="cr-val">None–Medium Blue</span></div>
+      <div class="cert-row"><span class="cr-key">Chất liệu</span><span class="cr-val">Vàng Trắng 14K</span></div>
+      <div class="cert-row"><span class="cr-key">Ngày cấp</span><span class="cr-val">23/05/2026</span></div>
+      <div class="cert-row" style="border-top: 1px solid rgba(201,168,76,0.3); padding-top:12px; margin-top:4px;">
+        <span class="cr-key">Giám định viên</span><span class="cr-val" style="color:var(--gold);">ThS. Nguyễn Thị Thủy Hà</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 6: SOCIAL PROOF – ĐÁNH GIÁ KHÁCH HÀNG -->
+<section class="proof-section">
+  <div class="section-label">Khách hàng nói gì</div>
+  <h2>Hàng Trăm Khách Hàng Đã Tin Tưởng CHJ Diamond</h2>
+
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Mình mua tặng bạn gái nhân dịp kỷ niệm 5 năm. Nhẫn rất đẹp, đeo lên tay lấp lánh cực kỳ. Điều mình hài lòng nhất là có chứng nhận GGJ đi kèm, yên tâm 100% về chất lượng."</p>
+      <div class="reviewer">
+        <div class="avatar">T</div>
+        <div>
+          <div class="reviewer-name">Trung Kiên</div>
+          <div class="reviewer-date">Tháng 4/2026</div>
+        </div>
+      </div>
+      <div class="verified">✓ Đã mua hàng tại CHJ Diamond</div>
+    </div>
+
+    <div class="proof-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Chị mua để tự thưởng cho bản thân sau nhiều năm cố gắng. Nhẫn Halo Vuông đẹp hơn mình tưởng rất nhiều, ánh kim rất trắng sáng, không bị vàng. Đóng gói cũng sang trọng lắm, xứng đáng là món quà cao cấp."</p>
+      <div class="reviewer">
+        <div class="avatar">H</div>
+        <div>
+          <div class="reviewer-name">Thanh Huyền</div>
+          <div class="reviewer-date">Tháng 3/2026</div>
+        </div>
+      </div>
+      <div class="verified">✓ Đã mua hàng tại CHJ Diamond</div>
+    </div>
+
+    <div class="proof-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Lần đầu mua kim cương, không biết gì nên rất lo. May mà bên CHJ tư vấn rất tận tình, giải thích từng chỉ số 4C. Nhận nhẫn rồi rất hài lòng, vợ mình thích lắm, đeo suốt không muốn tháo ra!"</p>
+      <div class="reviewer">
+        <div class="avatar">M</div>
+        <div>
+          <div class="reviewer-name">Minh Hoàng</div>
+          <div class="reviewer-date">Tháng 5/2026</div>
+        </div>
+      </div>
+      <div class="verified">✓ Đã mua hàng tại CHJ Diamond</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 7: GIÁ TRỊ – VALUE PROOF -->
+<section class="value-section">
+  <div class="section-label">Giá trị đầu tư</div>
+  <h2>Kim Cương Thiên Nhiên — Tài Sản Giữ Giá Theo Thời Gian</h2>
+  <div class="value-boxes">
+    <div class="value-box">
+      <div class="v-num">100</div>
+      <div class="v-label">viên kim cương<br/>thiên nhiên</div>
+    </div>
+    <div class="value-box">
+      <div class="v-num">D–F</div>
+      <div class="v-label">màu sắc cao nhất<br/>nhóm Colorless</div>
+    </div>
+    <div class="value-box">
+      <div class="v-num">VVS</div>
+      <div class="v-label">độ tinh khiết<br/>rất cao</div>
+    </div>
+    <div class="value-box">
+      <div class="v-num">14K</div>
+      <div class="v-label">vàng trắng<br/>cao cấp</div>
+    </div>
+    <div class="value-box">
+      <div class="v-num">VG</div>
+      <div class="v-label">Very Good<br/>cut – polish – symmetry</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 8: CAM KẾT – GUARANTEE (+1) -->
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+    <div class="section-label">Cam kết của CHJ Diamond</div>
+    <h2>Mua An Tâm — Dịch Vụ 5 Sao</h2>
+    <div class="guarantee-grid">
+      <div class="guarantee-item">
+        <div class="g-icon">📜</div>
+        <h3>Chứng nhận GGJ chính hãng</h3>
+        <p>Mỗi sản phẩm đều kèm theo giấy chứng nhận GGJ có mã QR tra cứu trực tiếp, đảm bảo kim cương thiên nhiên 100%.</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="g-icon">🔄</div>
+        <h3>Đổi trả trong 7 ngày</h3>
+        <p>Nhận hàng không đúng mô tả, lỗi sản xuất — CHJ đổi ngay không hỏi thêm. Giao hàng lại miễn phí toàn quốc.</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="g-icon">🔧</div>
+        <h3>Bảo hành trọn đời</h3>
+        <p>Đánh bóng, vệ sinh, kiểm tra độ chắc chắn của nhẫn miễn phí suốt thời gian sử dụng khi đến showroom CHJ.</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="g-icon">🎁</div>
+        <h3>Hộp quà cao cấp</h3>
+        <p>Nhẫn được đóng gói trong hộp nhung xanh navy sang trọng, kèm túi đựng và thẻ chứng nhận — sẵn sàng làm quà tặng.</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="g-icon">🚚</div>
+        <h3>Giao hàng bảo hiểm</h3>
+        <p>Vận chuyển bằng đơn vị uy tín, có bảo hiểm hàng hóa, giao tận tay an toàn trên toàn quốc trong 24–48h.</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="g-icon">💬</div>
+        <h3>Tư vấn 1-1 miễn phí</h3>
+        <p>Chuyên viên tư vấn am hiểu kim cương, hỗ trợ chọn size nhẫn, giải thích 4C và đồng hành sau mua hàng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY (+2) -->
+<div class="urgency-bar" id="urgency">
+  🔥 <strong>Ưu đãi đặc biệt</strong> — Chỉ còn <span class="countdown" id="timer">23:47:12</span> — Tặng kèm bộ vệ sinh nhẫn cao cấp trị giá <strong>500.000đ</strong> cho đơn hàng hôm nay!
+</div>
+
+<!-- PRICE & CTA -->
+<section class="price-section" id="dat-hang">
+  <div class="section-label">Đặt hàng ngay hôm nay</div>
+  <h2>Sở Hữu Ngay — Trước Khi Hết Hàng</h2>
+
+  <div class="price-box">
+    <div class="discount-tag">ƯU ĐÃI HÔM NAY</div>
+    <div class="old-price">Giá thị trường tham khảo</div>
+    <div class="current-price" style="font-size:32px; color:#C4B8A4; margin-bottom:4px;">Liên hệ để nhận báo giá</div>
+    <div class="current-price" style="font-size:20px; color:var(--gold);">& Ưu đãi tốt nhất</div>
+    <div class="price-note">Tặng kèm: Hộp quà sang trọng · Giấy chứng nhận GGJ · Bảo hành trọn đời</div>
+  </div>
+
+  <a href="tel:0123456789" class="cta-main">
+    📞 Gọi Ngay Để Đặt Hàng
+  </a>
+  <a href="https://zalo.me/0123456789" class="cta-secondary">
+    💬 Nhắn Zalo · Tư Vấn Miễn Phí
+  </a>
+
+  <p style="color:var(--gray); font-size:13px; margin-top:24px;">
+    📍 Showroom: [Địa chỉ cửa hàng CHJ Diamond] &nbsp;|&nbsp; Hotline: [Số điện thoại] &nbsp;|&nbsp; Thứ 2 – Chủ nhật: 8:00 – 21:00
+  </p>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="section-label">Giải đáp thắc mắc</div>
+    <h2>Câu Hỏi Thường Gặp</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Kim cương có phải thiên nhiên 100% không, làm sao biết?</div>
+      <div class="faq-a">
+        Có — 100% kim cương thiên nhiên được giám định bởi GGJ (tổ chức độc lập, không phụ thuộc người bán).
+        Giấy chứng nhận đi kèm có mã QR — quét là ra ngay thông tin tra cứu trực tiếp trên website GGJ.vn.
+        Ngoài ra bạn có thể mang đến bất kỳ tiệm kim hoàn nào để kiểm tra thêm.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Màu D-E-F nghĩa là gì? Có tốt không?</div>
+      <div class="faq-a">
+        D–E–F là nhóm màu cao nhất trong thang đo kim cương — gọi là <em>Colorless</em> (không màu).
+        Kim cương nhóm này hoàn toàn trong suốt, không có ánh vàng hay ánh nâu.
+        Đây là cấp độ màu được ưa chuộng nhất, giữ giá trị lâu dài và lấp lánh nhất khi gặp ánh sáng.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">VVS-VS-SI là gì? Nhìn bằng mắt thường có thấy tạp chất không?</div>
+      <div class="faq-a">
+        VVS (Very Very Slightly Included), VS (Very Slightly) và SI (Slightly Included) là 3 cấp độ tinh khiết rất cao.
+        Với VVS và VS — <strong>không thể nhìn thấy tạp chất bằng mắt thường</strong>, thậm chí cần kính lúp 10x mới nhìn thấy.
+        SI cũng gần như trong sạch khi nhìn bằng mắt. Đây là phổ tinh khiết phổ biến trong nhẫn cao cấp, cân đối giữa vẻ đẹp và giá trị đầu tư.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Nhẫn có được điều chỉnh size không?</div>
+      <div class="faq-a">
+        Có — CHJ Diamond hỗ trợ điều chỉnh size nhẫn. Bạn có thể đến showroom để đo size chính xác trước khi nhận hàng,
+        hoặc chúng mình sẽ hướng dẫn đo size tại nhà qua video call.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Giao hàng có an toàn không? Nếu thất lạc thì sao?</div>
+      <div class="faq-a">
+        Mọi đơn hàng đều được đóng gói kỹ lưỡng và vận chuyển qua đơn vị uy tín có bảo hiểm hàng hóa.
+        Trường hợp thất lạc hoặc hư hỏng trong quá trình vận chuyển, CHJ Diamond hoàn toàn chịu trách nhiệm đền bù theo giá trị sản phẩm.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Vàng trắng 14K có bị ố vàng theo thời gian không?</div>
+      <div class="faq-a">
+        Vàng trắng 14K được phủ rhodium để tăng độ sáng bóng và chống trầy xước.
+        Theo thời gian lớp rhodium có thể mỏng dần — CHJ Diamond cung cấp dịch vụ xi rhodium lại <strong>miễn phí trọn đời</strong>
+        khi bạn mang nhẫn đến showroom.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CHJ <span>Diamond</span></div>
+  <p style="color:var(--gold-light); font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;">Chung Hiếu Jewelry</p>
+  <p>Kim Cương Thiên Nhiên · Chứng Nhận GGJ · Vàng Cao Cấp</p>
+  <p>Địa chỉ showroom: [Cập nhật địa chỉ] · Hotline: [Cập nhật số điện thoại]</p>
+  <hr class="divider" />
+  <div class="footer-links">
+    <a href="#">Facebook CHJ Diamond</a>
+    <a href="#">YouTube CHJ Diamond</a>
+    <a href="#">TikTok CHJ Diamond</a>
+    <a href="#">Chính sách đổi trả</a>
+    <a href="#">Bảo hành</a>
+  </div>
+  <p style="margin-top:24px; font-size:12px; color:#3D3830;">© 2026 CHJ Diamond – Chung Hiếu Jewelry. All rights reserved.</p>
+</footer>
+
+<!-- FLOATING CONTACT -->
+<div class="float-contact">
+  <a href="tel:0123456789" class="float-btn phone" title="Gọi ngay">📞</a>
+  <a href="https://zalo.me/0123456789" class="float-btn zalo" title="Zalo">
+    <svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="white"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="15" font-weight="bold" fill="#0068ff">Z</text></svg>
+  </a>
+</div>
+
+<script>
+  // Countdown timer
+  function updateTimer() {
+    const el = document.getElementById('timer');
+    if (!el) return;
+    const parts = el.textContent.split(':').map(Number);
+    let [h, m, s] = parts;
+    s--;
+    if (s < 0) { s = 59; m--; }
+    if (m < 0) { m = 59; h--; }
+    if (h < 0) { h = 23; m = 59; s = 59; }
+    el.textContent = [h, m, s].map(n => String(n).padStart(2, '0')).join(':');
+  }
+  setInterval(updateTimer, 1000);
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').style.afterContent = '+';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        q.style.borderLeftColor = 'var(--gold)';
+      }
+    });
+  });
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const a = item.querySelector('.faq-a');
+    if (!item.classList.contains('open')) a.style.display = 'none';
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      document.querySelectorAll('.faq-a').forEach(x => x.style.display = 'none');
+      document.querySelectorAll('.faq-q').forEach(x => x.style.afterContent = '+');
+      if (a.style.display === 'none') a.style.display = 'block';
+      else a.style.display = 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

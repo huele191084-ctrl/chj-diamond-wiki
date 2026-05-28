@@ -1,0 +1,34 @@
+# ==============================================
+# Video và file lớn — GitHub giới hạn 100MB/file
+# ==============================================
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.mkv
+*.zip
+
+# Thư mục chứa video
+raw/Video tổng hợp/
+raw/Video shop kiến thức kim cương/
+raw/_temp/
+raw/_temp_upload/
+raw/READY_TO_POST/
+raw/_product_upload/
+
+# Ảnh lớn — quá nặng cho GitHub
+raw/ẢNH NHẪN CẦU HÔN/
+raw/THIẾT KẾ GIẢI PHÁP GIÁ TRỊ/
+
+# ==============================================
+# App settings (private — không cần sync)
+# ==============================================
+.obsidian/
+.claude/
+
+# ==============================================
+# Hệ thống
+# ==============================================
+Thumbs.db
+.DS_Store
+desktop.ini
