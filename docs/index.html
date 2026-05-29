@@ -207,14 +207,14 @@
         }
 
         .inside-heading {
-            font-size: 11px;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
             font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            opacity: 0.7;
+            font-style: italic;
+            color: var(--gold2);
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            letter-spacing: 0;
         }
 
         .inside-list {
@@ -403,13 +403,30 @@
         }
 
         .author-quote {
-            font-size: 13px;
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
             font-style: italic;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.6;
-            border-left: 2px solid rgba(201,168,76,0.4);
-            padding-left: 14px;
-            margin-top: 10px;
+            color: var(--white);
+            line-height: 1.65;
+            text-align: center;
+            padding: 22px 24px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.06));
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .author-quote::before {
+            content: '\201C';
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -8px;
+            left: 16px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
         }
 
         /* ── FOOTER ── */
@@ -521,12 +538,12 @@
     <div class="inside-section">
         <p class="inside-heading">Bên trong cẩm nang có gì?</p>
         <ul class="inside-list">
-            <li><span class="check">✓</span> Cách kiểm tra giấy GIA thật/giả ngay tại chỗ</li>
+            <li><span class="check">✓</span> Cách kiểm tra giấy GIA thật/giả ngay tại nhà</li>
             <li><span class="check">✓</span> Bảng so sánh nước D–F–G–H: đâu là lựa chọn thông minh?</li>
             <li><span class="check">✓</span> Fluorescence — nên mua hay tránh? (tiết kiệm 10–15%)</li>
             <li><span class="check">✓</span> Cách đo size nhẫn tại nhà chuẩn xác 100%</li>
             <li><span class="check">✓</span> Công thức phân bổ 4C để đẹp nhất với ngân sách có</li>
-            <li><span class="check">✓</span> 10 câu hỏi PHẢI hỏi trước khi ký hợp đồng</li>
+            <li><span class="check">✓</span> 10 câu hỏi PHẢI hỏi trước khi thanh toán</li>
         </ul>
     </div>
 
