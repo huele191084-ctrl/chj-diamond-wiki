@@ -580,7 +580,7 @@
         </form>
 
         <!-- GetResponse embedded form (hidden — handles actual submission) -->
-        <div id="gr-form-wrapper" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+        <div id="gr-form-wrapper" style="position:absolute;left:-9999px;top:0;width:400px;height:300px;overflow:hidden;" aria-hidden="true">
             <getresponse-form form-id="3c805d81-8ce6-48f4-b2fe-03c84ca73d8a" e="1"></getresponse-form>
         </div>
     </div>
@@ -612,39 +612,48 @@
             var grEl = wrapper.querySelector('getresponse-form');
             if (!grEl) return callback(false);
 
-            /* Find inputs inside the rendered GR form */
-            var nameInp  = grEl.querySelector('input[type="text"]') || grEl.querySelector('input[name*="name"]') || grEl.querySelector('input[name*="Name"]');
-            var emailInp = grEl.querySelector('input[type="email"]') || grEl.querySelector('input[name*="email"]');
-            var submitEl = grEl.querySelector('input[type="submit"]') || grEl.querySelector('button[type="submit"]');
+            function trySubmit(attemptsLeft) {
+                /* Check both regular DOM and Shadow DOM */
+                var root = grEl.shadowRoot || grEl;
+                var nameInp  = root.querySelector('input[type="text"]') || root.querySelector('input[name*="name"]') || root.querySelector('input[name*="Name"]');
+                var emailInp = root.querySelector('input[type="email"]') || root.querySelector('input[name*="email"]');
+                var submitEl = root.querySelector('input[type="submit"]') || root.querySelector('button[type="submit"]') || root.querySelector('button');
 
-            if (!nameInp || !emailInp || !submitEl) return callback(false);
+                if (!nameInp || !emailInp || !submitEl) {
+                    if (attemptsLeft > 0) {
+                        return setTimeout(function(){ trySubmit(attemptsLeft - 1); }, 500);
+                    }
+                    return callback(false);
+                }
 
-            /* Fill values and trigger native input events so GR detects changes */
-            function setVal(el, val) {
-                var nativeSet = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                nativeSet.call(el, val);
-                el.dispatchEvent(new Event('input', {bubbles:true}));
-                el.dispatchEvent(new Event('change', {bubbles:true}));
+                /* Fill values and trigger native input events so GR detects changes */
+                function setVal(el, val) {
+                    var nativeSet = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                    nativeSet.call(el, val);
+                    el.dispatchEvent(new Event('input', {bubbles:true}));
+                    el.dispatchEvent(new Event('change', {bubbles:true}));
+                }
+                setVal(nameInp, name);
+                setVal(emailInp, email);
+
+                /* Listen for GR success (it often replaces the form or dispatches an event) */
+                var done = false;
+                var observer = new MutationObserver(function() {
+                    if (done) return;
+                    var successEl = root.querySelector('[class*="success"], [class*="thank"], [class*="confirm"]');
+                    if (successEl) { done = true; observer.disconnect(); callback(true); }
+                });
+                observer.observe(grEl, {childList:true, subtree:true, attributes:true, characterData:true});
+
+                /* Fallback timeout — assume success after 4s */
+                setTimeout(function(){
+                    if (!done) { done = true; observer.disconnect(); callback(true); }
+                }, 4000);
+
+                submitEl.click();
             }
-            setVal(nameInp, name);
-            setVal(emailInp, email);
 
-            /* Listen for GR success (it often replaces the form or dispatches an event) */
-            var done = false;
-            var observer = new MutationObserver(function() {
-                if (done) return;
-                /* GR typically shows a success message or clears the form on success */
-                var successEl = grEl.querySelector('[class*="success"], [class*="thank"], [class*="confirm"]');
-                if (successEl) { done = true; observer.disconnect(); callback(true); }
-            });
-            observer.observe(grEl, {childList:true, subtree:true, attributes:true});
-
-            /* Fallback timeout */
-            setTimeout(function(){
-                if (!done) { done = true; observer.disconnect(); callback(true); }
-            }, 4000);
-
-            submitEl.click();
+            trySubmit(10); /* retry up to 10 times (×500ms = 5s) waiting for Web Connect to render */
         }
 
         form.addEventListener('submit', function(e) {
