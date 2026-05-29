@@ -579,8 +579,8 @@
             </div>
         </form>
 
-        <!-- GetResponse embedded form (hidden — handles actual submission) -->
-        <div id="gr-form-wrapper" style="position:absolute;left:-9999px;top:0;width:400px;height:300px;overflow:hidden;" aria-hidden="true">
+        <!-- GetResponse embedded form (visually clipped but in render tree so Web Connect initializes it) -->
+        <div id="gr-form-wrapper" style="position:fixed;bottom:0;right:0;width:400px;height:300px;clip-path:inset(100%);pointer-events:none;z-index:-1;" aria-hidden="true">
             <getresponse-form form-id="3c805d81-8ce6-48f4-b2fe-03c84ca73d8a" e="1"></getresponse-form>
         </div>
     </div>
