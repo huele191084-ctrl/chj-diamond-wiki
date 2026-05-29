@@ -587,8 +587,12 @@
 
     <script>
     (function(){
-        var form = document.getElementById('chj-form');
-        var btn  = document.getElementById('chj-btn');
+        /* ── CẤU HÌNH: thay URL dưới đây sau khi deploy Google Apps Script ── */
+        var PROXY_URL = 'CHUA_SETUP';
+        /* ─────────────────────────────────────────────────────────────────── */
+
+        var form   = document.getElementById('chj-form');
+        var btn    = document.getElementById('chj-btn');
         var errBox = document.getElementById('chj-error');
 
         function showError(msg) {
@@ -601,59 +605,23 @@
             var box = form.closest('.form-box');
             box.innerHTML = '<div style="text-align:center;padding:32px 16px;">'
                 + '<div style="font-size:48px;margin-bottom:16px;">🎉</div>'
-                + '<p style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">Cảm ơn chị!</p>'
-                + '<p style="color:#555;font-size:15px;">Cẩm nang đang bay vào hộp thư của chị.<br>Vui lòng kiểm tra email (kể cả thư mục Spam).</p>'
+                + '<p style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">Cảm ơn bạn!</p>'
+                + '<p style="color:#555;font-size:15px;">Cẩm nang đang bay vào hộp thư.<br>Vui lòng kiểm tra email (kể cả thư mục Spam).</p>'
                 + '</div>';
         }
 
-        /* Try submitting via the GetResponse hidden form */
-        function submitViaGR(name, email, callback) {
-            var wrapper = document.getElementById('gr-form-wrapper');
-            var grEl = wrapper.querySelector('getresponse-form');
-            if (!grEl) return callback(false);
+        function submitViaProxy(name, email, callback) {
+            var body = new URLSearchParams();
+            body.append('name', name);
+            body.append('email', email);
 
-            function trySubmit(attemptsLeft) {
-                /* Check both regular DOM and Shadow DOM */
-                var root = grEl.shadowRoot || grEl;
-                var nameInp  = root.querySelector('input[type="text"]') || root.querySelector('input[name*="name"]') || root.querySelector('input[name*="Name"]');
-                var emailInp = root.querySelector('input[type="email"]') || root.querySelector('input[name*="email"]');
-                var submitEl = root.querySelector('input[type="submit"]') || root.querySelector('button[type="submit"]') || root.querySelector('button');
-
-                if (!nameInp || !emailInp || !submitEl) {
-                    if (attemptsLeft > 0) {
-                        return setTimeout(function(){ trySubmit(attemptsLeft - 1); }, 500);
-                    }
-                    return callback(false);
-                }
-
-                /* Fill values and trigger native input events so GR detects changes */
-                function setVal(el, val) {
-                    var nativeSet = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                    nativeSet.call(el, val);
-                    el.dispatchEvent(new Event('input', {bubbles:true}));
-                    el.dispatchEvent(new Event('change', {bubbles:true}));
-                }
-                setVal(nameInp, name);
-                setVal(emailInp, email);
-
-                /* Listen for GR success (it often replaces the form or dispatches an event) */
-                var done = false;
-                var observer = new MutationObserver(function() {
-                    if (done) return;
-                    var successEl = root.querySelector('[class*="success"], [class*="thank"], [class*="confirm"]');
-                    if (successEl) { done = true; observer.disconnect(); callback(true); }
-                });
-                observer.observe(grEl, {childList:true, subtree:true, attributes:true, characterData:true});
-
-                /* Fallback timeout — assume success after 4s */
-                setTimeout(function(){
-                    if (!done) { done = true; observer.disconnect(); callback(true); }
-                }, 4000);
-
-                submitEl.click();
-            }
-
-            trySubmit(10); /* retry up to 10 times (×500ms = 5s) waiting for Web Connect to render */
+            fetch(PROXY_URL, {
+                method: 'POST',
+                mode: 'no-cors',          /* tránh CORS, response sẽ là opaque */
+                body: body
+            })
+            .then(function() { callback(true); })
+            .catch(function() { callback(false); });
         }
 
         form.addEventListener('submit', function(e) {
@@ -663,15 +631,20 @@
             var name  = document.getElementById('chj-name').value.trim();
             var email = document.getElementById('chj-email').value.trim();
 
-            if (!name) { showError('Vui lòng nhập họ và tên.'); return; }
+            if (!name)  { showError('Vui lòng nhập họ và tên.'); return; }
             if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 showError('Vui lòng nhập địa chỉ email hợp lệ.'); return;
+            }
+
+            if (PROXY_URL === 'CHUA_SETUP') {
+                showError('Form chưa được cấu hình. Liên hệ admin.');
+                return;
             }
 
             btn.disabled = true;
             btn.innerHTML = 'Đang gửi&hellip;';
 
-            submitViaGR(name, email, function(ok) {
+            submitViaProxy(name, email, function(ok) {
                 if (ok) {
                     showSuccess();
                 } else {
