@@ -552,8 +552,9 @@
         <p class="form-title">📩 Gửi cẩm nang miễn phí cho tôi</p>
         <p class="form-subtitle">Nhận ngay vào email — đọc được trên điện thoại</p>
 
-        <!-- PASTE GetResponse embed code here to replace this form -->
-        <form id="lead-form">
+        <form action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8">
+            <input type="hidden" name="campaign_token" value="HAVaB">
+            <input type="hidden" name="start_day" value="0">
             <div class="field">
                 <label for="name">Họ và tên</label>
                 <input type="text" id="name" name="name" placeholder="Ví dụ: Nguyễn Thị Lan" autocomplete="name" required>
