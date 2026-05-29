@@ -552,8 +552,7 @@
         <p class="form-title">📩 Gửi cẩm nang miễn phí cho tôi</p>
         <p class="form-subtitle">Nhận ngay vào email — đọc được trên điện thoại</p>
 
-        <form action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8">
-            <input type="hidden" name="campaign_token" value="HAVaB">
+        <form id="chj-form">
             <div class="field">
                 <label for="name">Họ và tên</label>
                 <input type="text" id="name" name="name" placeholder="Ví dụ: Nguyễn Thị Lan" autocomplete="name" required>
@@ -562,9 +561,10 @@
                 <label for="email">Địa chỉ email</label>
                 <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
             </div>
-            <button type="submit" class="cta-btn">
+            <button type="submit" class="cta-btn" id="cta-submit">
                 Nhận Cẩm Nang Ngay <span class="cta-arrow">→</span>
             </button>
+            <div id="form-msg" style="display:none;margin-top:14px;padding:14px;border-radius:10px;font-size:15px;text-align:center;font-weight:600;"></div>
             <div class="trust-row">
                 <span class="trust-item"><span>🔒</span> Bảo mật tuyệt đối</span>
                 <span class="trust-item"><span>🚫</span> Không spam</span>
@@ -572,6 +572,63 @@
             </div>
         </form>
     </div>
+
+<script>
+document.getElementById('chj-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('cta-submit');
+    const msg = document.getElementById('form-msg');
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    btn.disabled = true;
+    btn.textContent = 'Đang gửi...';
+    msg.style.display = 'none';
+
+    try {
+        const res = await fetch('https://api.getresponse.com/v3/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Auth-Token': 'api-key jws743opqynugsj786mrojhfm58yna22'
+            },
+            body: JSON.stringify({
+                email: email,
+                name: name,
+                campaign: { campaignId: 'HAVaB' }
+            })
+        });
+
+        if (res.status === 202 || res.status === 200) {
+            msg.style.background = 'rgba(201,168,76,0.15)';
+            msg.style.border = '1px solid rgba(201,168,76,0.5)';
+            msg.style.color = '#C9A84C';
+            msg.innerHTML = '🎉 Cẩm nang đã được gửi vào email của bạn!<br><span style="font-size:13px;font-weight:400;opacity:0.85">Kiểm tra hộp thư (kể cả mục Spam) nhé.</span>';
+            msg.style.display = 'block';
+            document.getElementById('chj-form').reset();
+            btn.textContent = '✓ Đã gửi thành công';
+        } else if (res.status === 409) {
+            msg.style.background = 'rgba(201,168,76,0.1)';
+            msg.style.border = '1px solid rgba(201,168,76,0.3)';
+            msg.style.color = '#C9A84C';
+            msg.innerHTML = '📬 Email này đã đăng ký rồi.<br><span style="font-size:13px;font-weight:400">Kiểm tra hộp thư để tải cẩm nang nhé!</span>';
+            msg.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = 'Nhận Cẩm Nang Ngay <span class="cta-arrow">→</span>';
+        } else {
+            throw new Error('status ' + res.status);
+        }
+    } catch(err) {
+        msg.style.background = 'rgba(220,50,50,0.1)';
+        msg.style.border = '1px solid rgba(220,50,50,0.3)';
+        msg.style.color = '#ff6b6b';
+        msg.innerHTML = '⚠️ Có lỗi xảy ra. Vui lòng thử lại hoặc nhắn Zalo 0912.268.667';
+        msg.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = 'Nhận Cẩm Nang Ngay <span class="cta-arrow">→</span>';
+    }
+});
+</script>
 
     <!-- ── FOOTER ── -->
     <div class="footer">
