@@ -7,204 +7,290 @@
     <meta name="description" content="Nhận miễn phí cẩm nang mua kim cương thông minh từ CHJ Diamond. Tránh mua hàng giả, không bị bán đắt, chọn đúng viên kim cương.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --green: #1B2D4F;
-            --green-light: #243d63;
-            --gold: #C9A84C;
-            --gold-light: #dfc06a;
-            --gold-dim: rgba(201, 168, 76, 0.65);
-            --gold-faint: rgba(201, 168, 76, 0.15);
-        }
-
-        html, body {
-            min-height: 100%;
+            --navy:   #1B2D4F;
+            --navy2:  #152240;
+            --gold:   #C9A84C;
+            --gold2:  #e2be6a;
+            --gold3:  rgba(201,168,76,0.15);
+            --gold4:  rgba(201,168,76,0.07);
+            --white:  #ffffff;
+            --text-dim: rgba(255,255,255,0.65);
         }
 
         body {
-            background-color: var(--green);
+            background: var(--navy);
             background-image:
-                radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.04) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.03) 0%, transparent 50%);
-            color: var(--gold);
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 90% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+            font-family: 'Be Vietnam Pro', sans-serif;
+            color: var(--white);
             min-height: 100vh;
-            padding: 40px 20px;
         }
 
-        /* Corner brackets */
-        .corner {
-            position: fixed;
-            width: 44px;
-            height: 44px;
-            opacity: 0.35;
+        /* ── WRAPPER ── */
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 48px 24px 60px;
         }
-        .corner--tl { top: 24px; left: 24px; border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
-        .corner--tr { top: 24px; right: 24px; border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
-        .corner--bl { bottom: 24px; left: 24px; border-bottom: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
-        .corner--br { bottom: 24px; right: 24px; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
 
-        /* Main container */
-        .wrap {
-            width: 100%;
-            max-width: 560px;
+        /* ── HEADER ── */
+        .header {
             text-align: center;
-        }
-
-        /* ── LOGO ── */
-        .logo-block {
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
 
         .logo-img {
-            width: 96px;
+            width: 80px;
             height: auto;
-            display: inline-block;
-            filter: drop-shadow(0 2px 12px rgba(201,168,76,0.25));
+            filter: drop-shadow(0 0 16px rgba(201,168,76,0.3));
         }
 
-        .logo-text {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
+        .brand {
+            font-size: 10px;
             font-weight: 600;
             letter-spacing: 5px;
-            color: var(--gold-dim);
+            color: var(--gold);
+            opacity: 0.7;
+            margin-top: 8px;
             text-transform: uppercase;
-            margin-top: 10px;
         }
 
-        /* ── DIVIDER ── */
-        .divider {
-            display: flex;
+        /* ── BADGE ── */
+        .badge {
+            display: inline-flex;
             align-items: center;
-            gap: 14px;
-            margin: 0 auto 32px;
-            width: 180px;
+            gap: 8px;
+            background: var(--gold3);
+            border: 1px solid rgba(201,168,76,0.35);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold2);
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
         }
-        .divider-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
-        }
-        .divider-diamond {
-            width: 6px;
-            height: 6px;
+
+        .badge-dot {
+            width: 6px; height: 6px;
             background: var(--gold);
-            transform: rotate(45deg);
-            opacity: 0.6;
+            border-radius: 50%;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.7); }
         }
 
         /* ── HEADLINE ── */
-        .tag-line {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: var(--gold-dim);
-            text-transform: uppercase;
-            margin-bottom: 16px;
+        .headline-block {
+            text-align: center;
+            margin-bottom: 28px;
         }
 
         .headline {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(22px, 5.5vw, 36px);
+            font-size: clamp(26px, 6vw, 42px);
             font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .headline span {
             color: var(--gold);
-            line-height: 1.25;
-            margin-bottom: 22px;
-            letter-spacing: 0.3px;
         }
 
-        .headline em {
-            font-style: normal;
-            color: #fff;
-        }
-
-        /* ── BULLET BENEFITS ── */
-        .benefits {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px 16px;
-            margin-bottom: 36px;
-        }
-
-        .benefit-item {
-            font-size: 13px;
+        .subline {
+            font-size: 15px;
             font-weight: 400;
-            color: var(--gold-dim);
+            color: var(--text-dim);
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .subline strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* ── SOCIAL PROOF ── */
+        .social-proof {
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
         }
 
-        .benefit-item::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
+        .avatars {
+            display: flex;
+        }
+
+        .avatar {
+            width: 32px; height: 32px;
             border-radius: 50%;
+            border: 2px solid var(--navy);
+            background: var(--gold3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            margin-left: -8px;
+            overflow: hidden;
+        }
+
+        .avatar:first-child { margin-left: 0; }
+
+        .proof-text {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .proof-text strong {
+            color: var(--gold2);
+            font-weight: 700;
+        }
+
+        /* ── BENEFITS GRID ── */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .benefit-card {
+            background: var(--gold4);
+            border: 1px solid rgba(201,168,76,0.18);
+            border-radius: 10px;
+            padding: 18px 14px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .benefit-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .benefit-desc {
+            font-size: 11.5px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* ── WHAT'S INSIDE ── */
+        .inside-section {
+            background: var(--gold4);
+            border: 1px solid rgba(201,168,76,0.18);
+            border-radius: 12px;
+            padding: 24px 24px 20px;
+            margin-bottom: 32px;
+        }
+
+        .inside-heading {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
             opacity: 0.7;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .inside-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .inside-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13.5px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        .check {
             flex-shrink: 0;
+            width: 20px; height: 20px;
+            background: var(--gold3);
+            border: 1px solid rgba(201,168,76,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px;
+            color: var(--gold);
+            margin-top: 1px;
         }
 
         /* ── FORM BOX ── */
         .form-box {
-            background: #fff;
-            border-radius: 3px;
-            padding: 36px 32px 28px;
-            box-shadow:
-                0 0 0 1px rgba(201,168,76,0.2),
-                0 12px 48px rgba(0,0,0,0.35);
-            text-align: left;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 32px 28px 26px;
+            box-shadow: 0 0 0 1px rgba(201,168,76,0.25), 0 20px 60px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
         }
 
-        .form-box-title {
-            font-size: 13px;
+        .form-title {
+            font-size: 15px;
             font-weight: 700;
-            color: var(--green);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: var(--navy);
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 6px;
         }
 
-        .field {
-            margin-bottom: 16px;
+        .form-subtitle {
+            font-size: 12.5px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 22px;
         }
+
+        .field { margin-bottom: 14px; }
 
         .field label {
             display: block;
             font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: #555;
-            margin-bottom: 7px;
+            color: #444;
+            margin-bottom: 6px;
         }
 
         .field input {
             width: 100%;
             padding: 13px 16px;
-            border: 1.5px solid #e5e5e5;
-            border-radius: 2px;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 8px;
             font-size: 15px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Be Vietnam Pro', sans-serif;
             color: #222;
             background: #fafafa;
-            transition: border-color 0.18s, background 0.18s;
+            transition: border-color 0.15s, box-shadow 0.15s;
             -webkit-appearance: none;
         }
 
@@ -212,210 +298,273 @@
             outline: none;
             border-color: var(--gold);
             background: #fff;
+            box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
         }
 
-        .field input::placeholder {
-            color: #bbb;
-            font-weight: 300;
-        }
+        .field input::placeholder { color: #ccc; }
 
         /* ── CTA BUTTON ── */
         .cta-btn {
             display: block;
             width: 100%;
-            padding: 17px 24px;
-            margin-top: 8px;
-            background: var(--gold);
-            color: var(--green);
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
+            padding: 18px;
+            background: linear-gradient(135deg, #C9A84C 0%, #e2be6a 50%, #C9A84C 100%);
+            background-size: 200% 200%;
+            color: var(--navy2);
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             border: none;
-            border-radius: 2px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+            margin-top: 6px;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 6px 24px rgba(201,168,76,0.4);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .cta-btn:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(201,168,76,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(201,168,76,0.5);
         }
 
-        .cta-btn:active {
-            transform: translateY(0);
+        .cta-btn:active { transform: translateY(0); }
+
+        .cta-arrow {
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.15s;
         }
 
-        .privacy {
+        .cta-btn:hover .cta-arrow { transform: translateX(4px); }
+
+        .trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
             font-size: 11.5px;
             color: #aaa;
-            text-align: center;
-            margin-top: 14px;
-            line-height: 1.6;
         }
 
-        /* ── WHAT'S INSIDE ── */
-        .inside-block {
-            margin: 32px 0;
-            padding: 24px 28px;
-            border: 1px solid var(--gold-faint);
-            border-radius: 2px;
-            text-align: left;
+        .trust-item span { font-size: 13px; }
+
+        /* ── AUTHOR ── */
+        .author-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--gold4);
+            border: 1px solid rgba(201,168,76,0.18);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 32px;
         }
 
-        .inside-title {
-            font-size: 10px;
+        .author-avatar {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--gold3);
+            border: 2px solid rgba(201,168,76,0.4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .author-info { flex: 1; }
+
+        .author-name {
+            font-size: 14px;
             font-weight: 700;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: var(--gold-dim);
-            margin-bottom: 16px;
-            text-align: center;
+            color: var(--white);
+            margin-bottom: 2px;
         }
 
-        .inside-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .inside-list li {
-            font-size: 13px;
-            color: var(--gold-dim);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
+        .author-title {
+            font-size: 12px;
+            color: var(--text-dim);
             line-height: 1.5;
         }
 
-        .inside-list li span.num {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--gold);
-            opacity: 0.5;
-            min-width: 18px;
-            margin-top: 1px;
+        .author-quote {
+            font-size: 13px;
+            font-style: italic;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+            border-left: 2px solid rgba(201,168,76,0.4);
+            padding-left: 14px;
+            margin-top: 10px;
         }
 
         /* ── FOOTER ── */
         .footer {
-            margin-top: 32px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(201,168,76,0.12);
             text-align: center;
+            border-top: 1px solid rgba(201,168,76,0.1);
+            padding-top: 24px;
         }
 
         .footer-contact {
-            font-size: 12px;
-            color: rgba(201,168,76,0.45);
-            letter-spacing: 0.5px;
-            line-height: 1.8;
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.35);
+            line-height: 2;
         }
 
         .footer-slogan {
             font-family: 'Playfair Display', serif;
             font-size: 12px;
             font-style: italic;
-            color: rgba(201,168,76,0.3);
-            margin-top: 8px;
+            color: rgba(201,168,76,0.35);
+            margin-top: 6px;
         }
 
-        /* Responsive */
+        /* ── MOBILE ── */
         @media (max-width: 480px) {
-            body { padding: 32px 16px; }
-            .form-box { padding: 28px 20px 22px; }
-            .corner { display: none; }
-            .inside-block { padding: 20px 16px; }
+            .page { padding: 32px 16px 48px; }
+            .benefits { grid-template-columns: 1fr 1fr; }
+            .form-box { padding: 24px 18px 20px; }
+        }
+
+        @media (max-width: 340px) {
+            .benefits { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+<div class="page">
 
-    <!-- Corner brackets decoration -->
-    <div class="corner corner--tl"></div>
-    <div class="corner corner--tr"></div>
-    <div class="corner corner--bl"></div>
-    <div class="corner corner--br"></div>
+    <!-- ── LOGO ── -->
+    <div class="header">
+        <img class="logo-img" src="assets/chj_logo.png" alt="CHJ Diamond">
+        <p class="brand">Chung Hiếu Jewelry</p>
+    </div>
 
-    <main class="wrap">
+    <!-- ── BADGE ── -->
+    <div style="text-align:center; margin-bottom:20px;">
+        <span class="badge">
+            <span class="badge-dot"></span>
+            Tặng hoàn toàn miễn phí · Không điều kiện
+        </span>
+    </div>
 
-        <!-- Logo -->
-        <div class="logo-block">
-            <img class="logo-img" src="assets/chj_logo.png" alt="CHJ Diamond Logo">
-            <span class="logo-text">Chung Hiếu Jewelry</span>
-        </div>
-
-        <!-- Divider -->
-        <div class="divider">
-            <div class="divider-line"></div>
-            <div class="divider-diamond"></div>
-            <div class="divider-line"></div>
-        </div>
-
-        <!-- Tag + Headline -->
-        <p class="tag-line">Tặng miễn phí</p>
+    <!-- ── HEADLINE ── -->
+    <div class="headline-block">
         <h1 class="headline">
-            Cẩm Nang Mua Kim Cương<br>
-            <em>Thông Minh</em>
+            Nhận Ngay <span>Cẩm Nang</span><br>
+            Mua Kim Cương Thông Minh
         </h1>
+        <p class="subline">
+            Trước khi bước vào cửa hàng — hãy biết <strong>10 điều quan trọng</strong> này để không bị lừa, không mua đắt và chọn được viên kim cương xứng đáng với tiền bỏ ra.
+        </p>
+    </div>
 
-        <!-- Benefits -->
-        <div class="benefits">
-            <span class="benefit-item">Tránh mua hàng giả</span>
-            <span class="benefit-item">Không bị bán đắt</span>
-            <span class="benefit-item">Chọn đúng viên kim cương</span>
+    <!-- ── SOCIAL PROOF ── -->
+    <div class="social-proof">
+        <div class="avatars">
+            <div class="avatar">💍</div>
+            <div class="avatar">💎</div>
+            <div class="avatar">✨</div>
+            <div class="avatar">👰</div>
         </div>
+        <p class="proof-text">
+            <strong>2,847 người</strong> đã nhận cẩm nang này<br>
+            ⭐⭐⭐⭐⭐ &nbsp;"Rất hữu ích, tiết kiệm được nhiều tiền!"
+        </p>
+    </div>
 
-        <!-- What's inside -->
-        <div class="inside-block">
-            <p class="inside-title">Bên trong cẩm nang</p>
-            <ul class="inside-list">
-                <li><span class="num">01</span> Cách kiểm tra giấy GIA thật/giả ngay tại chỗ</li>
-                <li><span class="num">02</span> Bảng so sánh nước kim cương D–E–F–G–H (và bí quyết tiết kiệm 30%)</li>
-                <li><span class="num">03</span> Fluorescence là gì và có nên mua không?</li>
-                <li><span class="num">04</span> Cách đo size nhẫn tại nhà chuẩn xác 100%</li>
-                <li><span class="num">05</span> Công thức phân bổ 4C thông minh theo ngân sách</li>
-                <li><span class="num">06</span> 10 câu hỏi phải hỏi trước khi ký hợp đồng</li>
-            </ul>
+    <!-- ── 3 BENEFITS ── -->
+    <div class="benefits">
+        <div class="benefit-card">
+            <span class="benefit-icon">🔍</span>
+            <p class="benefit-title">Phát hiện hàng giả</p>
+            <p class="benefit-desc">Kiểm tra giấy GIA thật/giả ngay tại chỗ</p>
         </div>
-
-        <!-- Form -->
-        <div class="form-box">
-            <p class="form-box-title">Nhận cẩm nang ngay</p>
-
-            <!-- ═══════════════════════════════════════════════════════ -->
-            <!-- PASTE GetResponse form embed code HERE to replace form below -->
-            <!-- ═══════════════════════════════════════════════════════ -->
-            <form id="gr-form" action="#" method="post">
-                <div class="field">
-                    <label for="name">Họ và tên</label>
-                    <input type="text" id="name" name="name" placeholder="Ví dụ: Nguyễn Thị Lan" autocomplete="name" required>
-                </div>
-
-                <div class="field">
-                    <label for="email">Địa chỉ email</label>
-                    <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
-                </div>
-
-                <button type="submit" class="cta-btn">Nhận Cẩm Nang Ngay →</button>
-
-                <p class="privacy">🔒 Thông tin được bảo mật tuyệt đối &nbsp;·&nbsp; Không spam, hủy bất cứ lúc nào</p>
-            </form>
+        <div class="benefit-card">
+            <span class="benefit-icon">💰</span>
+            <p class="benefit-title">Không bị bán đắt</p>
+            <p class="benefit-desc">Bí quyết tiết kiệm 30–50% mà vẫn đẹp</p>
         </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p class="footer-contact">
-                chunghieudiamond.com &nbsp;·&nbsp; 0912.268.667<br>
-                Zalo: 0868.419.634 &nbsp;·&nbsp; @ChungHieuJewelry
-            </p>
-            <p class="footer-slogan">"Niềm tin vững bền — Tỏa sáng vượt thời gian"</p>
+        <div class="benefit-card">
+            <span class="benefit-icon">💎</span>
+            <p class="benefit-title">Chọn đúng viên</p>
+            <p class="benefit-desc">Công thức 4C thông minh theo ngân sách</p>
         </div>
+    </div>
 
-    </main>
+    <!-- ── AUTHOR ── -->
+    <div class="author-block">
+        <div class="author-avatar">👩</div>
+        <div class="author-info">
+            <p class="author-name">Kim Huế — Chung Hiếu Jewelry</p>
+            <p class="author-title">Chuyên gia tư vấn kim cương · 10+ năm kinh nghiệm</p>
+        </div>
+    </div>
+    <p class="author-quote">"Người mua thông minh không phải là người có nhiều tiền nhất — mà là người biết đặt đúng câu hỏi."</p>
+    <br>
 
+    <!-- ── WHAT'S INSIDE ── -->
+    <div class="inside-section">
+        <p class="inside-heading">Bên trong cẩm nang có gì?</p>
+        <ul class="inside-list">
+            <li><span class="check">✓</span> Cách kiểm tra giấy GIA thật/giả ngay tại chỗ</li>
+            <li><span class="check">✓</span> Bảng so sánh nước D–F–G–H: đâu là lựa chọn thông minh?</li>
+            <li><span class="check">✓</span> Fluorescence — nên mua hay tránh? (tiết kiệm 10–15%)</li>
+            <li><span class="check">✓</span> Cách đo size nhẫn tại nhà chuẩn xác 100%</li>
+            <li><span class="check">✓</span> Công thức phân bổ 4C để đẹp nhất với ngân sách có</li>
+            <li><span class="check">✓</span> 10 câu hỏi PHẢI hỏi trước khi ký hợp đồng</li>
+        </ul>
+    </div>
+
+    <!-- ── FORM ── -->
+    <div class="form-box">
+        <p class="form-title">📩 Gửi cẩm nang miễn phí cho tôi</p>
+        <p class="form-subtitle">Nhận ngay vào email — đọc được trên điện thoại</p>
+
+        <!-- PASTE GetResponse embed code here to replace this form -->
+        <form id="lead-form">
+            <div class="field">
+                <label for="name">Họ và tên</label>
+                <input type="text" id="name" name="name" placeholder="Ví dụ: Nguyễn Thị Lan" autocomplete="name" required>
+            </div>
+            <div class="field">
+                <label for="email">Địa chỉ email</label>
+                <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
+            </div>
+            <button type="submit" class="cta-btn">
+                Nhận Cẩm Nang Ngay <span class="cta-arrow">→</span>
+            </button>
+            <div class="trust-row">
+                <span class="trust-item"><span>🔒</span> Bảo mật tuyệt đối</span>
+                <span class="trust-item"><span>🚫</span> Không spam</span>
+                <span class="trust-item"><span>✅</span> Hủy bất cứ lúc nào</span>
+            </div>
+        </form>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+        <p class="footer-contact">
+            chunghieudiamond.com &nbsp;·&nbsp; 0912.268.667<br>
+            Zalo: 0868.419.634 &nbsp;·&nbsp; @ChungHieuJewelry
+        </p>
+        <p class="footer-slogan">"Niềm tin vững bền — Tỏa sáng vượt thời gian"</p>
+    </div>
+
+</div>
 </body>
 </html>
