@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- GetResponse Web Connect -->
+    <script type="text/javascript">
+    (function(m,o,n,t,e,r,_){
+        m['__GetResponseAnalyticsObject']=e;m[e]=m[e]||function(){(m[e].q=m[e].q||[]).push(arguments)};
+        r=o.createElement(n);_=o.getElementsByTagName(n)[0];r.async=1;r.src=t;r.setAttribute('crossorigin','use-credentials');_.parentNode.insertBefore(r,_);
+    })(window,document,'script','https://an.gr-wcon.com/script/10d429d8-231b-4520-bdb2-9efa869c2a84/ga.js','GrTracking');
+    </script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -552,17 +559,17 @@
         <p class="form-title">📩 Gửi cẩm nang miễn phí cho tôi</p>
         <p class="form-subtitle">Nhận ngay vào email — đọc được trên điện thoại</p>
 
-        <form action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8">
-            <input type="hidden" name="campaign_token" value="CsodV">
+        <form id="chj-form" novalidate>
             <div class="field">
-                <label for="name">Họ và tên</label>
-                <input type="text" id="name" name="name" placeholder="Ví dụ: Nguyễn Thị Lan" autocomplete="name" required>
+                <label for="chj-name">Họ và tên</label>
+                <input type="text" id="chj-name" placeholder="Ví dụ: Nguyễn Thị Lan" autocomplete="name" required>
             </div>
             <div class="field">
-                <label for="email">Địa chỉ email</label>
-                <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
+                <label for="chj-email">Địa chỉ email</label>
+                <input type="email" id="chj-email" placeholder="email@example.com" autocomplete="email" required>
             </div>
-            <button type="submit" class="cta-btn">
+            <div id="chj-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:8px;text-align:center;"></div>
+            <button type="submit" class="cta-btn" id="chj-btn">
                 Nhận Cẩm Nang Ngay <span class="cta-arrow">→</span>
             </button>
             <div class="trust-row">
@@ -571,7 +578,102 @@
                 <span class="trust-item"><span>✅</span> Hủy bất cứ lúc nào</span>
             </div>
         </form>
+
+        <!-- GetResponse embedded form (hidden — handles actual submission) -->
+        <div id="gr-form-wrapper" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <getresponse-form form-id="3c805d81-8ce6-48f4-b2fe-03c84ca73d8a" e="1"></getresponse-form>
+        </div>
     </div>
+
+    <script>
+    (function(){
+        var form = document.getElementById('chj-form');
+        var btn  = document.getElementById('chj-btn');
+        var errBox = document.getElementById('chj-error');
+
+        function showError(msg) {
+            errBox.textContent = msg;
+            errBox.style.display = 'block';
+        }
+        function hideError() { errBox.style.display = 'none'; }
+
+        function showSuccess() {
+            var box = form.closest('.form-box');
+            box.innerHTML = '<div style="text-align:center;padding:32px 16px;">'
+                + '<div style="font-size:48px;margin-bottom:16px;">🎉</div>'
+                + '<p style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">Cảm ơn chị!</p>'
+                + '<p style="color:#555;font-size:15px;">Cẩm nang đang bay vào hộp thư của chị.<br>Vui lòng kiểm tra email (kể cả thư mục Spam).</p>'
+                + '</div>';
+        }
+
+        /* Try submitting via the GetResponse hidden form */
+        function submitViaGR(name, email, callback) {
+            var wrapper = document.getElementById('gr-form-wrapper');
+            var grEl = wrapper.querySelector('getresponse-form');
+            if (!grEl) return callback(false);
+
+            /* Find inputs inside the rendered GR form */
+            var nameInp  = grEl.querySelector('input[type="text"]') || grEl.querySelector('input[name*="name"]') || grEl.querySelector('input[name*="Name"]');
+            var emailInp = grEl.querySelector('input[type="email"]') || grEl.querySelector('input[name*="email"]');
+            var submitEl = grEl.querySelector('input[type="submit"]') || grEl.querySelector('button[type="submit"]');
+
+            if (!nameInp || !emailInp || !submitEl) return callback(false);
+
+            /* Fill values and trigger native input events so GR detects changes */
+            function setVal(el, val) {
+                var nativeSet = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                nativeSet.call(el, val);
+                el.dispatchEvent(new Event('input', {bubbles:true}));
+                el.dispatchEvent(new Event('change', {bubbles:true}));
+            }
+            setVal(nameInp, name);
+            setVal(emailInp, email);
+
+            /* Listen for GR success (it often replaces the form or dispatches an event) */
+            var done = false;
+            var observer = new MutationObserver(function() {
+                if (done) return;
+                /* GR typically shows a success message or clears the form on success */
+                var successEl = grEl.querySelector('[class*="success"], [class*="thank"], [class*="confirm"]');
+                if (successEl) { done = true; observer.disconnect(); callback(true); }
+            });
+            observer.observe(grEl, {childList:true, subtree:true, attributes:true});
+
+            /* Fallback timeout */
+            setTimeout(function(){
+                if (!done) { done = true; observer.disconnect(); callback(true); }
+            }, 4000);
+
+            submitEl.click();
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideError();
+
+            var name  = document.getElementById('chj-name').value.trim();
+            var email = document.getElementById('chj-email').value.trim();
+
+            if (!name) { showError('Vui lòng nhập họ và tên.'); return; }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('Vui lòng nhập địa chỉ email hợp lệ.'); return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = 'Đang gửi&hellip;';
+
+            submitViaGR(name, email, function(ok) {
+                if (ok) {
+                    showSuccess();
+                } else {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Nhận Cẩm Nang Ngay <span class="cta-arrow">→</span>';
+                    showError('Có lỗi xảy ra. Vui lòng thử lại sau.');
+                }
+            });
+        });
+    })();
+    </script>
 
     <!-- ── FOOTER ── -->
     <div class="footer">
