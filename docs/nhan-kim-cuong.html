@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bộ Sưu Tập Nhẫn Kim Cương CHJ Diamond</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #0a0a0a; color: #fff; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-bottom: 1px solid #C9A84C;
+    padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo img { height: 40px; }
+  .logo-text { color: #C9A84C; font-size: 18px; font-weight: bold; letter-spacing: 2px; }
+  .header-cta {
+    background: #C9A84C; color: #0a0a0a;
+    padding: 10px 20px; border-radius: 4px;
+    font-weight: bold; font-size: 13px; text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%);
+    text-align: center;
+    padding: 60px 24px 40px;
+    border-bottom: 1px solid #222;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid #C9A84C; color: #C9A84C;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    font-weight: normal;
+  }
+  .hero h1 span { color: #C9A84C; }
+  .hero p {
+    color: #aaa; font-size: 16px; max-width: 520px;
+    margin: 0 auto 28px; line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #C9A84C, #e8c96d);
+    color: #0a0a0a; font-weight: bold;
+    padding: 16px 36px; border-radius: 4px;
+    font-size: 15px; text-decoration: none;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+  }
+  .trust-row {
+    display: flex; justify-content: center; gap: 32px;
+    margin-top: 32px; flex-wrap: wrap;
+  }
+  .trust-item { color: #888; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .trust-item span { color: #C9A84C; font-size: 16px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    text-align: center; padding: 48px 24px 32px;
+  }
+  .section-title h2 {
+    font-size: clamp(22px, 4vw, 32px);
+    color: #fff; font-weight: normal;
+    margin-bottom: 8px;
+  }
+  .section-title h2 span { color: #C9A84C; }
+  .section-title p { color: #888; font-size: 14px; }
+  .gold-line {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+    margin: 12px auto 0;
+  }
+
+  /* RING GRID */
+  .ring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+  }
+  .ring-card {
+    background: #111;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+  }
+  .ring-card:hover { transform: translateY(-4px); border-color: #C9A84C44; }
+  .ring-img {
+    width: 100%; height: 220px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #1a1a1a, #222);
+    position: relative;
+    overflow: hidden;
+  }
+  .ring-img-placeholder {
+    width: 100%; height: 220px;
+    background: linear-gradient(135deg, #1a1a1a, #252525);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ring-img-placeholder::before {
+    content: '💎';
+    font-size: 48px;
+    opacity: 0.5;
+  }
+  .ring-img-placeholder .ring-pattern {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(201,168,76,0.03) 10px, rgba(201,168,76,0.03) 11px);
+  }
+  .gia-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(201,168,76,0.9); color: #000;
+    font-size: 10px; font-weight: bold;
+    padding: 3px 8px; border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .ring-info { padding: 16px; }
+  .ring-name { color: #fff; font-size: 14px; margin-bottom: 6px; font-weight: normal; }
+  .ring-spec { color: #888; font-size: 12px; margin-bottom: 12px; line-height: 1.6; }
+  .ring-price { color: #C9A84C; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
+  .ring-btn {
+    display: block; text-align: center;
+    background: transparent; border: 1px solid #C9A84C;
+    color: #C9A84C; padding: 8px;
+    font-size: 12px; text-decoration: none;
+    letter-spacing: 1px; border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .ring-btn:hover { background: #C9A84C; color: #000; }
+
+  /* STYLES SECTION */
+  .styles-section {
+    background: #0d0d0d;
+    padding: 48px 24px;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .styles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .style-card {
+    text-align: center; padding: 20px 12px;
+    border: 1px solid #222; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none;
+  }
+  .style-card:hover { border-color: #C9A84C; background: #111; }
+  .style-icon { font-size: 28px; margin-bottom: 8px; }
+  .style-name { color: #ddd; font-size: 13px; }
+  .style-sub { color: #666; font-size: 11px; margin-top: 4px; }
+
+  /* WHY CHJ */
+  .why-section { padding: 48px 24px; max-width: 900px; margin: 0 auto; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px; margin-top: 8px;
+  }
+  .why-card {
+    text-align: center; padding: 24px 16px;
+    border: 1px solid #1a1a1a; border-radius: 4px;
+  }
+  .why-icon { font-size: 32px; margin-bottom: 12px; }
+  .why-title { color: #C9A84C; font-size: 14px; margin-bottom: 8px; font-weight: bold; }
+  .why-text { color: #888; font-size: 13px; line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: #0d0d0d; padding: 48px 24px; border-top: 1px solid #1a1a1a; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px; max-width: 900px; margin: 16px auto 0;
+  }
+  .testi-card {
+    background: #111; border: 1px solid #1a1a1a;
+    border-radius: 4px; padding: 20px;
+  }
+  .testi-stars { color: #C9A84C; font-size: 14px; margin-bottom: 10px; }
+  .testi-text { color: #ccc; font-size: 13px; line-height: 1.7; font-style: italic; margin-bottom: 12px; }
+  .testi-author { color: #C9A84C; font-size: 12px; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: linear-gradient(135deg, #111 0%, #1a1500 50%, #111 100%);
+    border-top: 1px solid #C9A84C33;
+    border-bottom: 1px solid #C9A84C33;
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .cta-banner h2 { font-size: clamp(22px, 4vw, 32px); color: #fff; font-weight: normal; margin-bottom: 12px; }
+  .cta-banner h2 span { color: #C9A84C; }
+  .cta-banner p { color: #aaa; font-size: 15px; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, #C9A84C, #e8c96d);
+    color: #000; font-weight: bold;
+    padding: 16px 32px; border-radius: 4px;
+    text-decoration: none; font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .btn-secondary {
+    border: 1px solid #C9A84C; color: #C9A84C;
+    padding: 16px 32px; border-radius: 4px;
+    text-decoration: none; font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #050505; text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid #1a1a1a;
+    color: #555; font-size: 13px;
+  }
+  footer a { color: #C9A84C; text-decoration: none; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+
+  /* STICKY ZALO */
+  .sticky-zalo {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: #25d366; color: #fff;
+    padding: 14px 20px; border-radius: 50px;
+    font-weight: bold; font-size: 14px;
+    text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    display: flex; align-items: center; gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="assets/chj_logo.png" alt="CHJ Diamond" onerror="this.style.display='none'">
+    <span class="logo-text">CHJ DIAMOND</span>
+  </div>
+  <a href="https://zalo.me/0912268667" class="header-cta" target="_blank">💬 TƯ VẤN MIỄN PHÍ</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ 100% KIM CƯƠNG KIỂM ĐỊNH GIA ✦</div>
+  <h1>Bộ Sưu Tập Nhẫn Kim Cương<br><span>Dành Cho Tình Yêu Vĩnh Cửu</span></h1>
+  <p>Mỗi viên kim cương được tuyển chọn kỹ lưỡng — giác cắt Excellent, kiểm định GIA, xứng đáng với khoảnh khắc trọng đại nhất cuộc đời bạn.</p>
+  <a href="https://zalo.me/0912268667" class="hero-cta" target="_blank">💎 XEM MẪU & TƯ VẤN NGAY</a>
+  <div class="trust-row">
+    <div class="trust-item"><span>✓</span> 100% GIA Certified</div>
+    <div class="trust-item"><span>✓</span> Kiểm tra online tại chỗ</div>
+    <div class="trust-item"><span>✓</span> Bảo hành trọn đời</div>
+    <div class="trust-item"><span>✓</span> Đổi trả 7 ngày</div>
+  </div>
+</div>
+
+<!-- RING STYLES -->
+<div class="styles-section">
+  <div class="section-title">
+    <h2>Chọn <span>Phong Cách</span> Của Bạn</h2>
+    <p>Từ cổ điển đến hiện đại — mỗi phong cách đều có viên kim cương hoàn hảo</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="styles-grid">
+    <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
+      <div class="style-icon">💍</div>
+      <div class="style-name">Solitaire</div>
+      <div class="style-sub">Đơn giản — Thanh lịch</div>
+    </a>
+    <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
+      <div class="style-icon">✨</div>
+      <div class="style-name">Pavé</div>
+      <div class="style-sub">Lấp lánh — Sang trọng</div>
+    </a>
+    <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
+      <div class="style-icon">👑</div>
+      <div class="style-name">Halo</div>
+      <div class="style-sub">Rực rỡ — Nổi bật</div>
+    </a>
+    <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
+      <div class="style-icon">🌙</div>
+      <div class="style-name">Three Stone</div>
+      <div class="style-sub">Quá khứ — Hiện tại — Tương lai</div>
+    </a>
+    <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
+      <div class="style-icon">🔮</div>
+      <div class="style-name">Vintage</div>
+      <div class="style-sub">Cổ điển — Lãng mạn</div>
+    </a>
+    <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
+      <div class="style-icon">💫</div>
+      <div class="style-name">Eternity</div>
+      <div class="style-sub">Vĩnh cửu — Tròn đầy</div>
+    </a>
+  </div>
+</div>
+
+<!-- RING COLLECTION -->
+<div class="section-title">
+  <h2>Bộ Sưu Tập <span>Nhẫn Cầu Hôn</span></h2>
+  <p>Mỗi chiếc nhẫn đều có thể tùy chỉnh theo size, kim loại và ngân sách của bạn</p>
+  <div class="gold-line"></div>
+</div>
+
+<div class="ring-grid">
+
+  <!-- Card 1 -->
+  <div class="ring-card">
+    <div class="ring-img-placeholder">
+      <div class="ring-pattern"></div>
+      <span class="gia-badge">GIA</span>
+    </div>
+    <div class="ring-info">
+      <div class="ring-name">Nhẫn Solitaire Kim Cương Tròn</div>
+      <div class="ring-spec">Cut: Excellent | Color: F-G | Clarity: VS1-VS2<br>Kim loại: Vàng trắng 18K / Platinum</div>
+      <div class="ring-price">Tư vấn giá theo carat</div>
+      <a href="https://zalo.me/0912268667" class="ring-btn" target="_blank">💬 TƯ VẤN NGAY</a>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="ring-card">
+    <div class="ring-img-placeholder">
+      <div class="ring-pattern"></div>
+      <span class="gia-badge">GIA</span>
+    </div>
+    <div class="ring-info">
+      <div class="ring-name">Nhẫn Halo Kim Cương Oval</div>
+      <div class="ring-spec">Cut: Excellent | Color: G-H | Clarity: VS2<br>Viên chủ: Oval + Vòng đá nhỏ quanh</div>
+      <div class="ring-price">Tư vấn giá theo carat</div>
+      <a href="https://zalo.me/0912268667" class="ring-btn" target="_blank">💬 TƯ VẤN NGAY</a>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="ring-card">
+    <div class="ring-img-placeholder">
+      <div class="ring-pattern"></div>
+      <span class="gia-badge">GIA</span>
+    </div>
+    <div class="ring-info">
+      <div class="ring-name">Nhẫn Pavé Kim Cương Princess</div>
+      <div class="ring-spec">Cut: Excellent | Color: F | Clarity: VVS2<br>Dáng vuông sang trọng, nạm đá hai bên thân</div>
+      <div class="ring-price">Tư vấn giá theo carat</div>
+      <a href="https://zalo.me/0912268667" class="ring-btn" target="_blank">💬 TƯ VẤN NGAY</a>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="ring-card">
+    <div class="ring-img-placeholder">
+      <div class="ring-pattern"></div>
+      <span class="gia-badge">GIA</span>
+    </div>
+    <div class="ring-info">
+      <div class="ring-name">Nhẫn Three Stone Kim Cương</div>
+      <div class="ring-spec">Cut: Excellent | Color: G | Clarity: VS1<br>3 viên tượng trưng quá khứ — hiện tại — tương lai</div>
+      <div class="ring-price">Tư vấn giá theo carat</div>
+      <a href="https://zalo.me/0912268667" class="ring-btn" target="_blank">💬 TƯ VẤN NGAY</a>
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="ring-card">
+    <div class="ring-img-placeholder">
+      <div class="ring-pattern"></div>
+      <span class="gia-badge">GIA</span>
+    </div>
+    <div class="ring-info">
+      <div class="ring-name">Nhẫn Solitaire Kim Cương Pear</div>
+      <div class="ring-spec">Cut: Excellent | Color: E-F | Clarity: VS1<br>Dáng giọt nước tinh tế, độc đáo</div>
+      <div class="ring-price">Tư vấn giá theo carat</div>
+      <a href="https://zalo.me/0912268667" class="ring-btn" target="_blank">💬 TƯ VẤN NGAY</a>
+    </div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="ring-card">
+    <div class="ring-img-placeholder">
+      <div class="ring-pattern"></div>
+      <span class="gia-badge">GIA</span>
+    </div>
+    <div class="ring-info">
+      <div class="ring-name">Nhẫn Vintage Kim Cương Cushion</div>
+      <div class="ring-spec">Cut: Excellent | Color: G | Clarity: VS2<br>Kiểu cổ điển, nạm filigree tinh xảo</div>
+      <div class="ring-price">Tư vấn giá theo carat</div>
+      <a href="https://zalo.me/0912268667" class="ring-btn" target="_blank">💬 TƯ VẤN NGAY</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- WHY CHJ -->
+<div class="why-section">
+  <div class="section-title">
+    <h2>Tại Sao Chọn <span>CHJ Diamond?</span></h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">100% GIA Certified</div>
+      <div class="why-text">Kiểm tra online ngay tại cửa hàng. Không GIA = không bán.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💯</div>
+      <div class="why-title">Giá Minh Bạch</div>
+      <div class="why-text">Không "giá gốc 50 triệu thương lượng còn 30". Giá niêm yết rõ ràng.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔄</div>
+      <div class="why-title">Đổi Trả 7 Ngày</div>
+      <div class="why-text">Không hài lòng trong 7 ngày? Hoàn tiền hoặc đổi viên khác.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚙️</div>
+      <div class="why-title">Chỉnh Size Miễn Phí</div>
+      <div class="why-text">Bảo hành trọn đời phần kim loại. Chỉnh size miễn phí mãi mãi.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">👩‍💼</div>
+      <div class="why-title">Gần 20 Năm Kinh Nghiệm</div>
+      <div class="why-text">Kim Huế bắt đầu từ 2006. Hiểu từng viên kim cương.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📞</div>
+      <div class="why-title">Tư Vấn 1-1 Miễn Phí</div>
+      <div class="why-text">Không áp lực. Tư vấn thật — mua hay không đều được.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="section-title">
+    <h2>Khách Hàng <span>Nói Gì?</span></h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Lần đầu mua kim cương mà không lo lắng — vì chị Huế cho kiểm tra GIA ngay tại chỗ. Nhẫn đẹp hơn tôi tưởng!"</div>
+      <div class="testi-author">— Chị Hương, Hà Nội</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Chị Huế tư vấn như người thân, không cố bán viên đắt hơn. Cùng ngân sách 15 triệu mà viên tôi chọn đẹp hơn bạn bè tôi mua 20 triệu."</div>
+      <div class="testi-author">— Chị Lan, TP.HCM</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Cầu hôn xong, cô ấy khóc và nói đây là chiếc nhẫn đẹp nhất cô ấy từng thấy. Cảm ơn chị Huế!"</div>
+      <div class="testi-author">— Anh Minh, TP.HCM</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Sẵn Sàng Tìm Viên Kim Cương<br><span>Hoàn Hảo Của Bạn?</span></h2>
+  <p>Tư vấn miễn phí 1-1 với Kim Huế — không áp lực, không ép mua. Chỉ cần nói ngân sách và mong muốn, Huế sẽ giúp bạn chọn đúng.</p>
+  <div class="cta-buttons">
+    <a href="https://zalo.me/0912268667" class="btn-primary" target="_blank">💬 Nhắn Zalo Ngay</a>
+    <a href="https://www.youtube.com/@ChungHieuJewelry" class="btn-secondary" target="_blank">▶ Xem Video Tư Vấn</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.facebook.com/chunghieudiamond" target="_blank">Facebook</a>
+    <a href="https://www.tiktok.com/@chunghieujewelry" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/@ChungHieuJewelry" target="_blank">YouTube</a>
+    <a href="https://zalo.me/0912268667" target="_blank">Zalo</a>
+    <a href="index.html">Nhận Cẩm Nang Miễn Phí</a>
+  </div>
+  <p>© 2026 CHJ Diamond — Chung Hiếu Jewelry | chunghieudiamond.com</p>
+  <p style="margin-top:8px">"Niềm tin vững bền — Tỏa sáng vượt thời gian"</p>
+</footer>
+
+<!-- STICKY ZALO -->
+<a href="https://zalo.me/0912268667" class="sticky-zalo" target="_blank">
+  💬 Tư Vấn Ngay
+</a>
+
+</body>
+</html>
