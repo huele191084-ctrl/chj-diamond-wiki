@@ -610,10 +610,19 @@
                 + '</div>';
         }
 
-        function submitViaProxy(name, email, callback) {
+        /* ── Đọc UTM source từ URL (?utm_source=instagram …) ── */
+        function getUtmSource() {
+            try {
+                var p = new URLSearchParams(window.location.search);
+                return (p.get('utm_source') || 'direct').toLowerCase().slice(0, 50);
+            } catch(e) { return 'direct'; }
+        }
+
+        function submitViaProxy(name, email, source, callback) {
             var body = new URLSearchParams();
             body.append('name', name);
             body.append('email', email);
+            body.append('source', source);
 
             fetch(PROXY_URL, {
                 method: 'POST',
@@ -628,8 +637,9 @@
             e.preventDefault();
             hideError();
 
-            var name  = document.getElementById('chj-name').value.trim();
-            var email = document.getElementById('chj-email').value.trim();
+            var name   = document.getElementById('chj-name').value.trim();
+            var email  = document.getElementById('chj-email').value.trim();
+            var source = getUtmSource();
 
             if (!name)  { showError('Vui lòng nhập họ và tên.'); return; }
             if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -644,7 +654,7 @@
             btn.disabled = true;
             btn.innerHTML = 'Đang gửi&hellip;';
 
-            submitViaProxy(name, email, function(ok) {
+            submitViaProxy(name, email, source, function(ok) {
                 if (ok) {
                     showSuccess();
                 } else {
