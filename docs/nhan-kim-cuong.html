@@ -136,6 +136,19 @@
     background:
       repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(201,168,76,0.03) 10px, rgba(201,168,76,0.03) 11px);
   }
+  .ring-img-real {
+    width: 100%; height: 260px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .ring-card:hover .ring-img-real { transform: scale(1.04); }
+  .ring-img-wrap {
+    position: relative; overflow: hidden;
+    background: #fff;
+    height: 260px;
+  }
   .gia-badge {
     position: absolute; top: 12px; left: 12px;
     background: rgba(201,168,76,0.9); color: #000;
@@ -336,9 +349,11 @@
 
   <!-- Card 1 -->
   <div class="ring-card">
-    <div class="ring-img-placeholder">
-      <div class="ring-pattern"></div>
+    <div class="ring-img-wrap">
       <span class="gia-badge">GIA</span>
+      <img class="ring-img-real" src="assets/rings/ring-solitaire-pave.jpg"
+           alt="Nhẫn Solitaire Kim Cương Tròn CHJ Diamond"
+           onerror="this.parentElement.innerHTML='<div class=\'ring-img-placeholder\'><div class=\'ring-pattern\'></div><span class=\'gia-badge\'>GIA</span></div>'">
     </div>
     <div class="ring-info">
       <div class="ring-name">Nhẫn Solitaire Kim Cương Tròn</div>
@@ -350,9 +365,11 @@
 
   <!-- Card 2 -->
   <div class="ring-card">
-    <div class="ring-img-placeholder">
-      <div class="ring-pattern"></div>
+    <div class="ring-img-wrap">
       <span class="gia-badge">GIA</span>
+      <img class="ring-img-real" src="assets/rings/ring-halo-cluster.jpg"
+           alt="Nhẫn Halo Kim Cương CHJ Diamond"
+           onerror="this.parentElement.innerHTML='<div class=\'ring-img-placeholder\'><div class=\'ring-pattern\'></div><span class=\'gia-badge\'>GIA</span></div>'">
     </div>
     <div class="ring-info">
       <div class="ring-name">Nhẫn Halo Kim Cương Oval</div>
@@ -364,9 +381,11 @@
 
   <!-- Card 3 -->
   <div class="ring-card">
-    <div class="ring-img-placeholder">
-      <div class="ring-pattern"></div>
+    <div class="ring-img-wrap">
       <span class="gia-badge">GIA</span>
+      <img class="ring-img-real" src="assets/rings/ring-solitaire-hand.jpg"
+           alt="Nhẫn Pavé Kim Cương CHJ Diamond"
+           onerror="this.parentElement.innerHTML='<div class=\'ring-img-placeholder\'><div class=\'ring-pattern\'></div><span class=\'gia-badge\'>GIA</span></div>'">
     </div>
     <div class="ring-info">
       <div class="ring-name">Nhẫn Pavé Kim Cương Princess</div>
@@ -378,9 +397,11 @@
 
   <!-- Card 4 -->
   <div class="ring-card">
-    <div class="ring-img-placeholder">
-      <div class="ring-pattern"></div>
+    <div class="ring-img-wrap">
       <span class="gia-badge">GIA</span>
+      <img class="ring-img-real" src="assets/rings/ring-three-stone.jpg"
+           alt="Nhẫn Three Stone Kim Cương CHJ Diamond"
+           onerror="this.parentElement.innerHTML='<div class=\'ring-img-placeholder\'><div class=\'ring-pattern\'></div><span class=\'gia-badge\'>GIA</span></div>'">
     </div>
     <div class="ring-info">
       <div class="ring-name">Nhẫn Three Stone Kim Cương</div>
@@ -392,9 +413,11 @@
 
   <!-- Card 5 -->
   <div class="ring-card">
-    <div class="ring-img-placeholder">
-      <div class="ring-pattern"></div>
+    <div class="ring-img-wrap">
       <span class="gia-badge">GIA</span>
+      <img class="ring-img-real" src="assets/rings/ring-solitaire-pave.jpg"
+           alt="Nhẫn Solitaire Kim Cương Pear CHJ Diamond"
+           onerror="this.parentElement.innerHTML='<div class=\'ring-img-placeholder\'><div class=\'ring-pattern\'></div><span class=\'gia-badge\'>GIA</span></div>'">
     </div>
     <div class="ring-info">
       <div class="ring-name">Nhẫn Solitaire Kim Cương Pear</div>
@@ -406,9 +429,11 @@
 
   <!-- Card 6 -->
   <div class="ring-card">
-    <div class="ring-img-placeholder">
-      <div class="ring-pattern"></div>
+    <div class="ring-img-wrap">
       <span class="gia-badge">GIA</span>
+      <img class="ring-img-real" src="assets/rings/ring-halo-cluster.jpg"
+           alt="Nhẫn Vintage Kim Cương Cushion CHJ Diamond"
+           onerror="this.parentElement.innerHTML='<div class=\'ring-img-placeholder\'><div class=\'ring-pattern\'></div><span class=\'gia-badge\'>GIA</span></div>'">
     </div>
     <div class="ring-info">
       <div class="ring-name">Nhẫn Vintage Kim Cương Cushion</div>
