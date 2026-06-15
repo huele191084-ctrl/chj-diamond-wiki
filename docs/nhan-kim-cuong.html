@@ -185,13 +185,22 @@
     margin: 0 auto;
   }
   .style-card {
-    text-align: center; padding: 20px 12px;
+    text-align: center; padding: 0;
     border: 1px solid #222; border-radius: 4px;
     cursor: pointer; transition: all 0.2s;
-    text-decoration: none;
+    text-decoration: none; overflow: hidden;
   }
   .style-card:hover { border-color: #C9A84C; background: #111; }
-  .style-icon { font-size: 28px; margin-bottom: 8px; }
+  .style-img-wrap { overflow: hidden; height: 140px; }
+  .style-img {
+    width: 100%; height: 140px;
+    object-fit: cover; object-position: center 20%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .style-card:hover .style-img { transform: scale(1.06); }
+  .style-body { padding: 12px 12px 16px; }
+  .style-icon { font-size: 22px; margin-bottom: 6px; }
   .style-name { color: #ddd; font-size: 13px; }
   .style-sub { color: #666; font-size: 11px; margin-top: 4px; }
 
@@ -306,34 +315,64 @@
   </div>
   <div class="styles-grid">
     <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
-      <div class="style-icon">💍</div>
-      <div class="style-name">Solitaire</div>
-      <div class="style-sub">Đơn giản — Thanh lịch</div>
+      <div class="style-img-wrap">
+        <img class="style-img" src="assets/rings/ring-solitaire-pave.jpg" alt="Nhẫn Solitaire" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="style-body">
+        <div class="style-icon">💍</div>
+        <div class="style-name">Solitaire</div>
+        <div class="style-sub">Đơn giản — Thanh lịch</div>
+      </div>
     </a>
     <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
-      <div class="style-icon">✨</div>
-      <div class="style-name">Pavé</div>
-      <div class="style-sub">Lấp lánh — Sang trọng</div>
+      <div class="style-img-wrap">
+        <img class="style-img" src="assets/rings/ring-eternity.jpg" alt="Nhẫn Pavé" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="style-body">
+        <div class="style-icon">✨</div>
+        <div class="style-name">Pavé</div>
+        <div class="style-sub">Lấp lánh — Sang trọng</div>
+      </div>
     </a>
     <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
-      <div class="style-icon">👑</div>
-      <div class="style-name">Halo</div>
-      <div class="style-sub">Rực rỡ — Nổi bật</div>
+      <div class="style-img-wrap">
+        <img class="style-img" src="assets/rings/ring-halo-cluster.jpg" alt="Nhẫn Halo" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="style-body">
+        <div class="style-icon">👑</div>
+        <div class="style-name">Halo</div>
+        <div class="style-sub">Rực rỡ — Nổi bật</div>
+      </div>
     </a>
     <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
-      <div class="style-icon">🌙</div>
-      <div class="style-name">Three Stone</div>
-      <div class="style-sub">Quá khứ — Hiện tại — Tương lai</div>
+      <div class="style-img-wrap">
+        <img class="style-img" src="assets/rings/ring-three-stone.jpg" alt="Nhẫn Three Stone" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="style-body">
+        <div class="style-icon">🌙</div>
+        <div class="style-name">Three Stone</div>
+        <div class="style-sub">Quá khứ — Hiện tại — Tương lai</div>
+      </div>
     </a>
     <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
-      <div class="style-icon">🔮</div>
-      <div class="style-name">Vintage</div>
-      <div class="style-sub">Cổ điển — Lãng mạn</div>
+      <div class="style-img-wrap">
+        <img class="style-img" src="assets/rings/ring-vintage.jpg" alt="Nhẫn Vintage" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="style-body">
+        <div class="style-icon">🔮</div>
+        <div class="style-name">Vintage</div>
+        <div class="style-sub">Cổ điển — Lãng mạn</div>
+      </div>
     </a>
     <a href="https://zalo.me/0912268667" class="style-card" target="_blank">
-      <div class="style-icon">💫</div>
-      <div class="style-name">Eternity</div>
-      <div class="style-sub">Vĩnh cửu — Tròn đầy</div>
+      <div class="style-img-wrap">
+        <img class="style-img" src="assets/rings/ring-solitaire-hand.jpg" alt="Nhẫn Eternity" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="style-body">
+        <div class="style-icon">💫</div>
+        <div class="style-name">Eternity</div>
+        <div class="style-sub">Vĩnh cửu — Tròn đầy</div>
+      </div>
     </a>
   </div>
 </div>
