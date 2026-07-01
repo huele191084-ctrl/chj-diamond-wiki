@@ -655,6 +655,11 @@
             if (phoneDigits && !/^(0|\+84)\d{9,10}$/.test(phoneDigits)) {
                 showError('Số điện thoại chưa hợp lệ (VD: 0912268667). Bỏ trống cũng được.'); return;
             }
+            /* GetResponse yêu cầu mã quốc gia (E.164) cho trường phone → chuẩn hóa "0..." thành "+84..."
+               để không bao giờ bị lỗi 400 làm MẤT lead. */
+            if (/^0\d{9,10}$/.test(phoneDigits)) {
+                phoneDigits = '+84' + phoneDigits.slice(1);
+            }
 
             if (PROXY_URL === 'CHUA_SETUP') {
                 showError('Form chưa được cấu hình. Liên hệ admin.');
