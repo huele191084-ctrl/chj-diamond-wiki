@@ -38,6 +38,7 @@ var TEST_PREFIX = 'ZZ TEST';
 
 function setup() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error('Dự án này chưa gắn với Google Sheet. Hãy đóng tab này, mở Sheet "CHJ – Khách hàng", rồi vào Tiện ích mở rộng > Apps Script và dán lại mã.');
   var props = PropertiesService.getScriptProperties();
   ['TOKEN_SECRET', 'ADMIN_KEY'].forEach(function (k) {
     if (!props.getProperty(k)) props.setProperty(k, Utilities.getUuid().replace(/-/g, '') + Utilities.getUuid().replace(/-/g, ''));
