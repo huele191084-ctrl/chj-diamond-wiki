@@ -17,9 +17,9 @@ var NON_STOCK = [CUSTOMER_SHEET, SUMMARY_SHEET];
 var HEADERS = [
   'Thời gian đăng ký', 'Họ tên', 'Số điện thoại', 'Email', 'Kích thước quan tâm', 'Ngân sách',
   'Mục đích mua', 'Viên kim đã bấm tư vấn', 'Nguồn khách hàng / UTM', 'Trạng thái chăm sóc',
-  'Nhân viên phụ trách', 'Mã lead', 'Đồng ý liên hệ', 'Số lần đăng ký', 'Cập nhật lần cuối'
+  'Nhân viên phụ trách', 'Mã lead', 'Đồng ý liên hệ', 'Số lần đăng ký', 'Cập nhật lần cuối', 'Email bảng giá'
 ];
-var COL = { time: 1, name: 2, phone: 3, email: 4, size: 5, budget: 6, purpose: 7, interest: 8, utm: 9, status: 10, owner: 11, leadId: 12, consent: 13, count: 14, updated: 15 };
+var COL = { time: 1, name: 2, phone: 3, email: 4, size: 5, budget: 6, purpose: 7, interest: 8, utm: 9, status: 10, owner: 11, leadId: 12, consent: 13, count: 14, updated: 15, mail: 16 };
 var CARE_STATUSES = ['Mới', 'Đã gọi', 'Đang tư vấn', 'Hẹn xem hàng', 'Đã chốt', 'Không phù hợp'];
 
 var STOCK_STATUSES = ['Còn hàng', 'Đang giữ', 'Đã bán', 'Ẩn'];
@@ -281,7 +281,7 @@ function submitLead_(b) {
   var errors = {};
   if (name.length < 2) errors.name = 'Vui lòng nhập họ và tên.';
   if (!PHONE_RE.test(phone)) errors.phone = 'Số điện thoại chưa đúng (VD: 0912 345 678).';
-  if (email && !EMAIL_RE.test(email)) errors.email = 'Email chưa đúng định dạng.';
+  if (!EMAIL_RE.test(email)) errors.email = 'Vui lòng nhập email đúng định dạng để nhận bảng giá.';
   if (SIZES.indexOf(size) < 0) errors.size = 'Vui lòng chọn kích thước.';
   if (BUDGETS.indexOf(budget) < 0) errors.budget = 'Vui lòng chọn ngân sách.';
   if (PURPOSES.indexOf(purpose) < 0) errors.purpose = 'Vui lòng chọn mục đích.';
@@ -301,7 +301,7 @@ function submitLead_(b) {
   var now = new Date(), row = findRow_(sh, COL.phone, phone);
   if (row) { // cùng số điện thoại: cập nhật hồ sơ, không tạo dòng mới
     sh.getRange(row, COL.name).setValue(safe_(name));
-    if (email) sh.getRange(row, COL.email).setValue(safe_(email));
+    sh.getRange(row, COL.email).setValue(safe_(email));
     sh.getRange(row, COL.size).setValue(safe_(size));
     sh.getRange(row, COL.budget).setValue(safe_(budget));
     sh.getRange(row, COL.purpose).setValue(safe_(purpose));
@@ -316,7 +316,56 @@ function submitLead_(b) {
   SpreadsheetApp.flush();
   // Chỉ báo thành công khi dòng đã thực sự nằm trong Sheet.
   if (findRow_(sh, COL.phone, phone) !== row) return { ok: false, error: 'Chưa lưu được thông tin. Vui lòng thử lại.' };
-  return { ok: true, token: issueToken_(phone) };
+  // Gửi bảng giá qua email ngay; lỗi gửi mail không làm mất lead, trạng thái được ghi vào Sheet.
+  var mail = sendPriceEmail_({ name: name, email: email, size: size });
+  sh.getRange(row, COL.mail).setValue({ sent: 'Đã gửi', recent: 'Đã gửi trước đó', failed: 'LỖI gửi' }[mail] + ' ' + Utilities.formatDate(new Date(), 'Asia/Ho_Chi_Minh', 'dd/MM HH:mm'));
+  return { ok: true, token: issueToken_(phone), emailStatus: mail };
+}
+
+function esc_(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function vnd_(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ'; }
+
+// "4.6–4.9 ly" -> [4.6, 4.9]; "Khác" -> null
+function sizeRange_(size) {
+  var m = String(size).match(/(\d+(?:\.\d+)?)(?:–(\d+(?:\.\d+)?))?/);
+  if (!m) return null;
+  return [parseFloat(m[1]), parseFloat(m[2] || m[1])];
+}
+
+function sendPriceEmail_(L) {
+  var cache = CacheService.getScriptCache(), key = 'em_' + L.email.toLowerCase();
+  if (cache.get(key)) return 'recent'; // chống dùng form để gửi mail dồn vào một địa chỉ
+  try {
+    if (MailApp.getRemainingDailyQuota() < 1) return 'failed';
+    var all = readStock_().items.filter(function (x) { return x.st === 'ok'; });
+    var rg = sizeRange_(L.size);
+    var pick = rg ? all.filter(function (x) { return x.ly >= rg[0] - 0.01 && x.ly <= rg[1] + 0.01; }) : [];
+    var scoped = pick.length > 0;
+    if (!scoped) pick = all;
+    pick.sort(function (a, b) { return a.price - b.price; });
+    var shown = pick.slice(0, 40);
+    var site = PropertiesService.getScriptProperties().getProperty('SITE_URL') || '';
+    var rows = shown.map(function (x) {
+      var gia = /^\d{10}$/.test(x.gia_no) ? '<a href="https://www.gia.edu/report-check?reportno=' + x.gia_no + '">' + x.gia_no + '</a>' : esc_(x.gia_no);
+      return '<tr><td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + x.ly.toFixed(1) + ' ly · ' + x.ct.toFixed(2) + ' ct</td>' +
+        '<td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + esc_(x.color) + '</td><td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + esc_(x.clarity) + '</td>' +
+        '<td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + esc_(x.fl) + '</td><td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + gia + '</td>' +
+        '<td style="padding:6px 8px;border-bottom:1px solid #E3DACA;text-align:right;font-weight:bold;color:#8A6A33">' + vnd_(x.price) + '</td></tr>';
+    }).join('');
+    var html = '<div style="font-family:Segoe UI,Arial,sans-serif;color:#1D2433;max-width:680px;margin:auto">' +
+      '<h2 style="color:#0B1F3A;font-family:Georgia,serif">Bảng giá kim cương GIA – CHJ Diamond</h2>' +
+      '<p>Chào ' + esc_(L.name) + ', cảm ơn bạn đã quan tâm kim cương thiên nhiên GIA tại CHJ.</p>' +
+      '<p>' + (scoped ? 'Dưới đây là các viên <b>' + esc_(L.size) + '</b> đang có' : 'Dưới đây là các viên đang có') + (pick.length > shown.length ? ' (' + shown.length + '/' + pick.length + ' viên, giá thấp đến cao)' : '') + ':</p>' +
+      '<table style="border-collapse:collapse;width:100%;font-size:14px"><tr style="background:#0B1F3A;color:#fff"><th align="left" style="padding:8px">Kích thước</th><th align="left" style="padding:8px">Màu</th><th align="left" style="padding:8px">Độ sạch</th><th align="left" style="padding:8px">Huỳnh quang</th><th align="left" style="padding:8px">Mã GIA</th><th align="right" style="padding:8px">Giá</th></tr>' + rows + '</table>' +
+      (site ? '<p><a href="' + esc_(site) + '" style="background:#B8935A;color:#0B1F3A;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:bold;display:inline-block">Xem đầy đủ bảng giá trên website</a></p>' : '') +
+      '<p style="color:#5E6678;font-size:13px">Giá tham khảo, CHJ xác nhận lại giá và tình trạng hàng khi tư vấn. Cần tư vấn nhanh: Zalo/Hotline <a href="https://zalo.me/0912268667">0912 268 667</a>.</p>' +
+      '<p style="color:#5E6678;font-size:12px">CHJ Diamond &amp; Jewelry – Chung Hiếu Jewelry. Bạn nhận email này vì đã đăng ký xem bảng giá trên website CHJ.</p></div>';
+    MailApp.sendEmail({ to: L.email, subject: 'Bảng giá kim cương GIA – CHJ Diamond' + (scoped ? ' (' + L.size + ')' : ''), htmlBody: html, name: 'CHJ Diamond & Jewelry' });
+    cache.put(key, '1', 1800);
+    return 'sent';
+  } catch (e) {
+    return 'failed';
+  }
 }
 
 function trackInterest_(b) {

@@ -40,13 +40,14 @@
     }).catch(function(){});
   }
 
-  /* ---- modal ---- */
+  /* ---- modal + form (chỉ ở trang chủ) ---- */
+  if(form){
   function openForm(){
     if(!API){toast('Website chưa kết nối dữ liệu. Vui lòng nhắn Zalo.');return}
     lastFocus=document.activeElement;
     var t=load(TOKEN_KEY);
     track('ViewContent',{content_name:'Bang gia kim cuong GIA'});
-    if(t){fetchStock(t,function(ok){if(!ok)showModal()});return}
+    if(t){location.href='thanks.html';return}
     showModal();
   }
   function showModal(){ov.classList.add('on');document.body.style.overflow='hidden';setTimeout(function(){$('#name').focus()},50)}
@@ -64,7 +65,7 @@
     var e={};
     if(v.name.length<2)e.name='Vui lòng nhập họ và tên.';
     if(!PHONE.test(v.phone))e.phone='Số điện thoại chưa đúng (VD: 0912 345 678).';
-    if(v.email&&!EMAIL.test(v.email))e.email='Email chưa đúng định dạng.';
+    if(!EMAIL.test(v.email))e.email='Vui lòng nhập email đúng định dạng để nhận bảng giá.';
     if(!v.size)e.size='Vui lòng chọn kích thước.';
     if(!v.budget)e.budget='Vui lòng chọn ngân sách.';
     if(!v.purpose)e.purpose='Vui lòng chọn mục đích.';
@@ -85,11 +86,8 @@
     api('lead',v).then(function(d){
       if(d&&d.ok&&d.token){
         store(TOKEN_KEY,d.token);store(SIZE_KEY,v.size);
-        track('Lead',{content_name:'Bang gia kim cuong GIA',value:0,currency:'VND'});
-        fetchStock(d.token,function(ok){
-          resetBtn();
-          if(!ok)formError('Thông tin đã được ghi nhận nhưng chưa tải được bảng giá. Vui lòng thử lại hoặc nhắn Zalo 0912 268 667.');
-        });
+        try{sessionStorage.setItem('chj_mail',JSON.stringify({status:d.emailStatus||'failed',email:v.email}));sessionStorage.setItem('chj_lead_fired','1')}catch(e){}
+        location.href='thanks.html';
       }else{
         if(d&&d.errors)showErrors(d.errors);
         formError((d&&d.error)||'Chưa gửi được thông tin. Vui lòng kiểm tra lại các ô và thử lần nữa.');
@@ -98,13 +96,15 @@
     }).catch(function(){formError('Không kết nối được máy chủ. Vui lòng kiểm tra mạng và thử lại, hoặc nhắn Zalo 0912 268 667.');resetBtn()});
   });
 
-  /* ---- bảng giá ---- */
-  function fetchStock(token,cb){
+  }
+
+  /* ---- bảng giá (chỉ ở trang cảm ơn) ---- */
+  function fetchStock(token){
     api('stock',{token:token}).then(function(d){
-      if(d&&d.error==='expired'){store(TOKEN_KEY,null);throw 0}
+      if(d&&d.error==='expired'){store(TOKEN_KEY,null);location.replace('index.html');return}
       if(!d||!d.ok||!d.items)throw 1;
-      items=d.items;hideModal();form.reset();renderList();cb&&cb(true);
-    }).catch(function(){cb&&cb(false)});
+      items=d.items;$('#loading').hidden=true;renderList();
+    }).catch(function(){$('#loading').hidden=true;$('#loaderr').hidden=false});
   }
   var M={ly:$('#f-ly'),color:$('#f-color'),clarity:$('#f-clarity'),fl:$('#f-fl'),sort:$('#f-sort')};
   function fillOpts(sel,label,vals,fmt){sel.innerHTML='<option value="">'+label+'</option>'+vals.map(function(x){return'<option value="'+x+'">'+(fmt?fmt(x):x)+'</option>'}).join('')}
@@ -121,7 +121,6 @@
     if(m&&s.indexOf('–')<0&&s!=='Khác'&&uniq('ly').indexOf(parseFloat(m[1]))>-1)M.ly.value=m[1];
     $('#pricelist').classList.add('on');
     draw(true);
-    setTimeout(function(){$('#pricelist').scrollIntoView({behavior:'smooth',block:'start'})},60);
   }
   function filtered(){
     var ly=M.ly.value,c=M.color.value,cl=M.clarity.value,fl=M.fl.value,s=M.sort.value;
@@ -147,8 +146,10 @@
     if(!cur.length)$('#grid').innerHTML='<div class="empty">Chưa có viên khớp bộ lọc này. Hãy nới bộ lọc hoặc nhắn Zalo 0912 268 667 để CHJ tìm giúp bạn.</div>';
     $('#more').style.display=shown<cur.length?'inline-block':'none';
   }
-  Object.keys(M).forEach(function(k){M[k].addEventListener('change',function(){draw(true)})});
-  $('#more').addEventListener('click',function(){draw(false)});
+  if($('#pricelist')){
+    Object.keys(M).forEach(function(k){M[k].addEventListener('change',function(){draw(true)})});
+    $('#more').addEventListener('click',function(){draw(false)});
+  }
 
   /* ---- Zalo + ghi nhận viên quan tâm ---- */
   function zaloText(x){
@@ -206,7 +207,7 @@
     });
   }
 
-  $('#grid').addEventListener('click',function(e){
+  if($('#grid'))$('#grid').addEventListener('click',function(e){
     var ask=e.target.closest('[data-ask]'), png=e.target.closest('[data-png]');
     if(png){var p=cur[+png.getAttribute('data-png')];if(p)savePNG(p);return}
     if(!ask)return;
@@ -215,5 +216,22 @@
     var t=load(TOKEN_KEY);
     if(t)try{api('interest',{token:t,itemId:x.id}).catch(function(){})}catch(err){}
   });
+  /* ---- khởi động trang cảm ơn ---- */
+  if($('#pricelist')){
+    var tk=load(TOKEN_KEY);
+    if(!API||!tk){location.replace('index.html')}
+    else{
+      var mail=null;try{mail=JSON.parse(sessionStorage.getItem('chj_mail')||'null')}catch(e){}
+      var line=$('#ty-mail');
+      if(mail&&mail.email&&(mail.status==='sent'||mail.status==='recent')){
+        line.textContent='Bảng giá kim cương CHJ '+(mail.status==='sent'?'đã được gửi tới email ':'đã được gửi trước đó tới email ')+mail.email+'. Nếu chưa thấy, bạn hãy kiểm tra cả mục Spam hoặc Quảng cáo. Bảng giá cũng hiển thị ngay bên dưới.';
+      }else if(mail){
+        line.textContent='Chưa gửi được email cho bạn, nhưng bảng giá kim cương CHJ hiển thị ngay bên dưới và CHJ sẽ liên hệ hỗ trợ.';
+      }
+      try{if(sessionStorage.getItem('chj_lead_fired')==='1'){sessionStorage.setItem('chj_lead_fired','0');track('Lead',{content_name:'Bang gia kim cuong GIA',value:0,currency:'VND'})}}catch(e){}
+      fetchStock(tk);
+      document.querySelectorAll('.js-open').forEach(function(b){b.addEventListener('click',function(){$('#pricelist').scrollIntoView({behavior:'smooth'})})});
+    }
+  }
   document.querySelectorAll('[data-zalo]').forEach(function(a){a.href=ZALO;a.addEventListener('click',function(){track('Contact')})});
 })();

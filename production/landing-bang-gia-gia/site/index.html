@@ -200,31 +200,6 @@ fbq('init','556532239837827');fbq('track','PageView');
   </div>
 </section>
 
-<section id="pricelist" aria-live="polite">
-  <div class="wrap">
-    <div class="pl-head">
-      <div class="eyebrow" style="color:var(--gold)">Bảng giá kim cương GIA – CHJ Diamond</div>
-      <h2>Danh sách kim cương CHJ đang có</h2>
-      <p>Tất cả là kim cương thiên nhiên Round, chứng nhận GIA, giác cắt Triple Excellent. Giá và tồn kho có thể thay đổi, CHJ sẽ xác nhận lại khi tư vấn.</p>
-    </div>
-    <div class="filters">
-      <select id="f-ly" aria-label="Kích thước"></select>
-      <select id="f-color" aria-label="Màu"></select>
-      <select id="f-clarity" aria-label="Độ sạch"></select>
-      <select id="f-fl" aria-label="Huỳnh quang"></select>
-      <select id="f-sort" aria-label="Sắp xếp">
-        <option value="asc">Giá thấp đến cao</option>
-        <option value="desc">Giá cao đến thấp</option>
-        <option value="ct">Carat cao đến thấp</option>
-      </select>
-    </div>
-    <div class="count" id="count"></div>
-    <div class="grid" id="grid"></div>
-    <div class="more"><button class="btn ghost" id="more" type="button" style="display:none">Xem thêm</button></div>
-    <p class="legend">Chú thích: Màu D là trắng nhất. Độ sạch IF, VVS1, VVS2, VS1, VS2 giảm dần. Huỳnh quang: N (None) là không có, Faint nhẹ, Medium vừa, Strong mạnh. Cut/Polish/Symmetry: EX = Excellent. Bạn có thể tra cứu số giấy GIA trên trang chính thức của GIA.</p>
-  </div>
-</section>
-
 <section class="s">
   <div class="wrap">
     <h2>Từ chọn viên đến nhận nhẫn</h2>
@@ -240,7 +215,7 @@ fbq('init','556532239837827');fbq('track','PageView');
 <section class="cta-band">
   <div class="wrap">
     <h2>Biết giá trước, chọn đúng viên sau</h2>
-    <p>Nhận bảng giá kim cương GIA của CHJ và so sánh từng viên theo ngân sách của bạn.</p>
+    <p>Nhận bảng giá kim cương GIA của CHJ qua email và so sánh từng viên theo ngân sách của bạn.</p>
     <button class="btn js-open" type="button" id="cta2">XEM BẢNG GIÁ KIM CƯƠNG GIA MIỄN PHÍ</button>
   </div>
 </section>
@@ -259,13 +234,13 @@ fbq('init','556532239837827');fbq('track','PageView');
   <div class="modal">
     <button class="x" type="button" id="close" aria-label="Đóng">&times;</button>
     <h2 id="m-title">Nhận bảng giá kim cương GIA của CHJ</h2>
-    <p class="hint">Cho CHJ biết nhu cầu của bạn để lọc đúng viên. Bảng giá sẽ mở ngay sau khi thông tin được ghi nhận.</p>
+    <p class="hint">Cho CHJ biết nhu cầu của bạn để lọc đúng viên. Bảng giá sẽ được gửi vào email của bạn và hiện ngay trên trang cảm ơn.</p>
     <div class="formerr" id="formerr" role="alert"></div>
     <form id="lead" novalidate>
       <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="f" data-k="name"><label for="name">Họ và tên <i>*</i></label><input id="name" name="name" type="text" autocomplete="name" maxlength="100"><div class="err"></div></div>
       <div class="f" data-k="phone"><label for="phone">Số điện thoại <i>*</i></label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912 345 678" maxlength="20"><div class="err"></div></div>
-      <div class="f" data-k="email"><label for="email">Email (không bắt buộc)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="120"><div class="err"></div></div>
+      <div class="f" data-k="email"><label for="email">Email nhận bảng giá <i>*</i></label><input id="email" name="email" type="email" autocomplete="email" maxlength="120"><div class="err"></div></div>
       <div class="row2">
         <div class="f" data-k="size"><label for="size">Kích thước quan tâm <i>*</i></label>
           <select id="size" name="size"><option value="">Chọn kích thước</option><option>3.6 ly</option><option>4 ly</option><option>4.5 ly</option><option>4.6–4.9 ly</option><option>5 ly</option><option>5.4 ly</option><option>5.8 ly</option><option>6 ly</option><option>Khác</option></select><div class="err"></div></div>
