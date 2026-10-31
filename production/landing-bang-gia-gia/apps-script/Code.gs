@@ -1,29 +1,28 @@
 /**
- * CHJ Diamond – Backend trên Google Apps Script (gắn vào file Google Sheets kho kim cương).
+ * CHJ Diamond – Backend trên Google Apps Script.
  *
- * Việc của script:
- *  - Nhận form khách hàng, kiểm tra, chống spam/trùng, lưu vào tab "Khách hàng", cấp token xem bảng giá.
- *  - Cấp bảng giá kim cương (từ chính các tab kho) CHỈ khi có token hợp lệ.
- *  - Kiểm soát tồn kho: cột Trạng thái (Còn hàng / Đang giữ / Đã bán / Ẩn) + tab "Tổng quan tồn kho".
+ * Gắn vào một Google Sheet RIÊNG của CHJ (chứa tab "Khách hàng"). Kho kim cương được ĐỌC từ sheet
+ * "CÁC VIÊN KIM CƯƠNG GIA CÓ SẴN TẠI CHJ" (theo ID bên dưới), không sửa gì trong sheet đó.
+ *
+ *  - Nhận form khách hàng: kiểm tra, chống spam/trùng, lưu tab "Khách hàng", cấp token xem bảng giá.
+ *  - Cấp bảng giá CHỈ khi có token hợp lệ. Chỉ các tab kích thước (3.6LY ... 6LY) và "K PHẢI TRÒN" được đọc;
+ *    tab KIM TẤM (giá nhập) và cột NGƯỜI BÁN không bao giờ được gửi ra ngoài.
+ *  - Viên đã có tên người bán/ngày bán thì tự ẩn khỏi web; viên có chữ "giữ/cọc" hiện nhãn "Đang có khách giữ".
  *  - Ghi viên khách bấm tư vấn vào hồ sơ khách.
- *
- * Hướng dẫn cài đặt: xem README.md. Chạy setup() đúng 1 lần, sau đó triển khai Web app.
  */
 
+var STOCK_SHEET_ID = '1j_uo1JJWY9vtCiRlc8-ScJSx2TYnTUu_wNZqjS0L45w';
 var CUSTOMER_SHEET = 'Khách hàng';
 var SUMMARY_SHEET = 'Tổng quan tồn kho';
-var NON_STOCK = [CUSTOMER_SHEET, SUMMARY_SHEET];
+var FANCY_TABS = ['K PHẢI TRÒN'];
 
 var HEADERS = [
   'Thời gian đăng ký', 'Họ tên', 'Số điện thoại', 'Email', 'Kích thước quan tâm', 'Ngân sách',
   'Mục đích mua', 'Viên kim đã bấm tư vấn', 'Nguồn khách hàng / UTM', 'Trạng thái chăm sóc',
-  'Nhân viên phụ trách', 'Mã lead', 'Đồng ý liên hệ', 'Số lần đăng ký', 'Cập nhật lần cuối', 'Email bảng giá'
+  'Nhân viên phụ trách', 'Mã lead', 'Đồng ý liên hệ', 'Số lần đăng ký', 'Cập nhật lần cuối'
 ];
-var COL = { time: 1, name: 2, phone: 3, email: 4, size: 5, budget: 6, purpose: 7, interest: 8, utm: 9, status: 10, owner: 11, leadId: 12, consent: 13, count: 14, updated: 15, mail: 16 };
+var COL = { time: 1, name: 2, phone: 3, email: 4, size: 5, budget: 6, purpose: 7, interest: 8, utm: 9, status: 10, owner: 11, leadId: 12, consent: 13, count: 14, updated: 15 };
 var CARE_STATUSES = ['Mới', 'Đã gọi', 'Đang tư vấn', 'Hẹn xem hàng', 'Đã chốt', 'Không phù hợp'];
-
-var STOCK_STATUSES = ['Còn hàng', 'Đang giữ', 'Đã bán', 'Ẩn'];
-var STOCK_EXTRA = ['Trạng thái', 'Giữ đến', 'Ghi chú nội bộ'];
 
 var SIZES = ['3.6 ly', '4 ly', '4.5 ly', '4.6–4.9 ly', '5 ly', '5.4 ly', '5.8 ly', '6 ly', 'Khác'];
 var BUDGETS = ['Dưới 10 triệu', '10–20 triệu', '20–30 triệu', '30–50 triệu', '50–100 triệu', 'Trên 100 triệu'];
@@ -51,21 +50,18 @@ function setup() {
   sh.getRange(2, COL.status, 5000, 1).setDataValidation(
     SpreadsheetApp.newDataValidation().requireValueInList(CARE_STATUSES, true).setAllowInvalid(false).build());
 
-  prepareStockSheets_();
+  var s = readStock_(); // báo lỗi ngay nếu tài khoản chưa có quyền xem sheet kho
   refreshSummary();
   installTrigger_();
 
+  Logger.log('Đọc được kho: ' + s.items.length + ' viên đang bán.');
   Logger.log('ADMIN_KEY = ' + props.getProperty('ADMIN_KEY'));
   Logger.log('Giữ ADMIN_KEY bí mật: dùng cho công cụ kiểm tra tools/verify.mjs. KHÔNG dán vào website.');
   Logger.log('Tab "' + CUSTOMER_SHEET + '" chứa dữ liệu khách: không chia sẻ/xuất bản công khai.');
 }
 
 function onOpen() {
-  SpreadsheetApp.getUi().createMenu('CHJ')
-    .addItem('Chuẩn hóa tab kho (thêm cột Trạng thái)', 'prepareStockSheets_')
-    .addItem('Ẩn các dòng kho bị trùng', 'hideDuplicates')
-    .addItem('Làm mới Tổng quan tồn kho', 'refreshSummary')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('CHJ').addItem('Làm mới Tổng quan tồn kho', 'refreshSummary').addToUi();
 }
 
 function installTrigger_() {
@@ -75,103 +71,113 @@ function installTrigger_() {
 
 /* ───────────────────────── Kho kim cương ───────────────────────── */
 
-function stockSheets_() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheets().filter(function (sh) {
-    return NON_STOCK.indexOf(sh.getName()) === -1;
-  });
-}
-
-// Tìm dòng tiêu đề (có chữ "report" ở cột D) trong 10 dòng đầu; -1 nếu không phải tab kho.
-function headerRow_(data) {
-  for (var i = 0; i < Math.min(data.length, 10); i++) {
-    if (String(data[i][3]).toLowerCase().indexOf('report') > -1) return i;
-  }
-  return -1;
-}
-
-function prepareStockSheets_() {
-  stockSheets_().forEach(function (sh) {
-    var data = sh.getDataRange().getValues(), h = headerRow_(data);
-    if (h < 0) return;
-    var width = data[h].length, startCol = -1;
-    STOCK_EXTRA.forEach(function (name) {
-      var idx = data[h].indexOf(name);
-      if (idx === -1) {
-        width++;
-        sh.getRange(h + 1, width).setValue(name).setFontWeight('bold');
-        idx = width - 1;
-      }
-      if (name === 'Trạng thái') startCol = idx + 1;
-    });
-    var rows = Math.max(sh.getLastRow() - h, 1);
-    sh.getRange(h + 2, startCol, rows, 1).setDataValidation(
-      SpreadsheetApp.newDataValidation().requireValueInList(STOCK_STATUSES, true).setAllowInvalid(false).build());
-  });
-}
-
+function up_(v) { return String(v == null ? '' : v).replace(/\s+/g, ' ').trim().toUpperCase(); }
+function toNum_(v) { return parseFloat(String(v).replace(',', '.')); }
 function toPrice_(v) {
   if (typeof v === 'number') return v;
-  var n = parseInt(String(v).replace(/[^\d]/g, ''), 10);
+  var n = parseInt(String(v).replace(/[^\d]/g, ''), 10); // 6,500,000 / 23.000.000 / 6500000 đều ra số nguyên VND
   return isNaN(n) ? 0 : n;
 }
 
-function isPast_(d) {
-  if (!(d instanceof Date)) return false;
-  var t = new Date(); t.setHours(0, 0, 0, 0);
-  return d.getTime() < t.getTime();
+// Chỉ tab kích thước ("3.6LY", "4.6 - 4.9LY"...) và tab kim không tròn. KIM TẤM và mọi tab khác bị bỏ qua.
+function tabInfo_(name) {
+  var n = up_(name).replace(/\s+/g, '');
+  if (FANCY_TABS.indexOf(up_(name)) > -1) return { fancy: true, grp: 'Kim không tròn' };
+  var m = n.match(/^(\d+(?:[.,]\d+)?)(?:-(\d+(?:[.,]\d+)?))?LY$/);
+  if (!m) return null;
+  var a = toNum_(m[1]), b = m[2] ? toNum_(m[2]) : null;
+  return { fancy: false, lo: a, hi: b, grp: b ? a + '–' + b + ' ly' : a + ' ly' };
 }
 
-// Đọc toàn bộ kho. Mỗi viên có st: 'ok' (còn hàng) | 'hold' (đang giữ); Đã bán/Ẩn không được trả về.
+function normFl_(s) {
+  s = up_(s);
+  if (!s || s === 'NONE' || s === 'N' || s === 'NON') return 'N';
+  return s.toLowerCase().replace(/(^|\s)\S/g, function (c) { return c.toUpperCase(); }); // Faint, Medium, Strong Blue
+}
+
+function parseFancySize_(a) {
+  var m = up_(a).match(/(\d+(?:[.,]\d+)?)\s*(?:LY|LI)/);
+  return m ? toNum_(m[1]) : 0;
+}
+
+function stockSpreadsheet_() { return SpreadsheetApp.openById(STOCK_SHEET_ID); }
+
+// Đọc kho. st: 'ok' (còn) | 'hold' (đang giữ). Đã bán / thiếu mã GIA không được trả về web.
 function readStock_() {
-  var items = [], seen = {}, dupes = [], bad = [], perTab = [];
-  stockSheets_().forEach(function (sh) {
-    var data = sh.getDataRange().getValues(), h = headerRow_(data);
+  var items = [], seen = {}, dupes = [], notes = [], mismatch = [], perTab = [];
+  stockSpreadsheet_().getSheets().forEach(function (sh) {
+    var info = tabInfo_(sh.getName());
+    if (!info) return;
+    var data = sh.getDataRange().getValues(), h = -1, i;
+    for (i = 0; i < Math.min(data.length, 6); i++) if (up_(data[i][1]).indexOf('ĐỘ SẠCH') > -1) { h = i; break; }
     if (h < 0) return;
-    var stCol = data[h].indexOf('Trạng thái'), untilCol = data[h].indexOf('Giữ đến');
-    var tab = { name: sh.getName(), total: 0, ok: 0, hold: 0, sold: 0, hidden: 0, min: 0, max: 0 };
-    for (var i = h + 1; i < data.length; i++) {
-      var r = data[i];
-      if (r.slice(0, 12).join('') === '') continue;
-      var m = String(r[2]).match(/^(\d+(?:\.\d+)?)/);
-      var price = toPrice_(r[11]), ct = Number(r[4]);
-      var color = String(r[5]).trim(), clarity = String(r[6]).trim();
-      if (!m || !color || !clarity || !(price > 0) || !(ct > 0)) {
-        // Dòng tiêu đề lặp/ghi chú/số 0 rời rạc thì bỏ qua; dòng có số đo hoặc mã GIA mà thiếu dữ liệu thì báo lỗi.
-        if (String(r[2]).trim() || String(r[3]).trim()) {
-          if (!/measurements|report/i.test(String(r[2]) + String(r[3]))) bad.push(sh.getName() + ' dòng ' + (i + 1));
-        }
-        continue;
-      }
-      var status = stCol > -1 ? String(r[stCol]).trim() : '';
-      if (status === 'Đang giữ' && untilCol > -1 && isPast_(r[untilCol])) status = 'Còn hàng';
+    var stated = (String(data[h][7]).match(/(\d+)/) || [])[1];
+    var tab = { name: sh.getName(), total: 0, ok: 0, hold: 0, sold: 0, min: 0, max: 0, stated: stated ? parseInt(stated, 10) : null };
+    for (i = h + 1; i < data.length; i++) {
+      var r = data[i], where = sh.getName() + ' dòng ' + (i + 1);
+      var price = toPrice_(r[3]), b = String(r[1]).trim();
+      if (!b && !price) continue;
+      if (!b || !(price > 0)) { notes.push(where + ': thiếu độ sạch hoặc giá, bị bỏ qua'); continue; }
       tab.total++;
-      if (status === 'Đã bán') { tab.sold++; continue; }
-      if (status === 'Ẩn') { tab.hidden++; continue; }
-      var id = String(r[3]).trim() + '|' + String(r[2]).trim();
-      if (seen[id]) { dupes.push(sh.getName() + ' dòng ' + (i + 1) + ' trùng ' + id); continue; } // web không bao giờ hiện 2 lần cùng một viên
-      seen[id] = true;
-      var hold = status === 'Đang giữ';
+
+      // Cột A: màu, hoặc "4,75 - H" (kích thước - màu); tab kim không tròn: "OVAL - G - 6,6LI"
+      var a = up_(r[0]), color = '', ly = 0, shape = 'Round', am;
+      var tokens = b.split(/\s+-\s+/).map(function (t) { return t.trim(); });
+      if (info.fancy) {
+        var sm = a.match(/^(OVAL|RADIANT|RADIAN|PEAR|CUSHION|PRINCESS|EMERALD|HEART|MARQUISE)/);
+        shape = sm ? sm[1].charAt(0) + sm[1].slice(1).toLowerCase() : 'Fancy';
+        if (shape === 'Radian') shape = 'Radiant';
+        ly = parseFancySize_(a);
+        var cm = a.match(/-\s*([A-Z])\s*-/);
+        color = cm ? cm[1] : '';
+      } else if ((am = a.match(/^(\d+(?:[.,]\d+)?)\s*-\s*([A-Z]{1,2})$/))) {
+        ly = toNum_(am[1]); color = am[2];
+      } else if (/^[A-Z]{1,2}$/.test(a)) {
+        color = a; ly = info.lo;
+        if (info.hi) notes.push(where + ': tab ' + info.grp + ' nhưng chưa ghi kích thước từng viên, tạm tính ' + info.lo + ' ly');
+      }
+      if (!color && tokens.length >= 3 && /^[A-Z]{1,2}$/i.test(tokens[0])) color = tokens.shift().toUpperCase();
+      var clarity = (tokens[0] || '').toUpperCase(), fl = normFl_(tokens.slice(1).join(' '));
+      var gia = String(r[2]).replace(/\D/g, '');
+      if (!color || !clarity || !(ly > 0)) { notes.push(where + ': không đọc được màu/độ sạch/kích thước, bị bỏ qua'); continue; }
+      if (gia.length !== 10) { notes.push(where + ': thiếu mã GIA 10 số, không đưa lên web'); continue; }
+
+      // Trạng thái: có tên người bán / ngày bán thì coi là đã bán (ẩn); "giữ/cọc" thì Đang giữ
+      var sellerTxt = String(r[4]).trim(), extra = String(r[5]).trim() + ' ' + String(r[6]).trim();
+      var hold = /giữ|cọc/i.test(sellerTxt + ' ' + extra);
+      var sold = !hold && (sellerTxt !== '' || /\d\/\d|bán|tháng/i.test(extra));
+      if (extra.trim() && !sold && !hold) notes.push(where + ': ghi chú "' + extra.trim() + '" (đang vẫn hiển thị là còn hàng)');
+      if (sold) { tab.sold++; continue; }
+
+      if (seen[gia]) { dupes.push(where + ' trùng mã GIA ' + gia); continue; }
+      seen[gia] = true;
       hold ? tab.hold++ : tab.ok++;
       tab.min = tab.min ? Math.min(tab.min, price) : price;
       tab.max = Math.max(tab.max, price);
-      var fl = String(r[10]).trim();
-      items.push({
-        id: id, shape: String(r[1]).trim() || 'Round', ly: Math.round(parseFloat(m[1]) * 10) / 10, ms: String(r[2]).trim(),
-        gia_no: String(r[3]).trim(), ct: ct, color: color, clarity: clarity, cut: String(r[7]).trim(), pol: String(r[8]).trim(),
-        sym: String(r[9]).trim(), fl: /^n/i.test(fl) ? 'N' : fl, price: price, st: hold ? 'hold' : 'ok'
-      });
+      items.push({ id: gia, shape: shape, grp: info.grp, ly: ly, color: color, clarity: clarity, fl: fl, gia_no: gia, price: price, st: hold ? 'hold' : 'ok' });
+    }
+    if (tab.stated !== null && tab.stated !== tab.ok + tab.hold) {
+      mismatch.push(sh.getName() + ': ghi "TỔNG CÒN ' + tab.stated + '" nhưng thực tế còn ' + (tab.ok + tab.hold) + ' viên');
     }
     perTab.push(tab);
   });
-  return { items: items, dupes: dupes, bad: bad, perTab: perTab };
+  return { items: items, dupes: dupes, notes: notes, mismatch: mismatch, perTab: perTab };
 }
 
-// Số liệu công khai, không lộ từng viên: khoảng giá và số viên nhóm 5 ly còn hàng.
+// Số liệu công khai (không lộ từng viên): nhóm kích thước có chênh lệch giá lớn nhất trong số viên còn hàng.
 function publicStats_() {
-  var s = readStock_().items.filter(function (x) { return x.ly === 5 && x.st === 'ok'; });
-  if (!s.length) return { ok: true, ly5: null };
-  var p = s.map(function (x) { return x.price; });
-  return { ok: true, ly5: { count: s.length, min: Math.min.apply(null, p), max: Math.max.apply(null, p) } };
+  var by = {};
+  readStock_().items.forEach(function (x) {
+    if (x.st !== 'ok' || x.shape !== 'Round') return;
+    (by[x.grp] = by[x.grp] || []).push(x.price);
+  });
+  var best = null;
+  Object.keys(by).forEach(function (g) {
+    if (by[g].length < 2) return;
+    var mn = Math.min.apply(null, by[g]), mx = Math.max.apply(null, by[g]);
+    if (mx > mn && (!best || mx - mn > best.max - best.min)) best = { grp: g, count: by[g].length, min: mn, max: mx };
+  });
+  return { ok: true, spread: best };
 }
 
 function refreshSummary() {
@@ -179,41 +185,15 @@ function refreshSummary() {
   var sh = ss.getSheetByName(SUMMARY_SHEET) || ss.insertSheet(SUMMARY_SHEET);
   var s = readStock_();
   sh.clear();
-  var rows = [['Tab kho', 'Tổng dòng hợp lệ', 'Còn hàng', 'Đang giữ', 'Đã bán', 'Ẩn', 'Giá thấp nhất (còn/giữ)', 'Giá cao nhất (còn/giữ)']];
-  s.perTab.forEach(function (t) { rows.push([t.name, t.total, t.ok, t.hold, t.sold, t.hidden, t.min, t.max]); });
+  var rows = [['Tab kho', 'Dòng hợp lệ', 'Còn hàng', 'Đang giữ', 'Đã bán', 'Giá thấp nhất', 'Giá cao nhất', 'Ô "TỔNG CÒN" ghi']];
+  s.perTab.forEach(function (t) { rows.push([t.name, t.total, t.ok, t.hold, t.sold, t.min, t.max, t.stated === null ? '' : t.stated]); });
   rows.push(['']);
   rows.push(['Cập nhật lúc', new Date()]);
-  rows.push(['Mã GIA + kích thước trùng', s.dupes.length ? s.dupes.join('\n') : 'Không có']);
-  rows.push(['Dòng thiếu giá/màu/độ sạch (bị bỏ qua)', s.bad.length ? s.bad.join('\n') : 'Không có']);
+  rows.push(['Ô TỔNG CÒN lệch số thực tế', s.mismatch.length ? s.mismatch.join('\n') : 'Không có']);
+  rows.push(['Trùng mã GIA', s.dupes.length ? s.dupes.join('\n') : 'Không có']);
+  rows.push(['Dòng cần xem lại / ghi chú', s.notes.length ? s.notes.join('\n') : 'Không có']);
   sh.getRange(1, 1, rows.length, 8).setValues(rows.map(function (r) { while (r.length < 8) r.push(''); return r; }));
   sh.getRange(1, 1, 1, 8).setFontWeight('bold').setBackground('#0B1F3A').setFontColor('#FFFFFF');
-}
-
-// Ẩn các dòng lặp lại cùng một viên (cùng mã GIA + kích thước + cùng giá). Dòng trùng nhưng KHÁC giá được giữ nguyên để người quản lý quyết định.
-function hideDuplicates() {
-  var seen = {}, hidden = 0;
-  stockSheets_().forEach(function (sh) {
-    var data = sh.getDataRange().getValues(), h = headerRow_(data);
-    if (h < 0) return;
-    var stCol = data[h].indexOf('Trạng thái'), noteCol = data[h].indexOf('Ghi chú nội bộ');
-    if (stCol < 0) return;
-    for (var i = h + 1; i < data.length; i++) {
-      var r = data[i], price = toPrice_(r[11]);
-      if (!(price > 0) || !String(r[3]).trim() || !/^\d/.test(String(r[2]).trim())) continue;
-      var status = String(r[stCol]).trim();
-      if (status === 'Đã bán' || status === 'Ẩn') continue;
-      var id = String(r[3]).trim() + '|' + String(r[2]).trim();
-      if (!seen[id]) { seen[id] = price; continue; }
-      if (seen[id] === price) {
-        sh.getRange(i + 1, stCol + 1).setValue('Ẩn');
-        if (noteCol > -1) sh.getRange(i + 1, noteCol + 1).setValue('Dòng trùng, tự ẩn ' + new Date().toLocaleDateString('vi-VN'));
-        hidden++;
-      }
-    }
-  });
-  refreshSummary();
-  Logger.log('Đã ẩn ' + hidden + ' dòng trùng.');
-  return hidden;
 }
 
 /* ───────────────────────── Token ───────────────────────── */
@@ -281,7 +261,7 @@ function submitLead_(b) {
   var errors = {};
   if (name.length < 2) errors.name = 'Vui lòng nhập họ và tên.';
   if (!PHONE_RE.test(phone)) errors.phone = 'Số điện thoại chưa đúng (VD: 0912 345 678).';
-  if (!EMAIL_RE.test(email)) errors.email = 'Vui lòng nhập email đúng định dạng để nhận bảng giá.';
+  if (email && !EMAIL_RE.test(email)) errors.email = 'Email chưa đúng định dạng.';
   if (SIZES.indexOf(size) < 0) errors.size = 'Vui lòng chọn kích thước.';
   if (BUDGETS.indexOf(budget) < 0) errors.budget = 'Vui lòng chọn ngân sách.';
   if (PURPOSES.indexOf(purpose) < 0) errors.purpose = 'Vui lòng chọn mục đích.';
@@ -301,7 +281,7 @@ function submitLead_(b) {
   var now = new Date(), row = findRow_(sh, COL.phone, phone);
   if (row) { // cùng số điện thoại: cập nhật hồ sơ, không tạo dòng mới
     sh.getRange(row, COL.name).setValue(safe_(name));
-    sh.getRange(row, COL.email).setValue(safe_(email));
+    if (email) sh.getRange(row, COL.email).setValue(safe_(email));
     sh.getRange(row, COL.size).setValue(safe_(size));
     sh.getRange(row, COL.budget).setValue(safe_(budget));
     sh.getRange(row, COL.purpose).setValue(safe_(purpose));
@@ -316,57 +296,10 @@ function submitLead_(b) {
   SpreadsheetApp.flush();
   // Chỉ báo thành công khi dòng đã thực sự nằm trong Sheet.
   if (findRow_(sh, COL.phone, phone) !== row) return { ok: false, error: 'Chưa lưu được thông tin. Vui lòng thử lại.' };
-  // Gửi bảng giá qua email ngay; lỗi gửi mail không làm mất lead, trạng thái được ghi vào Sheet.
-  var mail = sendPriceEmail_({ name: name, email: email, size: size });
-  sh.getRange(row, COL.mail).setValue({ sent: 'Đã gửi', recent: 'Đã gửi trước đó', failed: 'LỖI gửi' }[mail] + ' ' + Utilities.formatDate(new Date(), 'Asia/Ho_Chi_Minh', 'dd/MM HH:mm'));
-  return { ok: true, token: issueToken_(phone), emailStatus: mail };
+  return { ok: true, token: issueToken_(phone) };
 }
 
-function esc_(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-function vnd_(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ'; }
-
-// "4.6–4.9 ly" -> [4.6, 4.9]; "Khác" -> null
-function sizeRange_(size) {
-  var m = String(size).match(/(\d+(?:\.\d+)?)(?:–(\d+(?:\.\d+)?))?/);
-  if (!m) return null;
-  return [parseFloat(m[1]), parseFloat(m[2] || m[1])];
-}
-
-function sendPriceEmail_(L) {
-  var cache = CacheService.getScriptCache(), key = 'em_' + L.email.toLowerCase();
-  if (cache.get(key)) return 'recent'; // chống dùng form để gửi mail dồn vào một địa chỉ
-  try {
-    if (MailApp.getRemainingDailyQuota() < 1) return 'failed';
-    var all = readStock_().items.filter(function (x) { return x.st === 'ok'; });
-    var rg = sizeRange_(L.size);
-    var pick = rg ? all.filter(function (x) { return x.ly >= rg[0] - 0.01 && x.ly <= rg[1] + 0.01; }) : [];
-    var scoped = pick.length > 0;
-    if (!scoped) pick = all;
-    pick.sort(function (a, b) { return a.price - b.price; });
-    var shown = pick.slice(0, 40);
-    var site = PropertiesService.getScriptProperties().getProperty('SITE_URL') || '';
-    var rows = shown.map(function (x) {
-      var gia = /^\d{10}$/.test(x.gia_no) ? '<a href="https://www.gia.edu/report-check?reportno=' + x.gia_no + '">' + x.gia_no + '</a>' : esc_(x.gia_no);
-      return '<tr><td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + x.ly.toFixed(1) + ' ly · ' + x.ct.toFixed(2) + ' ct</td>' +
-        '<td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + esc_(x.color) + '</td><td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + esc_(x.clarity) + '</td>' +
-        '<td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + esc_(x.fl) + '</td><td style="padding:6px 8px;border-bottom:1px solid #E3DACA">' + gia + '</td>' +
-        '<td style="padding:6px 8px;border-bottom:1px solid #E3DACA;text-align:right;font-weight:bold;color:#8A6A33">' + vnd_(x.price) + '</td></tr>';
-    }).join('');
-    var html = '<div style="font-family:Segoe UI,Arial,sans-serif;color:#1D2433;max-width:680px;margin:auto">' +
-      '<h2 style="color:#0B1F3A;font-family:Georgia,serif">Bảng giá kim cương GIA – CHJ Diamond</h2>' +
-      '<p>Chào ' + esc_(L.name) + ', cảm ơn bạn đã quan tâm kim cương thiên nhiên GIA tại CHJ.</p>' +
-      '<p>' + (scoped ? 'Dưới đây là các viên <b>' + esc_(L.size) + '</b> đang có' : 'Dưới đây là các viên đang có') + (pick.length > shown.length ? ' (' + shown.length + '/' + pick.length + ' viên, giá thấp đến cao)' : '') + ':</p>' +
-      '<table style="border-collapse:collapse;width:100%;font-size:14px"><tr style="background:#0B1F3A;color:#fff"><th align="left" style="padding:8px">Kích thước</th><th align="left" style="padding:8px">Màu</th><th align="left" style="padding:8px">Độ sạch</th><th align="left" style="padding:8px">Huỳnh quang</th><th align="left" style="padding:8px">Mã GIA</th><th align="right" style="padding:8px">Giá</th></tr>' + rows + '</table>' +
-      (site ? '<p><a href="' + esc_(site) + '" style="background:#B8935A;color:#0B1F3A;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:bold;display:inline-block">Xem đầy đủ bảng giá trên website</a></p>' : '') +
-      '<p style="color:#5E6678;font-size:13px">Giá tham khảo, CHJ xác nhận lại giá và tình trạng hàng khi tư vấn. Cần tư vấn nhanh: Zalo/Hotline <a href="https://zalo.me/0912268667">0912 268 667</a>.</p>' +
-      '<p style="color:#5E6678;font-size:12px">CHJ Diamond &amp; Jewelry – Chung Hiếu Jewelry. Bạn nhận email này vì đã đăng ký xem bảng giá trên website CHJ.</p></div>';
-    MailApp.sendEmail({ to: L.email, subject: 'Bảng giá kim cương GIA – CHJ Diamond' + (scoped ? ' (' + L.size + ')' : ''), htmlBody: html, name: 'CHJ Diamond & Jewelry' });
-    cache.put(key, '1', 1800);
-    return 'sent';
-  } catch (e) {
-    return 'failed';
-  }
-}
+function lyStr_(ly) { return String(Math.round(ly * 100) / 100); }
 
 function trackInterest_(b) {
   var tok = readToken_(b.token);
@@ -376,7 +309,7 @@ function trackInterest_(b) {
   var sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CUSTOMER_SHEET);
   var r = findRow_(sh, COL.phone, tok.p);
   if (!r) return { ok: false, error: 'lead not found' };
-  var text = item.ly.toFixed(1) + ' ly ' + item.color + ' ' + item.clarity + ' GIA ' + item.gia_no;
+  var text = lyStr_(item.ly) + ' ly ' + item.color + ' ' + item.clarity + ' GIA ' + item.gia_no;
   var cell = sh.getRange(r, COL.interest), cur = String(cell.getValue());
   if (cur.indexOf(text) === -1) cell.setValue(safe_(cur ? cur + '\n' + text : text));
   sh.getRange(r, COL.updated).setValue(new Date());
@@ -414,7 +347,7 @@ function doPost(e) {
       case 'diag': // chỉ dành cho công cụ kiểm tra của chủ web
         if (!same_(secret_('ADMIN_KEY'), b.adminKey)) return out_({ ok: false, error: 'unauthorized' });
         var s = readStock_();
-        return out_({ ok: true, tabs: s.perTab, dupes: s.dupes, bad: s.bad, available: s.items.length });
+        return out_({ ok: true, tabs: s.perTab, dupes: s.dupes, notes: s.notes, mismatch: s.mismatch, available: s.items.length });
       case 'delete_tests':
         if (!same_(secret_('ADMIN_KEY'), b.adminKey)) return out_({ ok: false, error: 'unauthorized' });
         return out_(deleteTests_());

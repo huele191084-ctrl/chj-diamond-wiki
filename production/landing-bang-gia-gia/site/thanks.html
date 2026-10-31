@@ -117,6 +117,13 @@ footer b{color:var(--gold2)}
 .dia .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .dia .btn.ghost{padding:11px 10px;font-size:14px}
 .dia a.gia{color:var(--navy);font-weight:600}
+.dia{cursor:pointer;transition:box-shadow .15s,transform .15s}
+.dia:hover{box-shadow:0 10px 26px rgba(11,31,58,.14);transform:translateY(-2px)}
+.zbox{max-width:440px;text-align:center}
+.zbox img{width:100%;max-width:340px;height:auto;margin:10px auto 14px;border-radius:14px;border:1px solid var(--line)}
+.zbox .pick{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;color:var(--navy);font-weight:600;margin:10px 0}
+.zbox .btn{display:block;width:100%}
+.zbox .alt{margin:12px 0 0;font-size:13.5px;color:var(--mute)}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:200;display:none;max-width:90vw;text-align:center}
 @media(min-width:720px){
  .hero{padding:64px 0}
@@ -152,7 +159,7 @@ fbq('init','556532239837827');fbq('track','PageView');
   <div class="wrap" style="display:block;text-align:center;max-width:760px">
     <div class="eyebrow">Đã ghi nhận thông tin của bạn</div>
     <h1 id="ty-title">Cảm ơn bạn đã quan tâm kim cương GIA tại CHJ</h1>
-    <p class="sub" id="ty-mail">Bảng giá kim cương CHJ đang có hiển thị ngay bên dưới.</p>
+    <p class="sub" id="ty-mail">Danh sách kim cương GIA CHJ đang có hiển thị ngay bên dưới. Bấm vào viên bạn thích để gặp nhân viên tư vấn.</p>
     <a class="btn" href="#pricelist">XEM BẢNG GIÁ NGAY</a>
     <div class="note">Cần tư vấn nhanh: Zalo / Hotline <b>0912 268 667</b></div>
   </div>
@@ -164,7 +171,7 @@ fbq('init','556532239837827');fbq('track','PageView');
     <div class="pl-head">
       <div class="eyebrow" style="color:var(--gold)">Bảng giá kim cương GIA – CHJ Diamond</div>
       <h2>Danh sách kim cương CHJ đang có</h2>
-      <p>Tất cả là kim cương thiên nhiên Round, chứng nhận GIA, giác cắt Triple Excellent. Giá và tồn kho có thể thay đổi, CHJ sẽ xác nhận lại khi tư vấn.</p>
+      <p>Tất cả là kim cương thiên nhiên, chứng nhận GIA. Bấm vào viên bạn quan tâm để gặp nhân viên tư vấn. Giá và tồn kho có thể thay đổi, CHJ sẽ xác nhận lại khi tư vấn.</p>
     </div>
     <div class="filters">
       <select id="f-ly" aria-label="Kích thước"></select>
@@ -174,13 +181,12 @@ fbq('init','556532239837827');fbq('track','PageView');
       <select id="f-sort" aria-label="Sắp xếp">
         <option value="asc">Giá thấp đến cao</option>
         <option value="desc">Giá cao đến thấp</option>
-        <option value="ct">Carat cao đến thấp</option>
       </select>
     </div>
     <div class="count" id="count"></div>
     <div class="grid" id="grid"></div>
     <div class="more"><button class="btn ghost" id="more" type="button" style="display:none">Xem thêm</button></div>
-    <p class="legend">Chú thích: Màu D là trắng nhất. Độ sạch IF, VVS1, VVS2, VS1, VS2 giảm dần. Huỳnh quang: N (None) là không có, Faint nhẹ, Medium vừa, Strong mạnh. Cut/Polish/Symmetry: EX = Excellent. Bạn có thể tra cứu số giấy GIA trên trang chính thức của GIA.</p>
+    <p class="legend">Chú thích: Màu D là trắng nhất. Độ sạch IF, VVS1, VVS2, VS1, VS2 giảm dần. Huỳnh quang: N (None) là không có, Faint nhẹ, Medium vừa, Strong mạnh. Bạn có thể tra cứu số giấy GIA trên trang chính thức của GIA.</p>
   </div>
 </section>
 </main>
@@ -189,10 +195,22 @@ fbq('init','556532239837827');fbq('track','PageView');
 </footer>
 
 <div class="sticky">
-  <a class="btn navy" href="https://zalo.me/0912268667" target="_blank" rel="noopener" data-zalo>Chat Zalo</a>
+  <a class="btn navy" href="https://zalo.me/0912268667" target="_blank" rel="noopener" data-zalo>Vào nhóm Zalo</a>
   <button class="btn js-open" type="button">Xem bảng giá</button>
 </div>
 
+<div class="ov" id="zov" role="dialog" aria-modal="true" aria-labelledby="z-title">
+  <div class="modal zbox">
+    <button class="x" type="button" id="zclose" aria-label="Đóng">&times;</button>
+    <h2 id="z-title">Gặp nhân viên tư vấn về viên này</h2>
+    <div class="pick" id="z-pick"></div>
+    <p class="hint" style="margin:0 0 6px">Mời bạn vào <b>nhóm Zalo CHJ</b> để nhân viên tư vấn trực tiếp về chất lượng, tình trạng hàng và phương án lên trang sức.</p>
+    <a class="btn" id="z-join" href="#" target="_blank" rel="noopener">VÀO NHÓM ZALO CHJ NGAY</a>
+    <img src="images/zalo-nhom.jpg" alt="Mã QR tham gia nhóm Zalo CHJ" width="340" height="520" loading="lazy">
+    <p class="alt" id="z-copied">Thông tin viên đã được sao chép. Bạn chỉ cần dán vào nhóm để nhân viên nhận đúng viên bạn chọn.</p>
+    <p class="alt">Hoặc nhắn Zalo riêng: <a href="https://zalo.me/0912268667" target="_blank" rel="noopener" style="color:var(--navy);font-weight:700">0912 268 667</a></p>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 <script src="config.js"></script>
 <script src="app.js"></script>

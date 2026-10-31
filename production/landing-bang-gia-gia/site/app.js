@@ -1,5 +1,5 @@
 (function(){
-  var CFG=window.CHJ_CONFIG||{}, API=CFG.API_URL||'', ZALO='https://zalo.me/'+(CFG.ZALO_PHONE||'0912268667');
+  var CFG=window.CHJ_CONFIG||{}, API=CFG.API_URL||'', ZALO=CFG.ZALO_GROUP_URL||('https://zalo.me/'+(CFG.ZALO_PHONE||'0912268667')), ZALO_ME='https://zalo.me/'+(CFG.ZALO_PHONE||'0912268667');
   var TOKEN_KEY='chj_pl_token', SIZE_KEY='chj_pl_size', BTN_TEXT='NHẬN BẢNG GIÁ KIM CƯƠNG CHJ NGAY';
   var $=function(s){return document.querySelector(s)};
   var ov=$('#ov'), form=$('#lead'), submitBtn=$('#submit'), items=[], cur=[], shown=0, PAGE=24, lastFocus=null;
@@ -8,6 +8,7 @@
   function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
   function toast(msg){var t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display='none'},3200)}
   function track(ev,p){try{fbq('track',ev,p||{})}catch(e){}}
+  function fly(n){return String(Math.round(n*100)/100)}
   function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
   function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 
@@ -32,9 +33,11 @@
   }else{
     // Khoảng giá thật của nhóm 5 ly (công khai, không lộ từng viên)
     fetch(API+'?action=stats').then(function(r){return r.json()}).then(function(d){
-      if(d.ok&&d.ly5){
-        $('#range5-v').textContent=(d.ly5.min/1e6).toFixed(1).replace('.',',')+' triệu đến '+(d.ly5.max/1e6).toFixed(1).replace('.',',')+' triệu đồng';
-        $('#range5-n').textContent=d.ly5.count+' viên còn hàng · cùng kích thước, khác màu, độ sạch và huỳnh quang';
+      if(d.ok&&d.spread){
+        var sp2=d.spread;
+        $('#range5-t').textContent='Trong kho CHJ hiện tại, nhóm kim cương '+sp2.grp+' (GIA) có giá từ';
+        $('#range5-v').textContent=(sp2.min/1e6).toFixed(1).replace('.',',')+' triệu đến '+(sp2.max/1e6).toFixed(1).replace('.',',')+' triệu đồng';
+        $('#range5-n').textContent=sp2.count+' viên còn hàng · cùng kích thước, khác màu, độ sạch và huỳnh quang';
         $('#range5').hidden=false;
       }
     }).catch(function(){});
@@ -65,7 +68,7 @@
     var e={};
     if(v.name.length<2)e.name='Vui lòng nhập họ và tên.';
     if(!PHONE.test(v.phone))e.phone='Số điện thoại chưa đúng (VD: 0912 345 678).';
-    if(!EMAIL.test(v.email))e.email='Vui lòng nhập email đúng định dạng để nhận bảng giá.';
+    if(v.email&&!EMAIL.test(v.email))e.email='Email chưa đúng định dạng.';
     if(!v.size)e.size='Vui lòng chọn kích thước.';
     if(!v.budget)e.budget='Vui lòng chọn ngân sách.';
     if(!v.purpose)e.purpose='Vui lòng chọn mục đích.';
@@ -86,7 +89,7 @@
     api('lead',v).then(function(d){
       if(d&&d.ok&&d.token){
         store(TOKEN_KEY,d.token);store(SIZE_KEY,v.size);
-        try{sessionStorage.setItem('chj_mail',JSON.stringify({status:d.emailStatus||'failed',email:v.email}));sessionStorage.setItem('chj_lead_fired','1')}catch(e){}
+        try{sessionStorage.setItem('chj_lead_fired','1')}catch(e){}
         location.href='thanks.html';
       }else{
         if(d&&d.errors)showErrors(d.errors);
@@ -112,29 +115,29 @@
   var CL=['IF','VVS1','VVS2','VS1','VS2'];
   function uniq(k){return items.map(function(x){return x[k]}).filter(function(v,i,a){return a.indexOf(v)===i})}
   function renderList(){
-    fillOpts(M.ly,'Mọi kích thước',uniq('ly').sort(function(a,b){return a-b}),function(x){return x.toFixed(1)+' ly'});
+    fillOpts(M.ly,'Mọi kích thước',uniq('grp').sort(function(a,b){var x=parseFloat(a),y=parseFloat(b);return(isNaN(x)?99:x)-(isNaN(y)?99:y)}));
     fillOpts(M.color,'Mọi màu',uniq('color').sort());
     fillOpts(M.clarity,'Mọi độ sạch',uniq('clarity').sort(function(a,b){return CL.indexOf(a)-CL.indexOf(b)}));
     fillOpts(M.fl,'Mọi huỳnh quang',['N','Faint','Medium','Strong'].filter(function(x){return uniq('fl').indexOf(x)>-1}),function(x){return FLN[x]});
     var s=load(SIZE_KEY)||'', m=s.match(/^(\d(?:\.\d)?)/);
     M.ly.value='';
-    if(m&&s.indexOf('–')<0&&s!=='Khác'&&uniq('ly').indexOf(parseFloat(m[1]))>-1)M.ly.value=m[1];
+    if(s&&s!=='Khác'&&uniq('grp').indexOf(s)>-1)M.ly.value=s;
     $('#pricelist').classList.add('on');
     draw(true);
   }
   function filtered(){
     var ly=M.ly.value,c=M.color.value,cl=M.clarity.value,fl=M.fl.value,s=M.sort.value;
-    var out=items.filter(function(x){return(!ly||x.ly===parseFloat(ly))&&(!c||x.color===c)&&(!cl||x.clarity===cl)&&(!fl||x.fl===fl)});
-    out.sort(function(a,b){return s==='desc'?b.price-a.price:s==='ct'?b.ct-a.ct||a.price-b.price:a.price-b.price});
+    var out=items.filter(function(x){return(!ly||x.grp===ly)&&(!c||x.color===c)&&(!cl||x.clarity===cl)&&(!fl||x.fl===fl)});
+    out.sort(function(a,b){return s==='desc'?b.price-a.price:a.price-b.price});
     return out;
   }
   function card(x,i){
     var hold=x.st==='hold', gia=/^\d{10}$/.test(x.gia_no)?'<a class="gia" href="https://www.gia.edu/report-check?reportno='+x.gia_no+'" target="_blank" rel="noopener">GIA '+x.gia_no+'</a>':'GIA '+esc(x.gia_no);
-    return '<article class="dia"><div class="top"><div class="sz">'+x.ly.toFixed(1)+' ly <small>· '+x.ct.toFixed(2)+' ct</small></div><div class="pr">'+vnd(x.price)+'</div></div>'+
+    return '<article class="dia" data-ask="'+i+'" tabindex="0" role="button" aria-label="Gặp nhân viên tư vấn về viên '+fly(x.ly)+' ly '+esc(x.color)+' '+esc(x.clarity)+'"><div class="top"><div class="sz">'+fly(x.ly)+' ly'+(x.shape!=='Round'?' <small>· '+esc(x.shape)+'</small>':'')+'</div><div class="pr">'+vnd(x.price)+'</div></div>'+
       (hold?'<div><span class="badge">Đang có khách giữ</span></div>':'')+
       '<div class="spec"><div><span>Màu</span><b>'+esc(x.color)+'</b></div><div><span>Độ sạch</span><b>'+esc(x.clarity)+'</b></div><div><span>Huỳnh quang</span><b>'+esc(x.fl)+'</b></div></div>'+
-      '<div class="meta">'+esc(x.shape)+' · '+esc(x.cut)+'/'+esc(x.pol)+'/'+esc(x.sym)+' · '+esc(x.ms)+' mm · '+gia+'</div>'+
-      '<button class="btn" type="button" data-ask="'+i+'">'+(hold?'Hỏi viên tương tự qua Zalo':'Tư vấn viên này qua Zalo')+'</button>'+
+      '<div class="meta">'+gia+'</div>'+
+      '<div class="btn">'+(hold?'Hỏi viên tương tự – gặp nhân viên tư vấn':'Bấm để gặp nhân viên tư vấn')+'</div>'+
       '<button class="btn ghost" type="button" data-png="'+i+'">Tải ảnh thẻ kim cương (PNG)</button></article>';
   }
   function draw(reset){
@@ -153,12 +156,23 @@
 
   /* ---- Zalo + ghi nhận viên quan tâm ---- */
   function zaloText(x){
-    return 'Tôi vừa xem bảng giá trên website CHJ. Tôi quan tâm viên kim cương '+x.ly.toFixed(1)+' ly, '+x.color+', '+x.clarity+', mã GIA '+x.gia_no+', giá '+vnd(x.price)+'. Nhờ CHJ tư vấn giúp tôi về chất lượng, tình trạng hàng và phương án lên trang sức.';
+    return 'Tôi vừa xem bảng giá trên website CHJ. Tôi quan tâm viên kim cương '+fly(x.ly)+' ly, '+x.color+', '+x.clarity+', mã GIA '+x.gia_no+', giá '+vnd(x.price)+'. Nhờ CHJ tư vấn giúp tôi về chất lượng, tình trạng hàng và phương án lên trang sức.';
   }
-  function openZalo(text){
-    if(text&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast('Đã sao chép tin nhắn, hãy dán vào Zalo để CHJ tư vấn nhanh')},function(){})}
-    window.open(ZALO,'_blank','noopener');
+  var zov=$('#zov');
+  function openZaloGroup(x){
+    var text=zaloText(x);
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).catch(function(){});
+    $('#z-pick').textContent='Viên '+fly(x.ly)+' ly · màu '+x.color+' · '+x.clarity+' · '+vnd(x.price);
+    $('#z-join').href=ZALO;
+    zov.classList.add('on');document.body.style.overflow='hidden';
     track('Contact');
+  }
+  function closeZalo(){zov.classList.remove('on');document.body.style.overflow=''}
+  if(zov){
+    $('#zclose').addEventListener('click',closeZalo);
+    zov.addEventListener('click',function(e){if(e.target===zov)closeZalo()});
+    $('#z-join').addEventListener('click',function(){track('Contact')});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeZalo()});
   }
 
   /* ---- ảnh PNG từ thẻ kim cương ---- */
@@ -176,10 +190,10 @@
       c.fillStyle='#fff';c.font='700 44px '+SERIF;c.textBaseline='alphabetic';c.fillText('CHJ DIAMOND',250,115);
       c.fillStyle='#D9BF8C';c.font='500 28px '+SANS;c.fillText('Chung Hiếu Jewelry · Kim cương thiên nhiên GIA',250,165);
       c.fillStyle='#B8935A';c.font='700 24px '+SANS;c.fillText('THẺ KIM CƯƠNG',250,205);
-      c.fillStyle='#0B1F3A';c.font='700 96px '+SERIF;c.fillText(x.ly.toFixed(1)+' ly',70,420);
-      c.fillStyle='#5E6678';c.font='500 40px '+SANS;c.fillText(x.ct.toFixed(2)+' ct · '+x.shape+' · Kim cương thiên nhiên',70,485);
+      c.fillStyle='#0B1F3A';c.font='700 96px '+SERIF;c.fillText(fly(x.ly)+' ly',70,420);
+      c.fillStyle='#5E6678';c.font='500 40px '+SANS;c.fillText(x.shape+' · Kim cương thiên nhiên · Chứng nhận GIA',70,485);
       c.fillStyle='#B8935A';c.font='700 84px '+SERIF;c.fillText(vnd(x.price),70,620);
-      var rows=[['MÀU',x.color],['ĐỘ SẠCH',x.clarity],['HUỲNH QUANG',x.fl],['CUT / POLISH / SYM',x.cut+'/'+x.pol+'/'+x.sym],['KÍCH THƯỚC (MM)',x.ms],['MÃ GIA',x.gia_no]];
+      var rows=[['KÍCH THƯỚC',fly(x.ly)+' ly'],['HÌNH DÁNG',x.shape],['MÀU',x.color],['ĐỘ SẠCH',x.clarity],['HUỲNH QUANG',x.fl],['MÃ GIA',x.gia_no]];
       rows.forEach(function(rw,i){
         var col=i%2,row=Math.floor(i/2),bx=60+col*480,by=690+row*150;
         c.fillStyle='#fff';rr(c,bx,by,460,126,18);c.fill();c.strokeStyle='#E3DACA';c.lineWidth=2;c.stroke();
@@ -207,27 +221,27 @@
     });
   }
 
-  if($('#grid'))$('#grid').addEventListener('click',function(e){
-    var ask=e.target.closest('[data-ask]'), png=e.target.closest('[data-png]');
-    if(png){var p=cur[+png.getAttribute('data-png')];if(p)savePNG(p);return}
-    if(!ask)return;
-    var x=cur[+ask.getAttribute('data-ask')];if(!x)return;
-    openZalo(zaloText(x));
+  function pickItem(el){
+    var card=el.closest('[data-ask]');if(!card)return;
+    var x=cur[+card.getAttribute('data-ask')];if(!x)return;
+    openZaloGroup(x);
     var t=load(TOKEN_KEY);
     if(t)try{api('interest',{token:t,itemId:x.id}).catch(function(){})}catch(err){}
-  });
+  }
+  if($('#grid')){
+    $('#grid').addEventListener('click',function(e){
+      var png=e.target.closest('[data-png]');
+      if(png){var p=cur[+png.getAttribute('data-png')];if(p)savePNG(p);return}
+      if(e.target.closest('a'))return;
+      pickItem(e.target);
+    });
+    $('#grid').addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.matches('.dia')){e.preventDefault();pickItem(e.target)}});
+  }
   /* ---- khởi động trang cảm ơn ---- */
   if($('#pricelist')){
     var tk=load(TOKEN_KEY);
     if(!API||!tk){location.replace('index.html')}
     else{
-      var mail=null;try{mail=JSON.parse(sessionStorage.getItem('chj_mail')||'null')}catch(e){}
-      var line=$('#ty-mail');
-      if(mail&&mail.email&&(mail.status==='sent'||mail.status==='recent')){
-        line.textContent='Bảng giá kim cương CHJ '+(mail.status==='sent'?'đã được gửi tới email ':'đã được gửi trước đó tới email ')+mail.email+'. Nếu chưa thấy, bạn hãy kiểm tra cả mục Spam hoặc Quảng cáo. Bảng giá cũng hiển thị ngay bên dưới.';
-      }else if(mail){
-        line.textContent='Chưa gửi được email cho bạn, nhưng bảng giá kim cương CHJ hiển thị ngay bên dưới và CHJ sẽ liên hệ hỗ trợ.';
-      }
       try{if(sessionStorage.getItem('chj_lead_fired')==='1'){sessionStorage.setItem('chj_lead_fired','0');track('Lead',{content_name:'Bang gia kim cuong GIA',value:0,currency:'VND'})}}catch(e){}
       fetchStock(tk);
       document.querySelectorAll('.js-open').forEach(function(b){b.addEventListener('click',function(){$('#pricelist').scrollIntoView({behavior:'smooth'})})});
