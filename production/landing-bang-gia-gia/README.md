@@ -1,27 +1,48 @@
-# Landing bảng giá kim cương GIA – CHJ Diamond
+# Website bảng giá kim cương GIA – CHJ Diamond
 
-Trang tĩnh + Netlify Functions. Bảng giá KHÔNG nằm trong HTML: chỉ trả về khi lead đã được lưu và có token hợp lệ (24 giờ).
+Trang tĩnh (xuất bản bằng GitHub Pages, như các landing cũ) + Google Apps Script làm toàn bộ phần xử lý dữ liệu. Không dùng Netlify.
 
-## Luồng dữ liệu
-- Form → `submit-lead` → lưu Netlify Blobs (bản ghi gốc) → đồng bộ Google Sheet → trả token → `get-stock` trả bảng giá.
-- Kho kim cương đọc trực tiếp từ Google Sheet (cache 5 phút). Sheet lỗi hoặc chưa cấu hình thì dùng `data/stock.json` dự phòng.
-- Khách bấm "Tư vấn qua Zalo" → `track-interest` ghi viên đó vào cột "Viên kim đã bấm tư vấn".
-- Chống spam/trùng: ô ẩn cho bot, tối đa 6 lần gửi/IP/giờ, kiểm tra dữ liệu phía server, cùng số điện thoại thì cập nhật dòng cũ (không tạo dòng mới).
+```
+site/            Website (index.html, app.js, config.js, images/)
+apps-script/     Code.gs – backend dán vào Google Sheets
+tools/           verify.mjs (kiểm tra thật) và publish.mjs (xuất bản có khóa)
+docs/bang-gia-kim-cuong/   Bản công khai; CHỈ được tạo bởi publish.mjs
+```
 
-## 1. Google Sheet (làm 1 lần)
-1. Tải file Excel kho (`raw/BẢNG GIÁ KIM CƯƠNG GIA - CHJ DIAMOND.xlsx`) lên Google Sheets, giữ nguyên các tab và cột.
-2. Tiện ích mở rộng → Apps Script → dán `google-apps-script/chj-sheets.gs`.
-3. Chạy `setup()`, cấp quyền, lấy `WEBHOOK_SECRET` trong Nhật ký thực thi. Hàm này tạo tab **Khách hàng** (đủ cột, danh sách trạng thái chăm sóc).
-4. Triển khai → Ứng dụng web → chạy với tư cách "Tôi", quyền truy cập "Bất kỳ ai" → chép URL `/exec`.
-5. Không chia sẻ hoặc xuất bản công khai file Sheet; chỉ nhân viên CHJ được cấp quyền. Website truy cập qua secret, không cần mở Sheet.
+## Luồng khách hàng
+Xem giá dễ hiểu → để lại thông tin → chọn viên → nhắn Zalo (tin nhắn soạn sẵn) → mua hàng.
+- Bảng giá KHÔNG nằm trong HTML. Chỉ Apps Script trả về khi form đã được ghi vào Sheet (kèm token ký số, hạn 24 giờ).
+- Mỗi thẻ viên có nút tải ảnh PNG (1080×1350) để lưu hoặc gửi; trên điện thoại mở bảng chia sẻ.
+- Không có dữ liệu mẫu: kho lấy 100% từ Google Sheet. Chưa điền `API_URL` thì web hiện thông báo chưa kết nối và không mở bảng giá.
 
-## 2. Netlify
-Base directory = `production/landing-bang-gia-gia`. Biến môi trường:
-- `TOKEN_SECRET`, `ADMIN_KEY`: chuỗi ngẫu nhiên ≥ 16 ký tự (bắt buộc).
-- `SHEETS_WEBHOOK_URL`: URL `/exec` ở bước 4; `SHEETS_WEBHOOK_SECRET`: `WEBHOOK_SECRET` ở bước 3.
+## Thiết lập Google (làm 1 lần, khoảng 15 phút)
+1. **Tạo Sheet kho**: vào Google Sheets, Tệp → Nhập → tải lên `raw/BẢNG GIÁ KIM CƯƠNG GIA - CHJ DIAMOND.xlsx`, chọn "Tạo bảng tính mới". Giữ nguyên các tab và 12 cột (STT … Giá bán).
+2. **Dán script**: Tiện ích mở rộng → Apps Script → xóa mã mẫu, dán toàn bộ `apps-script/Code.gs`, lưu.
+3. **Chạy `setup()`**: chọn hàm `setup` → Chạy → cấp quyền (Nâng cao → Đi tới dự án). Xem **Nhật ký thực thi**, chép `ADMIN_KEY` cất riêng (chỉ để chạy kiểm tra, không dán lên web). `setup()` tạo tab **Khách hàng**, tab **Tổng quan tồn kho**, thêm 3 cột kho (Trạng thái, Giữ đến, Ghi chú nội bộ) và lịch làm mới hằng ngày.
+4. **Làm sạch kho**: tải lại Sheet → menu **CHJ → Ẩn các dòng kho bị trùng**. (File Excel hiện tại có nhiều khối bảng lặp lại cùng một viên; web luôn chỉ hiện mỗi viên một lần, và bước kiểm tra sẽ không đạt cho đến khi hết trùng. Dòng trùng nhưng khác giá được giữ lại để chị quyết định.) Xem tab *Tổng quan tồn kho* để chắc số liệu đúng.
+5. **Triển khai Web app**: Triển khai → Tùy chọn triển khai mới → loại *Ứng dụng web* → Thực thi với tư cách **Tôi**, Quyền truy cập **Bất kỳ ai** → Triển khai → chép URL kết thúc bằng `/exec`.
+6. **Quyền riêng tư**: không chia sẻ/xuất bản Sheet ra công khai; chỉ cấp quyền cho nhân viên CHJ. Web truy cập qua Apps Script nên không cần mở Sheet. Mỗi lần sửa `Code.gs` phải *Triển khai → Quản lý triển khai → Phiên bản mới*.
 
-Xuất CSV dự phòng (có cột `sheetSynced` cho biết lead nào chưa lên Sheet):
-`curl -H "x-admin-key: <ADMIN_KEY>" https://<site>/.netlify/functions/export-leads -o leads.csv`
+## Kiểm soát tồn kho (trong Sheet)
+Cột **Trạng thái** của mỗi viên:
+| Giá trị | Trên web |
+|---|---|
+| (trống) / Còn hàng | Hiện bình thường |
+| Đang giữ (+ cột Giữ đến) | Hiện nhãn "Đang có khách giữ"; quá ngày Giữ đến tự thành Còn hàng |
+| Đã bán, Ẩn | Không hiện |
 
-## Cập nhật kho
-Sửa giá, thêm hoặc xóa viên trực tiếp trong Google Sheet. Nếu đổi khoảng giá 5 ly, sửa khối `#range5` trong `index.html`.
+Khi bán/giữ một viên chỉ cần đổi cột Trạng thái; web cập nhật ngay ở lần tải bảng giá kế tiếp. Tab *Tổng quan tồn kho* đếm theo trạng thái và liệt kê dòng trùng/thiếu dữ liệu.
+
+## Quản lý khách hàng
+Tab **Khách hàng**: thời gian, họ tên, SĐT, email, kích thước, ngân sách, mục đích, viên đã bấm tư vấn, nguồn/UTM, trạng thái chăm sóc (danh sách chọn), nhân viên phụ trách. Cùng SĐT thì cập nhật dòng cũ. Chống spam: ô ẩn cho bot, kiểm tra dữ liệu ở server, chặn gửi dồn cùng số, trần số lượt toàn hệ thống mỗi 10 phút. Web không bao giờ ghi đè hai cột Trạng thái chăm sóc và Nhân viên phụ trách.
+
+## Kiểm tra và xuất bản (website chỉ công khai sau khi đạt)
+1. Mở `site/config.js`, điền `API_URL` = URL `/exec`.
+2. Chạy kiểm tra trên hệ thống thật (PowerShell):
+   ```powershell
+   $env:CHJ_ADMIN_KEY = "<ADMIN_KEY>"; node tools/verify.mjs
+   ```
+   Công cụ thử toàn bộ quy trình: kết nối, kho có viên thật và không trùng, bảng giá bị khóa khi thiếu token, form sai/bot bị chặn, lưu lead → nhận token → mở bảng giá, ghi viên quan tâm, chống trùng/dồn. Dòng test (tên bắt đầu `ZZ TEST`) được tự xóa. Đạt hết mới tạo `.verified.json`.
+3. Xuất bản: `node tools/publish.mjs` – từ chối nếu chưa kết nối, chưa kiểm tra, hoặc file trong `site/` đã đổi sau lần kiểm tra. Đạt thì chép vào `docs/bang-gia-kim-cuong/`.
+4. Commit và push `docs/bang-gia-kim-cuong` lên GitHub (bật Pages từ thư mục `/docs`). Link: `https://<tài-khoản>.github.io/<repo>/bang-gia-kim-cuong/`.
+5. Mở link thật bằng điện thoại, tự điền một lần bằng số của chị để thử, rồi xóa dòng thử trong tab Khách hàng.
