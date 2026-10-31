@@ -1,9 +1,9 @@
 import { timingSafeEqual } from 'node:crypto';
 import { getStore } from '@netlify/blobs';
 
-const COLS = ['createdAt', 'name', 'phone', 'email', 'size', 'budget', 'purpose', 'consent', 'source'];
+const COLS = ['createdAt', 'updatedAt', 'name', 'phone', 'email', 'size', 'budget', 'purpose', 'interests', 'utm', 'status', 'submissions', 'consent', 'sheetSynced'];
 // Tiền tố ' chặn công thức Excel (=, +, -, @) trong dữ liệu khách nhập.
-const csvCell = (v) => `"${String(v ?? '').replace(/"/g, '""').replace(/^([=+\-@])/, "'$1")}"`;
+const csvCell = (v) => `"${String(Array.isArray(v) ? v.join('; ') : v ?? '').replace(/"/g, '""').replace(/^([=+\-@])/, "'$1")}"`;
 
 // GET /.netlify/functions/export-leads với header x-admin-key: <ADMIN_KEY>
 export default async (req) => {

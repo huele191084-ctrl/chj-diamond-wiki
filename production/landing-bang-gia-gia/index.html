@@ -273,6 +273,14 @@ fbq('init','556532239837827');fbq('track','PageView');
   var ZALO='https://zalo.me/0912268667', API='/.netlify/functions/';
   var TOKEN_KEY='chj_pl_token', SIZE_KEY='chj_pl_size';
   var $=function(s){return document.querySelector(s)};
+  // Lưu nguồn khách (UTM, fbclid...) ngay khi vào trang để gửi kèm lead.
+  var UTM={};
+  try{
+    var sp=new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){if(sp.get(k))UTM[k]=sp.get(k)});
+    if(Object.keys(UTM).length||!sessionStorage.getItem('chj_utm')){UTM.referrer=document.referrer||'';sessionStorage.setItem('chj_utm',JSON.stringify(UTM))}
+    else UTM=JSON.parse(sessionStorage.getItem('chj_utm'));
+  }catch(e){}
   var ov=$('#ov'), form=$('#lead'), submitBtn=$('#submit'), items=[], shown=0, PAGE=24, lastFocus=null;
 
   function store(k,v){try{if(v==null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){}}
@@ -319,7 +327,7 @@ fbq('init','556532239837827');fbq('track','PageView');
     if(Object.keys(e).length)return;
     submitBtn.disabled=true;submitBtn.textContent='Đang gửi…';
     v.consentText=$('#consent-text').textContent.trim();
-    v.source=location.href.slice(0,200);
+    v.source=location.href.slice(0,200);v.utm=UTM;
     fetch(API+'submit-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(v)})
       .then(function(r){return r.json().catch(function(){return{ok:false}}).then(function(d){return{status:r.status,d:d}})})
       .then(function(res){
@@ -395,14 +403,17 @@ fbq('init','556532239837827');fbq('track','PageView');
 
   /* ---- Zalo ---- */
   function openZalo(text){
-    if(text&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast('Đã sao chép thông tin viên, dán vào Zalo để CHJ tư vấn nhanh')},function(){})}
+    if(text&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast('Đã sao chép tin nhắn, hãy dán vào Zalo để CHJ tư vấn nhanh')},function(){})}
     window.open(ZALO,'_blank','noopener');
     track('Contact');
   }
   $('#grid').addEventListener('click',function(e){
     var b=e.target.closest('[data-ask]');if(!b)return;
     var x=items.filter(function(i){return i.id===b.getAttribute('data-ask')})[0];if(!x)return;
-    openZalo('Em quan tâm viên kim cương GIA '+x.gia_no+' ('+x.ly.toFixed(1)+' ly, '+x.ct.toFixed(2)+' ct, màu '+x.color+', '+x.clarity+', huỳnh quang '+x.fl+', giá '+x.price.toLocaleString('vi-VN')+'đ). Nhờ CHJ tư vấn giúp em.');
+    openZalo('Tôi vừa xem bảng giá trên website CHJ. Tôi quan tâm viên kim cương '+x.ly.toFixed(1)+' ly, '+x.color+', '+x.clarity+', mã GIA '+x.gia_no+', giá '+x.price.toLocaleString('vi-VN')+'đ. Nhờ CHJ tư vấn giúp tôi về chất lượng, tình trạng hàng và phương án lên trang sức.');
+    // Ghi nhận viên khách quan tâm vào hồ sơ + Google Sheet (không chặn việc mở Zalo)
+    var t=load(TOKEN_KEY);
+    if(t)try{fetch(API+'track-interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:t,itemId:x.id}),keepalive:true}).catch(function(){})}catch(e){}
   });
   document.querySelectorAll('[data-zalo]').forEach(function(a){a.addEventListener('click',function(){track('Contact')})});
 })();

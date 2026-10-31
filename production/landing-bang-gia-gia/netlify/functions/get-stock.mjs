@@ -1,5 +1,5 @@
 import { json, verifyToken } from './_lib.mjs';
-import stock from '../../data/stock.json' with { type: 'json' };
+import { loadStock } from './_stock.mjs';
 
 export default async (req) => {
   if (req.method !== 'POST') return json(405, { ok: false, error: 'Method not allowed' });
@@ -10,5 +10,6 @@ export default async (req) => {
     return json(400, { ok: false, error: 'Dữ liệu không hợp lệ.' });
   }
   if (!verifyToken(body.token)) return json(401, { ok: false, error: 'Phiên xem bảng giá đã hết hạn. Vui lòng nhập lại thông tin.' });
-  return json(200, { ok: true, items: stock });
+  const { items } = await loadStock();
+  return json(200, { ok: true, items });
 };
