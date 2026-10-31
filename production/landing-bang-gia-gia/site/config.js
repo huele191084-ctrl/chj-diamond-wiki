@@ -4,5 +4,7 @@ window.CHJ_CONFIG = {
   ZALO_PHONE: '0912268667',
   // Link nhóm Zalo CHJ (lấy từ mã QR của ảnh mời vào nhóm)
   ZALO_GROUP_URL: 'https://zaloapp.com/qr/g/gjccws780?src=qr',
+  // Tài khoản nhận tiền (giải mã từ mã VietQR CHJ gửi: BIN 970441 = VIB)
+  BANK: { name: 'VIB (Ngân hàng Quốc tế)', number: '686979686', holder: 'CTTNHH CHUNG HIEU JEWELRY' },
   PIXEL_ID: '556532239837827'
 };

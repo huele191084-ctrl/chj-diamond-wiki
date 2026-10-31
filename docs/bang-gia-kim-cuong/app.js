@@ -138,6 +138,7 @@
       '<div class="spec"><div><span>Màu</span><b>'+esc(x.color)+'</b></div><div><span>Độ sạch</span><b>'+esc(x.clarity)+'</b></div><div><span>Huỳnh quang</span><b>'+esc(x.fl)+'</b></div></div>'+
       '<div class="meta">'+gia+'</div>'+
       '<div class="btn">'+(hold?'Hỏi viên tương tự – gặp nhân viên tư vấn':'Bấm để gặp nhân viên tư vấn')+'</div>'+
+      '<button class="btn navy" type="button" data-buy="'+i+'">MUA NGAY – chuyển khoản</button>'+
       '<button class="btn ghost" type="button" data-png="'+i+'">Tải ảnh thẻ kim cương (PNG)</button></article>';
   }
   function draw(reset){
@@ -173,6 +174,31 @@
     zov.addEventListener('click',function(e){if(e.target===zov)closeZalo()});
     $('#z-join').addEventListener('click',function(){track('Contact')});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')closeZalo()});
+  }
+
+  /* ---- Mua ngay: thông tin chuyển khoản ---- */
+  var bov=$('#bov'), BANK=CFG.BANK||{};
+  function openBuy(x){
+    $('#b-pick').textContent='Viên '+fly(x.ly)+' ly · màu '+x.color+' · '+x.clarity+' · GIA '+x.gia_no;
+    $('#b-bank').textContent=BANK.name||'';$('#b-num').textContent=BANK.number||'';$('#b-holder').textContent=BANK.holder||'';
+    $('#b-amt').textContent=vnd(x.price);$('#b-memo').textContent='CHJ '+x.gia_no;
+    bov.classList.add('on');document.body.style.overflow='hidden';
+    track('InitiateCheckout',{content_name:'GIA '+x.gia_no,value:x.price,currency:'VND'});
+    var t=load(TOKEN_KEY);
+    if(t)try{api('interest',{token:t,itemId:x.id}).catch(function(){})}catch(err){}
+  }
+  function closeBuy(){bov.classList.remove('on');document.body.style.overflow=''}
+  if(bov){
+    $('#bclose').addEventListener('click',closeBuy);
+    bov.addEventListener('click',function(e){
+      if(e.target===bov)return closeBuy();
+      var b=e.target.closest('[data-cp]');if(!b)return;
+      var txt=$('#'+b.getAttribute('data-cp')).textContent;
+      if(b.getAttribute('data-cp')==='b-amt')txt=txt.replace(/\D/g,'');
+      var done=function(){toast('Đã chép: '+txt)};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(done,function(){});else done();
+    });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBuy()});
   }
 
   /* ---- ảnh PNG từ thẻ kim cương ---- */
@@ -230,6 +256,8 @@
   }
   if($('#grid')){
     $('#grid').addEventListener('click',function(e){
+      var buy=e.target.closest('[data-buy]');
+      if(buy){var bx=cur[+buy.getAttribute('data-buy')];if(bx)openBuy(bx);return}
       var png=e.target.closest('[data-png]');
       if(png){var p=cur[+png.getAttribute('data-png')];if(p)savePNG(p);return}
       if(e.target.closest('a'))return;

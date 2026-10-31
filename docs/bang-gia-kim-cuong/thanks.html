@@ -67,6 +67,15 @@ footer{background:var(--navy);color:#AEB9CF;font-size:13.5px;text-align:center;p
 footer b{color:var(--gold2)}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(11,31,58,.1)}
 .sticky a,.sticky button{flex:1;padding:13px 8px;font-size:15px}
+.bbox .btn{display:block;width:100%}
+.bank{background:#fff;border:1px solid var(--line);border-radius:14px;margin:12px 0}
+.bank .r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:14.5px}
+.bank .r:last-child{border:0}
+.bank .r span{color:var(--mute)}
+.bank .r b{color:var(--navy);text-align:right;word-break:break-word}
+.bank .cp{border:1.5px solid var(--navy);background:none;color:var(--navy);border-radius:999px;font:600 12.5px inherit;padding:5px 11px;cursor:pointer;flex:none;margin-left:6px}
+.bbox img.qr{display:block;width:100%;max-width:320px;margin:10px auto;border-radius:14px}
+.bbox .warn{background:#FFF6E0;border-radius:10px;padding:10px 12px;font-size:13.5px;color:#6B5320;margin:10px 0}
 /* modal */
 .ov{position:fixed;inset:0;z-index:100;background:rgba(11,31,58,.72);display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:16px}
 .ov.on{display:flex}
@@ -209,6 +218,23 @@ fbq('init','556532239837827');fbq('track','PageView');
     <img src="images/zalo-nhom.jpg" alt="Mã QR tham gia nhóm Zalo CHJ" width="340" height="520" loading="lazy">
     <p class="alt" id="z-copied">Thông tin viên đã được sao chép. Bạn chỉ cần dán vào nhóm để nhân viên nhận đúng viên bạn chọn.</p>
     <p class="alt">Hoặc nhắn Zalo riêng: <a href="https://zalo.me/0912268667" target="_blank" rel="noopener" style="color:var(--navy);font-weight:700">0912 268 667</a></p>
+  </div>
+</div>
+<div class="ov" id="bov" role="dialog" aria-modal="true" aria-labelledby="b-title">
+  <div class="modal bbox">
+    <button class="x" type="button" id="bclose" aria-label="Đóng">&times;</button>
+    <h2 id="b-title">Mua ngay – chuyển khoản</h2>
+    <div class="pick" id="b-pick"></div>
+    <div class="warn">Trước khi chuyển, bạn nhắn Zalo <b>0912 268 667</b> để nhân viên xác nhận viên còn hàng và giá chính thức.</div>
+    <div class="bank">
+      <div class="r"><span>Ngân hàng</span><b id="b-bank"></b></div>
+      <div class="r"><span>Số tài khoản</span><b id="b-num"></b><button class="cp" type="button" data-cp="b-num">Chép</button></div>
+      <div class="r"><span>Chủ tài khoản</span><b id="b-holder"></b></div>
+      <div class="r"><span>Số tiền</span><b id="b-amt"></b><button class="cp" type="button" data-cp="b-amt">Chép</button></div>
+      <div class="r"><span>Nội dung chuyển</span><b id="b-memo"></b><button class="cp" type="button" data-cp="b-memo">Chép</button></div>
+    </div>
+    <img class="qr" src="images/vietqr.png" alt="Mã VietQR chuyển khoản CHJ" width="320" height="378" loading="lazy">
+    <p class="alt">Quét mã bằng app ngân hàng, nhập số tiền và nội dung như trên. Chuyển xong, bạn gửi ảnh biên lai vào Zalo <a href="https://zalo.me/0912268667" target="_blank" rel="noopener" style="color:var(--navy);font-weight:700">0912 268 667</a> để CHJ giữ viên và hẹn giao.</p>
   </div>
 </div>
 <div class="toast" id="toast"></div>
