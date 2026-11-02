@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chọn bông tai theo dáng khuôn mặt | CHJ DIAMOND</title>
+<meta name="description" content="Kiểm tra dáng khuôn mặt trong 3 giây và nhận gợi ý bông tai kim cương tôn đường nét gương mặt. Quà tặng từ CHJ Diamond.">
+<style>
+/*FONTS*/
+  :root{
+    --gold:#C9A84C;
+    --gold-soft:#E3C56F;
+    --ink:#f4f0e8;
+    --muted:#b9b9c6;
+    --cream:#171728;
+    --line:rgba(201,168,76,.28);
+    --dark:#0F0F19;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI',Roboto,Arial,sans-serif;
+    color:var(--ink);background:var(--dark);line-height:1.65;
+    -webkit-font-smoothing:antialiased;padding-bottom:76px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+  img{display:block;max-width:100%;}
+  [hidden]{display:none!important;}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1080px;margin:0 auto;}
+  header img{height:56px;width:auto;background:#fff;padding:5px;border-radius:12px;border:1px solid rgba(201,168,76,.5);}
+  header a.call{color:var(--gold);font-weight:700;text-decoration:none;font-size:15px;}
+
+  .hero{background:var(--cream);}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;padding-top:40px;padding-bottom:40px;}
+  .eyebrow{font-size:13px;letter-spacing:3px;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:14px;}
+  h1{font-size:40px;line-height:1.2;font-weight:700;margin-bottom:16px;font-family:'Noto Serif','Times New Roman',serif;}
+  h1,.sec-title h2,.final h2{text-wrap:balance;}
+  h1 em{font-style:normal;color:var(--gold);}
+  h1,.sec-title h2,.final h2,.why h3{color:var(--gold-soft);}
+  .hero p.lead{font-size:18px;color:var(--muted);margin-bottom:26px;max-width:460px;}
+  .hero img.main{border-radius:18px;box-shadow:0 20px 44px rgba(0,0,0,.5);aspect-ratio:1/1;object-fit:cover;object-position:center 25%;width:100%;}
+
+  .btn{
+    display:inline-block;padding:15px 30px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;
+    background:var(--gold);color:var(--dark);font-weight:800;font-size:16px;letter-spacing:.3px;font-family:inherit;
+    box-shadow:0 8px 20px rgba(201,168,76,.3);transition:transform .15s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+  .btn.ghost{background:transparent;color:var(--gold);border:1.5px solid var(--gold);box-shadow:none;margin-left:10px;}
+
+  .points{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:34px 0;text-align:center;}
+  .points div{padding:6px 10px;}
+  .points b{display:block;color:var(--gold);font-size:15px;margin-bottom:4px;}
+  .points span{font-size:14px;color:var(--muted);}
+
+  .sec-title{text-align:center;margin-bottom:34px;}
+  .sec-title h2{font-size:30px;font-family:'Noto Serif','Times New Roman',serif;font-weight:700;}
+  .sec-title p{color:var(--muted);margin-top:6px;}
+
+  /* Quiz */
+  section.quiz{padding:30px 0 50px;scroll-margin-top:10px;}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  .face{position:relative;cursor:pointer;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:var(--cream);display:flex;flex-direction:column;transition:border-color .15s,transform .15s;}
+  .face:hover{transform:translateY(-3px);border-color:var(--gold);}
+  .face input{position:absolute;opacity:0;pointer-events:none;}
+  .face .ph{position:relative;aspect-ratio:3/4;overflow:hidden;}
+  .face .ph img{width:100%;height:100%;object-fit:cover;}
+  .face .no{position:absolute;top:8px;left:8px;width:26px;height:26px;border-radius:50%;background:rgba(15,15,25,.82);color:var(--gold-soft);font-weight:700;font-size:13px;display:grid;place-items:center;border:1px solid var(--line);}
+  .face .tick{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--dark);font-weight:800;display:none;place-items:center;font-size:15px;}
+  .face .lb{padding:10px 12px 14px;}
+  .face .lb b{display:block;color:var(--gold-soft);font-size:15px;line-height:1.3;}
+  .face .lb small{display:block;color:var(--muted);font-size:12.5px;line-height:1.4;margin-top:3px;}
+  .face:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 12px 28px rgba(0,0,0,.5);}
+  .face:has(input:checked) .tick{display:grid;}
+  .face:has(input:focus-visible){outline:2px solid var(--gold-soft);outline-offset:2px;}
+  .quiz-bar{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+  .quiz-bar #picked{color:var(--muted);font-size:15px;}
+  .quiz-bar #picked b{color:var(--gold-soft);}
+
+  /* Kết quả */
+  section.result{background:var(--cream);padding:56px 0;scroll-margin-top:10px;}
+  .res-top{display:grid;grid-template-columns:300px 1fr;gap:34px;align-items:center;margin-bottom:34px;}
+  .res-top img{border-radius:18px;aspect-ratio:3/4;object-fit:cover;width:100%;box-shadow:0 20px 44px rgba(0,0,0,.5);border:1px solid var(--line);}
+  .res-top h2{font-family:'Noto Serif','Times New Roman',serif;color:var(--gold-soft);font-size:32px;line-height:1.25;margin:6px 0 12px;}
+  .res-top h2 em{font-style:normal;color:var(--gold);}
+  .res-top p{color:var(--muted);font-size:17px;}
+  .ears{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:22px;}
+  .ear{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--dark);}
+  .ear-ic{flex:none;width:44px;height:62px;display:grid;place-items:center;color:var(--gold);}
+  .ear-ic svg{width:34px;height:50px;}
+  .ear b{display:block;color:var(--gold-soft);font-size:17px;margin-bottom:3px;}
+  .ear span.t{font-size:14.5px;color:var(--muted);display:block;}
+  .tips{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px;}
+  .tip{border-left:3px solid var(--gold);padding:6px 0 6px 16px;}
+  .tip small{display:block;color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:700;text-transform:uppercase;}
+  .tip b{display:block;color:var(--gold-soft);margin:2px 0;}
+  .tip span{font-size:14.5px;color:var(--muted);}
+  .res-cta{text-align:center;}
+  .res-cta .btn{margin:4px 5px;}
+
+  .samples{padding:50px 0 20px;scroll-margin-top:10px;}
+  .s-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:760px;margin:0 auto;}
+  .s-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--cream);display:flex;flex-direction:column;}
+  .s-card img{aspect-ratio:3/4;object-fit:cover;width:100%;}
+  .s-card .info{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1;}
+  .s-card h3{font-size:18px;color:var(--gold-soft);margin-bottom:4px;}
+  .s-card p{font-size:14px;color:var(--muted);flex:1;}
+  .s-card a{margin-top:12px;color:var(--gold);font-weight:700;font-size:14px;text-decoration:none;}
+  .s-card a:hover{text-decoration:underline;}
+  .why{padding:50px 0;}
+  .why .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .why .col{text-align:center;padding:0 8px;}
+  .why .num{font-family:'Noto Serif','Times New Roman',serif;font-size:34px;color:var(--gold);}
+  .why h3{font-size:17px;margin:4px 0 6px;}
+  .why p{font-size:14.5px;color:var(--muted);}
+
+  .final{padding:56px 0;text-align:center;background:var(--cream);}
+  .final h2{font-size:30px;font-family:'Noto Serif','Times New Roman',serif;margin-bottom:10px;}
+  .final p.sub{color:var(--muted);max-width:520px;margin:0 auto 26px;}
+  footer{border-top:1px solid var(--line);padding:26px 0 30px;text-align:center;font-size:13px;color:var(--muted);}
+  footer b{color:var(--gold);letter-spacing:1px;}
+
+  .lead-box{max-width:520px;margin:0 auto;text-align:left;background:var(--dark);border:1.5px solid var(--gold);border-radius:18px;padding:26px 24px;}
+  .chip{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--cream);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--muted);}
+  .chip b{color:var(--gold-soft);}
+  .chip a{color:var(--gold);font-weight:700;text-decoration:none;white-space:nowrap;}
+  .lead-box label{display:block;font-size:13px;color:var(--gold);font-weight:700;margin:12px 0 4px;}
+  .lead-box input,.lead-box select,.lead-box textarea{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #444;background:#fff;color:#111;font-size:16px;font-family:inherit;}
+  .lead-box input:focus,.lead-box select:focus,.lead-box textarea:focus{outline:2px solid var(--gold);}
+  .lead-box button{width:100%;margin-top:18px;font-size:17px;}
+  #lead-error{display:none;color:#ff7b86;font-weight:600;margin-top:10px;font-size:14px;}
+  #lead-ok{display:none;text-align:center;}
+  #lead-ok h3{color:var(--gold-soft);margin-bottom:8px;}
+  .privacy{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;}
+
+  .sticky{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--dark);
+    border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.5);
+    display:flex;gap:10px;padding:10px 14px;justify-content:center;
+  }
+  .sticky a{flex:1;max-width:260px;text-align:center;padding:13px 10px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px;}
+  .sticky .z{background:var(--gold);color:var(--dark);}
+  .sticky .t{border:1.5px solid var(--gold);color:var(--gold);}
+
+  @media(max-width:960px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:820px){
+    .hero .wrap{grid-template-columns:1fr;gap:24px;padding-top:26px;}
+    h1{font-size:30px;}
+    .points{grid-template-columns:1fr;gap:6px;}
+    .grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+    .res-top{grid-template-columns:1fr;gap:20px;}
+    .res-top img{max-width:260px;margin:0 auto;}
+    .res-top h2{font-size:26px;}
+    .tips{grid-template-columns:1fr;}
+    .why .cols{grid-template-columns:1fr;}
+    .btn.ghost{margin:10px 0 0;}
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '556532239837827');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=556532239837827&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<header>
+  <img src="images/logo-chj.png" alt="CHJ Diamond">
+  <a class="call" href="tel:0912268667">0912 268 667</a>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Tư vấn bông tai kim cương</div>
+      <h1>Đừng chọn bông tai chỉ vì nó <em>đẹp!</em></h1>
+      <p class="lead">Kiểm tra dáng khuôn mặt chỉ trong 3 giây, biết ngay kiểu bông tai nào tôn đường nét gương mặt bạn. Quà tặng từ CHJ.</p>
+      <a class="btn" href="#quiz">Chọn khuôn mặt &ndash; nhận gợi ý</a>
+      <a class="btn ghost" href="https://zalo.me/0912268667" target="_blank" rel="noopener">Chat Zalo</a>
+    </div>
+    <img class="main" src="images/hero-chj.jpg" alt="Người đẹp đeo bông tai kim cương CHJ">
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="points">
+    <div><b>01 &middot; Chọn dáng mặt</b><span>Chạm vào hình giống bạn nhất</span></div>
+    <div><b>02 &middot; Xem gợi ý</b><span>Kiểu bông tai, tóc, trang phục hợp dáng</span></div>
+    <div><b>03 &middot; Nhận tư vấn</b><span>CHJ gửi mẫu thật theo ngân sách</span></div>
+  </div>
+</div>
+
+<section class="quiz" id="quiz">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>Khuôn mặt của bạn gần với dáng nào nhất?</h2>
+      <p>Mẹo: buộc gọn tóc và nhìn thẳng vào gương để dễ so sánh.</p>
+    </div>
+    <div class="grid" id="face-grid"></div>
+    <div class="quiz-bar">
+      <div id="picked">Chưa chọn khuôn mặt</div>
+      <button class="btn" id="see" type="button" disabled>Xem kết quả</button>
+    </div>
+  </div>
+</section>
+
+<section class="result" id="result" hidden tabindex="-1">
+  <div class="wrap">
+    <div class="res-top">
+      <img id="r-img" src="" alt="">
+      <div>
+        <div class="eyebrow">Kết quả của bạn</div>
+        <h2>Bạn có khuôn mặt <em id="r-name"></em></h2>
+        <p id="r-sum"></p>
+      </div>
+    </div>
+    <div class="sec-title" style="margin-bottom:18px"><h2 style="font-size:24px">Kiểu bông tai nên chọn</h2></div>
+    <ul class="ears" id="r-ears"></ul>
+    <div class="tips">
+      <div class="tip"><small>Kiểu tóc</small><b id="r-hair-t"></b><span id="r-hair-d"></span></div>
+      <div class="tip"><small>Trang phục</small><b id="r-out-t"></b><span id="r-out-d"></span></div>
+    </div>
+    <div class="res-cta">
+      <a class="btn" href="#dangky">Nhận mẫu hợp dáng mặt của tôi</a>
+      <a class="btn ghost" href="https://zalo.me/0912268667" target="_blank" rel="noopener">Hỏi CHJ qua Zalo</a>
+    </div>
+  </div>
+</section>
+
+<section class="samples" id="mau">
+  <div class="wrap">
+    <div class="sec-title"><h2>Bông tai CHJ ngoài đời thật</h2><p>Hình quay thực tế tại CHJ. Chọn mẫu bạn thích để được tư vấn riêng.</p></div>
+    <div class="s-grid">
+      <article class="s-card"><img src="images/mau-halo-vien-doi.jpg" alt="Bông tai kim cương halo viền đôi" loading="lazy"><div class="info"><h3>Halo viền đôi</h3><p>Viên chủ ôm hai vòng đá nhỏ, lấp lánh đều mọi góc nhìn.</p><a href="#dangky" data-model="Halo viền đôi">Chọn mẫu này &rarr;</a></div></article>
+      <article class="s-card"><img src="images/mau-halo-chu-5ly.jpg" alt="Bông tai Halo chủ 5 ly F VVS1 GIA" loading="lazy"><div class="info"><h3>Halo chủ 5 ly F VVS1 GIA</h3><p>Viên chủ 5 ly nổi bật giữa vòng đá xếp dáng bông hoa.</p><a href="#dangky" data-model="Halo chủ 5 ly F VVS1 GIA">Chọn mẫu này &rarr;</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="sec-title"><h2>Vì sao dáng mặt quan trọng?</h2><p>Một đôi bông tai đúng dáng có thể thay đổi cả tổng thể</p></div>
+    <div class="cols">
+      <div class="col"><div class="num">I</div><h3>Cân bằng tỷ lệ</h3><p>Đường nét bông tai có thể làm mềm góc cạnh hoặc tạo thêm chiều dọc cho gương mặt.</p></div>
+      <div class="col"><div class="num">II</div><h3>Tôn điểm sáng</h3><p>Kim cương đặt đúng vị trí giúp ánh sáng phản chiếu lên làn da, đôi mắt và gò má.</p></div>
+      <div class="col"><div class="num">III</div><h3>Hài hòa phong cách</h3><p>Kết hợp cùng kiểu tóc và trang phục phù hợp để vẻ đẹp trọn vẹn, tự nhiên.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="dangky">
+  <div class="wrap">
+    <h2>Đăng ký tư vấn bông tai kim cương</h2>
+    <p class="sub">Chuyên viên CHJ liên hệ gợi ý mẫu hợp khuôn mặt, phong cách và ngân sách của bạn.</p>
+    <div class="lead-box">
+      <div id="lead-ok"><h3>Cảm ơn bạn!</h3><p style="margin:0">CHJ sẽ liên hệ bạn sớm nhất. Cần gấp? Nhắn Zalo <b style="color:var(--gold)">0912 268 667</b>.</p></div>
+      <form id="lead-form" novalidate>
+        <div class="chip"><span>Khuôn mặt đã chọn: <b id="chip-name">Chưa chọn</b></span><a href="#quiz">Thay đổi</a></div>
+        <label for="l-name">Họ và tên</label>
+        <input id="l-name" type="text" placeholder="Nguyễn Thị A" required autocomplete="name">
+        <label for="l-phone">Số điện thoại / Zalo</label>
+        <input id="l-phone" type="tel" placeholder="0912 xxx xxx" required autocomplete="tel" inputmode="tel">
+        <label for="l-budget">Ngân sách dự kiến</label>
+        <select id="l-budget"><option>Chưa xác định</option><option>Dưới 10 triệu</option><option>10–20 triệu</option><option>20–30 triệu</option><option>30–50 triệu</option><option>Trên 50 triệu</option></select>
+        <label for="l-note">Ghi chú (không bắt buộc)</label>
+        <textarea id="l-note" rows="2" placeholder="Dịp tặng, tông vàng hay trắng, dự định mua trong bao lâu..."></textarea>
+        <div id="lead-error"></div>
+        <button class="btn" id="l-btn" type="submit">GỬI ĐĂNG KÝ TƯ VẤN &raquo;</button>
+      </form>
+      <p class="privacy">&#128274; Thông tin chỉ dùng để CHJ tư vấn, không chia sẻ cho bên thứ ba. Hoặc <a href="https://zalo.me/0912268667" target="_blank" rel="noopener" style="color:var(--gold)">nhắn Zalo ngay</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><b>CHJ DIAMOND</b><br>Chung Hiếu Jewelry · Hotline/Zalo 0912 268 667</div>
+</footer>
+
+<div class="sticky">
+  <a class="z" href="https://zalo.me/0912268667" target="_blank" rel="noopener">Chat Zalo</a>
+  <a class="t" href="#dangky">Để lại SĐT</a>
+</div>
+
+<script>
+(function(){
+  var LEAD_URL = 'https://script.google.com/macros/s/AKfycbyOLgDZNyi-1ULvWKNW_LRnzLdeSz7NsD4KGkqTc7NHfSXEjk_WitIyv9l4UmjeuI97/exec';
+
+  var FACES=[
+    {id:'trai-xoan',no:1,name:'Trái xoan',hint:'Cân đối, cằm thon mềm',summary:'Khuôn mặt trái xoan có tỷ lệ khá cân đối nên bạn có nhiều tự do lựa chọn. Ưu tiên những dáng thanh lịch để giữ trọn vẻ hài hòa tự nhiên vốn có.',
+     ears:[['Bông nụ','nu','Điểm sáng gọn gàng ngay dái tai, tôn đường nét cân đối mà không lấn át gương mặt — dễ đeo hằng ngày.'],['Halo','halo','Vòng kim cương bao quanh giúp viên chủ trông lớn và lấp lánh hơn, thêm chiều sâu sang trọng cho những dịp đặc biệt.'],['Giọt nước','giot','Đường cong mềm mại có thể tiếp nối đường viền hàm thon, tạo cảm giác thanh thoát và nữ tính.']],
+     hair:['Búi thấp hoặc vén tóc ra sau tai','Để lộ trọn vành tai và đường viền hàm, giúp đôi bông tai trở thành điểm nhấn chính.'],out:['Áo dài, sơ mi lụa','Chất liệu mềm rủ và đường cổ thanh lịch hòa hợp với ánh sáng tinh khiết của kim cương.']},
+    {id:'tron',no:2,name:'Mặt tròn',hint:'Dài và rộng gần bằng nhau, má đầy',summary:'Với khuôn mặt tròn, mục tiêu thường là tạo thêm chiều dọc để gương mặt trông thon gọn và thanh thoát hơn.',
+     ears:[['Giọt nước','giot','Phần thân thon dài dẫn ánh nhìn theo chiều dọc, có thể giúp khuôn mặt trông thon hơn.'],['Oval dọc','oval','Dáng oval kéo dài tạo đường nét mảnh, góp phần cân bằng độ đầy đặn của hai má.'],['Dáng thả','tha','Chuyển động nhẹ theo từng cử chỉ, tạo cảm giác cổ cao và gương mặt dài hơn một chút.']],
+     hair:['Tóc rẽ lệch, búi cao','Đường rẽ lệch phá vỡ sự đối xứng tròn, búi cao thêm chiều cao giúp tổng thể cân đối.'],out:['Áo cổ V, blazer','Cổ chữ V và ve áo blazer tạo đường chéo dọc, đồng điệu với bông tai dáng dài.']},
+    {id:'vuong',no:3,name:'Mặt vuông',hint:'Hàm rộng, góc cạnh rõ',summary:'Khuôn mặt vuông có đường hàm rõ nét và cá tính. Những đường cong mềm thường giúp làm dịu các góc cạnh.',
+     ears:[['Oval','oval','Đường viền bo tròn đối lập nhẹ với góc hàm, giúp tổng thể trông mềm mại hơn.'],['Tròn','nu','Hình tròn trọn vẹn tạo sự cân bằng với đường nét vuông vức, mang lại vẻ dịu dàng.'],['Giọt nước mềm','giot','Dáng giọt nước thon nhẹ kéo ánh nhìn xuống dưới, có thể làm đường hàm trông thanh hơn.']],
+     hair:['Tóc uốn sóng','Lọn sóng bồng bềnh quanh gương mặt giúp làm mờ các góc cạnh ở vùng hàm.'],out:['Đầm lụa','Chất lụa rủ mềm và đường may uyển chuyển cân bằng nét mạnh mẽ của khuôn mặt.']},
+    {id:'trai-tim',no:4,name:'Mặt trái tim',hint:'Trán rộng, cằm nhỏ nhọn',summary:'Khuôn mặt trái tim rộng ở trán và thon dần về cằm. Bông tai có phần dưới đầy đặn thường giúp cân bằng tỷ lệ.',
+     ears:[['Giọt nước','giot','Phần đáy tròn đầy nằm gần tầm cằm, giúp lấp khoảng trống vùng hàm và tạo sự cân đối.'],['Quả lê','le','Dáng lê rộng dần phía dưới bổ sung độ đầy cho nửa dưới gương mặt, làm nổi bật nét thanh tú của cằm.']],
+     hair:['Tóc ngang vai uốn','Phần tóc uốn phồng quanh cằm và vai giúp tạo thêm độ rộng cho nửa dưới gương mặt.'],out:['Đầm chữ A','Dáng chữ A cân đối giữa phần trên và dưới, tiếp nối hiệu ứng cân bằng từ đôi bông tai.']},
+    {id:'kim-cuong',no:5,name:'Mặt kim cương',hint:'Gò má cao rộng, trán và cằm hẹp',summary:'Gò má cao là điểm nổi bật của khuôn mặt kim cương. Bông tai tinh tế giúp tôn gò má, đồng thời làm mềm vùng trán và cằm.',
+     ears:[['Bông nụ','nu','Kích thước gọn không cạnh tranh với gò má cao, giữ vẻ thanh lịch và tinh tế.'],['Halo','halo','Ánh sáng tỏa tròn từ vòng halo có thể làm mềm những đường nét góc cạnh của gò má.'],['Giọt nước','giot','Phần đáy rộng tạo thêm độ đầy cho vùng cằm hẹp, giúp tổng thể hài hòa hơn.']],
+     hair:['Tóc bob mềm','Tóc bob phồng nhẹ quanh cằm giúp cân bằng vùng gò má rộng.'],out:['Trang phục tối giản','Đường cắt tối giản để kim cương và đường nét gương mặt trở thành tâm điểm.']},
+    {id:'chu-nhat',no:6,name:'Mặt chữ nhật',hint:'Dài, hai bên thẳng, hàm vuông',summary:'Khuôn mặt chữ nhật dài và có góc hàm rõ. Bông tai tròn, có độ rộng ngang thường giúp tạo cảm giác cân đối hơn.',
+     ears:[['Halo tròn','halo','Đường viền tròn đầy đặn tạo chiều ngang, giúp gương mặt trông ngắn và mềm mại hơn.'],['Cụm đá','cum','Nhiều viên đá kết hợp tạo khối sáng rộng hai bên, góp phần làm đầy vùng má.'],['Oval rộng','oval-rong','Dáng oval bản rộng thêm chiều ngang mà vẫn giữ nét thanh lịch.']],
+     hair:['Tóc ngang vai uốn sóng','Sóng tóc ở hai bên tạo độ rộng, làm giảm cảm giác gương mặt dài.'],out:['Blazer, đầm cổ thuyền','Cổ thuyền tạo đường ngang ở vai, cùng blazer phom đứng mang lại tổng thể cân đối.']},
+    {id:'dai',no:7,name:'Mặt dài',hint:'Thon, chiều dài vượt trội',summary:'Với khuôn mặt dài, những dáng bông tai gọn, tròn và có độ rộng thường phù hợp hơn những dáng thả quá dài.',
+     ears:[['Bông nụ tròn','nu','Điểm sáng tròn ngay dái tai tạo đường ngang, giúp tỷ lệ gương mặt trông hài hòa hơn.'],['Halo','halo','Vòng viền làm viên đá trông lớn hơn, làm đầy hai bên mặt mà không kéo dài thêm.'],['Cụm đá','cum','Khối đá lấp lánh thu hút ánh nhìn sang hai bên thay vì theo chiều dọc.']],
+     hair:['Tóc mái bay','Mái bay che bớt phần trán, giúp rút ngắn tỷ lệ khuôn mặt một cách tự nhiên.'],out:['Đầm cổ vuông','Đường cổ vuông tạo nét ngang rõ ràng, đối trọng nhẹ nhàng với chiều dài gương mặt.']},
+    {id:'tam-giac',no:8,name:'Mặt tam giác (lê)',hint:'Trán hẹp, hàm rộng',summary:'Khuôn mặt tam giác có phần hàm rộng hơn trán. Điểm nhấn nên đặt cao, gần dái tai, để kéo ánh nhìn lên trên.',
+     ears:[['Bông nụ nổi bật','nu','Viên đá sáng ngay dái tai đưa điểm nhấn lên nửa trên, giúp cân bằng vùng hàm.'],['Halo nhỏ','halo','Ánh lấp lánh gọn gàng ở vị trí cao, tránh tạo thêm độ rộng cho vùng hàm.']],
+     hair:['Tóc tạo phồng phía trên','Độ phồng ở đỉnh đầu và thái dương giúp nửa trên gương mặt cân xứng hơn với vùng hàm.'],out:['Áo nhấn vai','Chi tiết nhấn ở vai mở rộng phần trên cơ thể, tiếp nối hiệu ứng cân bằng.']},
+    {id:'tam-giac-nguoc',no:9,name:'Mặt tam giác ngược',hint:'Trán rộng, cằm thon nhọn',summary:'Trán rộng và cằm thon là nét đặc trưng. Bông tai có phần dưới rộng thường giúp lấp đầy vùng cằm và cân bằng tỷ lệ.',
+     ears:[['Giọt nước','giot','Đáy tròn rộng nằm gần tầm cằm, giúp nửa dưới gương mặt trông đầy đặn hơn.'],['Dáng rộng phía dưới','chandelier','Thiết kế nở dần xuống dưới tạo đối trọng với vầng trán rộng.']],
+     hair:['Tóc ngang cằm','Độ phồng ngang cằm thêm chiều rộng cho phần dưới, làm mềm vùng trán.'],out:['Đầm chữ A','Chân váy xòe nhẹ tạo sự cân bằng cho phần vai và trán.']},
+    {id:'le',no:10,name:'Mặt lê (tam giác bầu)',hint:'Trán nhỏ, má và hàm tròn đầy',summary:'Khuôn mặt lê có hàm tròn đầy và trán nhỏ. Bông tai gọn, sáng ở vị trí cao giúp tôn nét mềm mại mà không làm vùng hàm nặng thêm.',
+     ears:[['Bông nụ','nu','Điểm sáng tinh gọn trên dái tai hướng ánh nhìn lên trên, tạo cảm giác thanh thoát.'],['Halo','halo','Vòng sáng tròn trịa hòa hợp với đường nét mềm mại, mang lại vẻ rạng rỡ quý phái.']],
+     hair:['Tóc rẽ lệch','Đường rẽ lệch tạo độ phồng ở đỉnh đầu, giúp phần trán trông cân đối hơn.'],out:['Blazer vai mềm','Phom vai mềm mở rộng nhẹ phần trên, hài hòa với đường nét tròn đầy của gương mặt.']}
+  ];
+
+  var ICONS={
+    nu:'<circle cx="16" cy="22" r="8"/><path d="M16 14l4 8-4 8-4-8z M8 22h16"/>',
+    halo:'<circle cx="16" cy="22" r="5"/><circle cx="16" cy="22" r="9.5" stroke-dasharray="1.4 2.2"/>',
+    giot:'<circle cx="16" cy="8" r="2.6"/><path d="M16 15c5 8 8 13 8 18a8 8 0 0 1-16 0c0-5 3-10 8-18z"/>',
+    le:'<circle cx="16" cy="7" r="2.6"/><path d="M16 13c6 7 10 13 10 20a10 10 0 0 1-20 0c0-7 4-13 10-20z"/><path d="M16 13v29"/>',
+    oval:'<circle cx="16" cy="8" r="2.6"/><ellipse cx="16" cy="28" rx="6.5" ry="11"/>',
+    'oval-rong':'<circle cx="16" cy="8" r="2.6"/><ellipse cx="16" cy="28" rx="10" ry="10.5"/>',
+    tha:'<circle cx="16" cy="5" r="2.4"/><path d="M16 7.5v20"/><circle cx="16" cy="15" r="1.4"/><path d="M16 28c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/>',
+    cum:'<circle cx="16" cy="22" r="4.5"/><circle cx="16" cy="12" r="3"/><circle cx="16" cy="32" r="3"/><circle cx="7" cy="22" r="3"/><circle cx="25" cy="22" r="3"/>',
+    chandelier:'<circle cx="16" cy="7" r="2.6"/><path d="M16 10L5 34q11 9 22 0z"/><path d="M16 10v30M10 22h12"/>'
+  };
+  function $(id){return document.getElementById(id);}
+  function ico(k){return '<svg viewBox="0 0 32 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">'+(ICONS[k]||ICONS.nu)+'</svg>';}
+
+  var grid=$('face-grid'),see=$('see'),picked=$('picked'),sel=null;
+  grid.innerHTML=FACES.map(function(f){
+    return '<label class="face"><input type="radio" name="face" value="'+f.id+'">'+
+      '<span class="ph"><img src="images/'+f.id+'.jpg" alt="Chân dung minh họa '+f.name.toLowerCase()+'" loading="lazy" width="300" height="400">'+
+      '<span class="no">'+f.no+'</span><span class="tick">&#10003;</span></span>'+
+      '<span class="lb"><b>'+f.name+'</b><small>'+f.hint+'</small></span></label>';
+  }).join('');
+  grid.addEventListener('change',function(e){
+    sel=FACES.filter(function(f){return f.id===e.target.value;})[0];
+    see.disabled=false;
+    picked.innerHTML='Đã chọn: <b>'+sel.no+'. '+sel.name+'</b>';
+    if(typeof fbq==='function')fbq('track','ViewContent',{content_name:sel.name});
+  });
+  see.addEventListener('click',function(){
+    if(!sel)return;
+    var f=sel,img=$('r-img');
+    img.src='images/'+f.id+'.jpg';img.alt='Chân dung minh họa '+f.name.toLowerCase();
+    $('r-name').textContent=f.name.replace(/^Mặt\s+/,'').toLowerCase();
+    $('r-sum').textContent=f.summary;
+    $('r-ears').innerHTML=f.ears.map(function(e){
+      return '<li class="ear"><span class="ear-ic">'+ico(e[1])+'</span><span><b>'+e[0]+'</b><span class="t">'+e[2]+'</span></span></li>';
+    }).join('');
+    $('r-hair-t').textContent=f.hair[0];$('r-hair-d').textContent=f.hair[1];
+    $('r-out-t').textContent=f.out[0];$('r-out-d').textContent=f.out[1];
+    $('chip-name').textContent=f.no+'. '+f.name;
+    var r=$('result');r.hidden=false;r.scrollIntoView({behavior:'smooth',block:'start'});
+    try{r.focus({preventScroll:true});}catch(x){}
+  });
+
+  document.querySelectorAll('a[href*="zalo.me"]').forEach(function(a){
+    a.addEventListener('click',function(){if(typeof fbq==='function')fbq('track','Contact');});
+  });
+
+  var wantModel='';
+  document.querySelectorAll('.s-card a').forEach(function(a){
+    a.addEventListener('click',function(){wantModel=a.getAttribute('data-model');
+      $('l-note').value='Quan tâm mẫu: '+wantModel;
+      if(typeof fbq==='function')fbq('track','ViewContent',{content_name:wantModel});});
+  });
+  var form=$('lead-form'),btn=$('l-btn'),err=$('lead-error'),ok=$('lead-ok');
+  function bad(m){err.textContent=m;err.style.display='block';}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();err.style.display='none';
+    var name=$('l-name').value.trim().replace(/\s+/g,' ');
+    var ph=$('l-phone').value.replace(/[\s.\-()]/g,'');
+    if(!name){bad('Vui lòng nhập họ và tên.');return;}
+    if(!/^(0|\+?84)\d{9,10}$/.test(ph)){bad('Số điện thoại chưa hợp lệ (VD: 0912268667).');return;}
+    ph=ph.replace(/^\+?84/,'0');ph='+84'+ph.slice(1);
+    var face=sel?(sel.no+'. '+sel.name):'Chưa chọn dáng mặt';
+    var src='direct';try{src=(new URLSearchParams(location.search).get('utm_source')||'direct').toLowerCase().slice(0,50);}catch(x){}
+    var b=new URLSearchParams();
+    b.append('name',name);b.append('phone',ph);
+    b.append('model','Bông tai theo dáng mặt: '+face);
+    b.append('note','Ngân sách: '+$('l-budget').value+(($('l-note').value.trim())?' | '+$('l-note').value.trim():''));
+    b.append('source',src);
+    btn.disabled=true;btn.innerHTML='Đang gửi&hellip;';
+    fetch(LEAD_URL,{method:'POST',mode:'no-cors',body:b}).then(function(){
+      form.style.display='none';ok.style.display='block';
+      if(typeof fbq==='function')fbq('track','Lead',{content_name:face});
+    }).catch(function(){btn.disabled=false;btn.innerHTML='GỬI ĐĂNG KÝ TƯ VẤN &raquo;';bad('Có lỗi xảy ra. Vui lòng thử lại hoặc nhắn Zalo.');});
+  });
+})();
+</script>
+</body>
+</html>
